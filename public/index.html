@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="apple-mobile-web-app-title" content="WavesMarketplace">
+    <meta name="application-name" content="WavesMarketplace">
+    <meta name="theme-color" content="#000000">
+    <meta name="Description" content="WavesMarketplace is a platform where you can sell your nft on Waves blockchain">
+
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<%= BASE_URL %>preview.png">
+    <meta property="og:title" content="WavesMarketplace">
+    <meta property="og:description" content="WavesMarketplace is a platform where you can sell your nft on Waves blockchain">
+    <meta property="og:site_name" content="WavesMarketplace">
+    <meta property="og:url" content="https://wavesmarketplace.com">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@WavesMarketplace">
+    <meta name="twitter:creator" content="@WavesMarketplace">
+    <meta name="twitter:title" content="WavesMarketplace">
+    <meta name="twitter:description" content="WavesMarketplace is a platform where you can sell your nft on Waves blockchain">
+    <meta name="twitter:image" content="<%= BASE_URL %>preview.png">
+
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>WavesPunks</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap" rel="stylesheet">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2FV2S9VHE3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-2FV2S9VHE3');
+    </script>
+
+    <!-- Twitter universal website tag code -->
+    <script>
+        !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+        },s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+        a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+        // Insert Twitter Pixel ID and Standard Event data below
+        twq('init','o6yhi');
+        twq('track','PageView');
+    </script>
+    <!-- End Twitter universal website tag code -->
+</head>
+
+<body>
+    <noscript>
+        <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong>
+    </noscript>
+
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '4514607848607421');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=4514607848607421&ev=PageView&noscript=1"/></noscript>
+    <!-- End Facebook Pixel Code -->
+
+    <script>
+        window["ym"] = window["ym"] || function() {(window["ym"].a = window["ym"].a || []).push(arguments)};
+        window["ym"].l = 1 * new Date();
+        var initYMconf = function() {
+            window.ym(86621460, "init", {
+                webvisor: true,
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: false,
+                trackHash: true,
+                ecommerce: "dataLayer"
+            })
+        };
+
+        var initYMconfE = function() {
+            window.ym(86621460, "init", {
+                webvisor: false,
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: false,
+                trackHash: true,
+                ecommerce: "dataLayer"
+            })
+        };
+ 
+        function loadMCScript(src, okcallback, errcallback) {
+            var s, t;
+            s = document.createElement('script');
+            s.async = !0;
+            s.src = src;
+            s.onload = function() {
+                if (typeof okcallback === 'function') {
+                    okcallback()
+                }
+            };
+            s.onerror = function() {
+                if (typeof errcallback === 'function') {
+                    errcallback()
+                }
+            };
+            t = document.getElementsByTagName('script')[0];
+            t.parentNode.insertBefore(s, t)
+        }
+ 
+        setTimeout(function() {
+            var cff2 = function() {
+                loadMCScript("https://cfwosp.quic.pro/metrika/ymtag.js", initYMconfE)
+            }
+            loadMCScript("https://mc.yandex.ru/metrika/tag.js", initYMconf, cff2)
+        }, 300);
+    </script>
+</body>
+
+</html>
