@@ -151,8 +151,7 @@
     }
 
     .wavespunks-content {
-        background: radial-gradient(circle, rgba(0,85,255,1) 0%, rgba(0,0,0,1) 75%); 
-        /* background: radial-gradient(33.35% 47.68% at 46.8% 50.45%, #0055FF 0.22%, rgba(0, 85, 255, 0) 100%); */
+        background: radial-gradient(circle, rgba(121,0,121,1) 0%, rgba(0,0,0,1) 50%);
         height: 100%;
     }
 
