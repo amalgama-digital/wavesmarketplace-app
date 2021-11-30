@@ -69,10 +69,6 @@
                     .catch(err => {
                         console.error(err);
                     });
-            },
-            logout () {
-                window.localStorage.removeItem("loginChoice");
-                location.reload();
             }
         }
     }

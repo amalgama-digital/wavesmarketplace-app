@@ -9,7 +9,7 @@
                     </div>
                 </div>
                 <button v-if="offerButton" @click="offerForSale">Offer For Sale</button>
-                <button v-else-if="cancelButton">Cancel Selling</button>
+                <button v-else-if="cancelButton" @click="cancelSelling">Cancel Selling</button>
                 <button v-else-if="buyButton">Buy</button>
                 <button v-else-if="!walletStatus" @click="connect = true">Connect wallet</button>
             </div>
@@ -103,7 +103,7 @@
                     });
             },
 
-            async offerForSale() {
+            async provider() {
                 const data = JSON.parse(window.localStorage.getItem("loginChoice"));
                 if (data.choice == "keeper") {
                     const authData = { data: 'https://wavesmarketplace.com/' };
@@ -115,6 +115,10 @@
                 } else if (data.choice == "email") {
                     window.signer.setProvider(new ProviderCloud());
                 }
+            },
+
+            async offerForSale() {
+                await this.provider();
 
                 await window.signer.invoke({
                     dApp: window.contractAddress,
@@ -128,6 +132,27 @@
                         args: [{
                             type: 'integer',
                             value: this.price,
+                        }],
+                    },
+                }).broadcast().then(res => {
+                    console.log(res);
+                }).catch(error => {
+                    console.error(error);
+                });
+            },
+
+            async cancelSelling() {
+                await this.provider();
+
+                await window.signer.invoke({
+                    dApp: window.contractAddress,
+                    fee: 900000,
+                    payment: [],
+                    call: {
+                        function: 'cancelSelling',
+                        args: [{
+                            type: 'string',
+                            value: this.assetId,
                         }],
                     },
                 }).broadcast().then(res => {

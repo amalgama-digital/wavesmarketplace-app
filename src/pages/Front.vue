@@ -8,6 +8,7 @@
             </div>
             <div class="wavesmarketplace-links">
                 <a href="/myNFT">MY NFT</a>
+                <a href="#" @click="logout">LOG OUT</a>
             </div>
         </header>
         <main>
@@ -31,6 +32,19 @@
         </footer>
     </div>
 </template>
+
+<script>
+    export default {
+        name: "Front",
+        methods: {
+            logout () {
+                window.localStorage.removeItem("loginChoice");
+                location.reload();
+            }
+        }
+    }
+</script>
+
 
 <style scoped>
     header, footer {
