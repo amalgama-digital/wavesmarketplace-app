@@ -8,10 +8,18 @@
                         <p>{{ nft.name }}</p>
                     </div>
                 </div>
-                <button v-if="offerButton" @click="offerForSale">Offer For Sale</button>
+                <button v-if="offerButton" @click="offer = true">Offer For Sale</button>
                 <button v-else-if="cancelButton" @click="cancelSelling">Cancel Selling</button>
-                <button v-else-if="buyButton">Buy</button>
+                <button v-else-if="buyButton" @click="buy">Buy {{ this.viewCurrentPrice }} WAVES</button>
                 <button v-else-if="!walletStatus" @click="connect = true">Connect wallet</button>
+            </div>
+        </div>
+        <div v-if="offer" class="modal">
+            <div class="wrapper">
+                <div class="close" @click="offer = false"></div>
+                <p>Price (WAVES)</p>
+                <input v-model="price" placeholder="Enter price" type="number">
+                <button @click="offerForSale">Submit</button>
             </div>
         </div>
         <connect-wallet v-if="connect" :connect="connect" v-on:close="connect = $event" v-on:success="getInfo($event)"></connect-wallet>
@@ -37,6 +45,7 @@
                 price: 0,
                 currentPrice: 0,
                 address: "",
+                offer: false,
                 offerButton: false,
                 cancelButton: false,
                 buyButton: false
@@ -55,6 +64,11 @@
                 this.getInfo(this.wallet.address);
             }
             this.getNFT();
+        },
+        computed: {
+            viewCurrentPrice() {
+                return this.currentPrice / 100000000;
+            }
         },
         methods: {
             async getInfo(address) {
@@ -131,11 +145,12 @@
                         function: 'offerForSale',
                         args: [{
                             type: 'integer',
-                            value: this.price,
+                            value: this.price * 100000000,
                         }],
                     },
                 }).broadcast().then(res => {
                     console.log(res);
+                    this.offer = false;
                 }).catch(error => {
                     console.error(error);
                 });
@@ -150,6 +165,30 @@
                     payment: [],
                     call: {
                         function: 'cancelSelling',
+                        args: [{
+                            type: 'string',
+                            value: this.assetId,
+                        }],
+                    },
+                }).broadcast().then(res => {
+                    console.log(res);
+                }).catch(error => {
+                    console.error(error);
+                });
+            },
+
+            async buy() {
+                await this.provider();
+
+                await window.signer.invoke({
+                    dApp: window.contractAddress,
+                    fee: 900000,
+                    payment: [{
+                        assetId: 'WAVES',
+                        amount: this.currentPrice,
+                    }],
+                    call: {
+                        function: 'buy',
                         args: [{
                             type: 'string',
                             value: this.assetId,
@@ -204,5 +243,68 @@
         font-weight: 500;
         font-size: 22px;
         line-height: 27px;
+    }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Inter;
+        font-style: normal;
+    }
+
+    .wrapper {
+        width: 340px;
+        height: 200px;
+        background-color: white;
+        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        text-align: center;
+    }
+
+    .wrapper > input {
+        height: 30px;
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        border: 0;
+        background-color: white;
+    }
+
+    .close:hover {
+        cursor: pointer;
+    }
+
+    .close:before, .close:after {
+        position: absolute;
+        left: 0px;
+        content: ' ';
+        height: 23px;
+        width: 2px;
+        background-color: #333;
+    }
+
+    .close:before {
+        transform: rotate(45deg);
+    }
+
+    .close:after {
+        transform: rotate(-45deg);
     }
 </style>
