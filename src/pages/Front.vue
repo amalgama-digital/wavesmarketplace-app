@@ -6,9 +6,12 @@
                     <img src="/img/logo-black.png">
                 </a>
             </div>
-            <div class="wavesmarketplace-links">
+            <div v-if="authorized" class="wavesmarketplace-links">
                 <a href="/myNFT">MY NFT</a>
                 <a href="#" @click="logout">LOG OUT</a>
+            </div>
+            <div v-else-if="!authorized" class="wavesmarketplace-links">
+                <a href="#" @click="connect = true">LOG IN</a>
             </div>
         </header>
         <main>
@@ -30,14 +33,38 @@
                 </a>
             </div>
         </footer>
+        <connect-wallet v-if="connect" :connect="connect" v-on:close="connect = $event" v-on:success="login()"></connect-wallet>
     </div>
 </template>
 
 <script>
+    import ConnectWallet from "../components/ConnectWallet.vue";
+
     export default {
         name: "Front",
+        data() {
+            return {
+                authorized: false,
+                connect: false
+            }
+        },
+        components: {
+            ConnectWallet
+        },
+        mounted() {
+            const data = window.localStorage.getItem("loginChoice");
+            if (!data) {
+                this.authorized = false;
+            } else {
+                this.authorized = true;
+            }
+        },
         methods: {
-            logout () {
+            login() {
+                this.authorized = true;
+            },
+
+            logout() {
                 window.localStorage.removeItem("loginChoice");
                 location.reload();
             }
@@ -88,5 +115,6 @@
         justify-content: center;
         align-items: center;
         margin: 0px 15px;
+        font-weight: 300;
     }
 </style>

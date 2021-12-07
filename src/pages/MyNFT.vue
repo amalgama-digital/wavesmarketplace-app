@@ -5,12 +5,10 @@
             <button @click="connect = true">Connect wallet</button>
         </div>
         <div class="my-nft" v-if="nfts.length > 0">
-            <a :href="`asset/${nft.assetId}`" class="nft" v-for="(nft) in nfts" v-bind:key="nft.id">
+            <a :href="`asset/${nft.assetId}`" class="nft" v-for="(nft) in nfts" v-bind:key="nft.assetId">
                 <img :src="nft.metadata.url">
-                <div>
-                    <div class="nft-name">
-                        <p>{{ nft.name }}</p>
-                    </div>
+                <div class="nft-name">
+                    <p>{{ nft.name }}</p>
                 </div>
             </a>
         </div>

@@ -4,8 +4,17 @@
             <img class="nft-url" :src="nft.metadata.url">
             <div class="nft-button">
                 <div>
+                    <div class="nft-collection">
+                        <img :src="nft.collection_logo">
+                        <a :href="nft.collection_url" class="nft-collection-name">
+                            <p>{{ nft.collection_name }}</p>
+                        </a>
+                    </div>
                     <div class="nft-name">
                         <p>{{ nft.name }}</p>
+                    </div>
+                    <div v-if="currentPrice > 0 && cancelButton" class="nft-price">
+                        <p>{{ viewCurrentPrice }} WAVES</p>
                     </div>
                 </div>
                 <button v-if="offerButton" @click="offer = true">Offer For Sale</button>
@@ -28,6 +37,7 @@
 
 <script>
     import axios from "axios";
+    import collection from "../collection.json";
 
     import { ProviderKeeper } from '@waves/provider-keeper';
     import { ProviderCloud } from '@waves.exchange/provider-cloud';
@@ -107,6 +117,11 @@
                             let data = {};
                             data.name = res.data.name;
                             data.metadata = JSON.parse(res.data.description);
+
+                            data.collection_name = Object.values(collection).find(item => item.address_issuer == res.data.issuer).name;
+                            data.collection_url = "/collection/" + Object.keys(collection).find(key => collection[key].address_issuer == res.data.issuer);
+                            data.collection_logo = "/collections/" + Object.keys(collection).find(key => collection[key].address_issuer == res.data.issuer) + "/logo.png";
+
                             this.nft = data;
                         } catch (err) {
                             console.error(err);
@@ -239,10 +254,39 @@
         margin-left: 40px;
     }
 
+    .nft-collection {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .nft-collection > img {
+        border-radius: 50%;
+        width: 40px;
+        margin-right: 10px;
+    }
+
+    .nft-collection-name {
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 27px;
+    }
+
+    .nft-collection-name, .nft-collection-name:hover, .nft-collection-name:active {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
     .nft-name {
         font-weight: 500;
         font-size: 22px;
         line-height: 27px;
+    }
+
+    .nft-price {
+        font-weight: 300;
     }
 
     .modal {
