@@ -99,6 +99,7 @@
         border: 0;
         box-shadow: 2px 2px 2px 0px rgba(255, 214, 69, 0.6);
         text-align: center;
+        width: max-content;
     }
 
     .wavesmarketplace-go-to, .wavesmarketplace-go-to:hover, .wavesmarketplace-go-to:active {

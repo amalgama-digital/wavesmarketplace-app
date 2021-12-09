@@ -110,6 +110,7 @@
         font-weight: 300;
         font-size: 26px;
         line-height: 31px;
+        width: 700px;
     }
 
     .collection-header {
