@@ -221,15 +221,16 @@
 
 <style scoped>
     button {
-        background: #0055FF;
+        background: #FFD645;
         border: 0;
-        box-shadow: 2px 2px 2px 0px rgba(6, 59, 166, 0.6), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
+        box-shadow: 2px 2px 2px 0px rgba(255, 214, 69, 0.6);
         border-radius: 8px;
         color: white;
         padding: 10px 20px;
         font-weight: 500;
         font-size: 18px;
         line-height: 22px;
+        color: black;
     }
 
     button:hover {
@@ -276,6 +277,9 @@
     .nft-collection-name, .nft-collection-name:hover, .nft-collection-name:active {
         color: black;
         text-decoration: none;
+    }
+
+    .nft-collection-name:hover {
         cursor: pointer;
     }
 

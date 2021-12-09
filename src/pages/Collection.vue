@@ -1,9 +1,15 @@
 <template>
     <div>
-        <div class="collection-header">
-            <h1 class="collection-name">{{ name }}</h1>
-            <p class="collection-description"> {{ description }} </p>
+        <div class="collection-header border-radius-18">
+            <div class="collection-header-back border-radius-18">
+                <div class="collection-name">
+                    <h1>{{ name }}</h1>
+                    <p>{{ description }}</p>
+                </div>
+                <img :src="`/collections/${params}/logo.png`">
+            </div>
         </div>
+
         <div class="collection-nfts">
             <a :href="`/asset/${nft.assetId}`" class="nft" v-for="(nft) in nfts" v-bind:key="nft.assetId">
                 <img :src="nft.metadata.url">
@@ -26,6 +32,7 @@
         name: "Collection",
         data() {
             return {
+                params: "",
                 name: "",
                 description: "",
                 issuer: "",
@@ -33,10 +40,10 @@
             }
         },
         async mounted() {
-            let params = this.$route.params["name"];
-            this.name = collection[params].name;
-            this.description = collection[params].description;
-            this.issuer = collection[params].address_issuer;
+            this.params = this.$route.params["name"];
+            this.name = collection[this.params].name;
+            this.description = collection[this.params].description;
+            this.issuer = collection[this.params].address_issuer;
 
             await axios.get(`${window.nodeURL}/addresses/data/${window.contractAddress}`)
                 .then(res => {
@@ -65,17 +72,48 @@
 </script>
 
 <style scoped>
+    .border-radius-18 {
+        border-radius: 18px;
+    }
+
     .collection-header {
-        margin: 55px;
+        margin-top: 70px;
+        background: black;
+        height: 550px;
+        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2)
+    }
+
+    .collection-header-back {
+        /* background: radial-gradient(96.9% 232.74% at 72.75% 136.22%, #7915A8 8.3%, rgba(0, 85, 255, 0) 100%); */
+        background: radial-gradient(49.91% 258.29% at 84.66% 31.09%,#05f 0,#000 100%);
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .collection-header-back > img {
+        height: 200px;
+        border-radius: 50%;
+        margin: auto;
+        margin-right: 100px;
     }
 
     .collection-name {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 60px;
+        color: #FFFFFF;
     }
 
-    .collection-description {
+    .collection-name > p {
         font-weight: 300;
-        text-align: center;
+        font-size: 26px;
+        line-height: 31px;
+    }
+
+    .collection-header {
+        margin: 55px;
     }
 
     .collection-nfts {

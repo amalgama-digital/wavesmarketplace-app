@@ -1,207 +1,140 @@
 <template>
-    <div class="wavespunks-home">
-        <div class="wavespunks-content">
-            <div class="wavespunks-main">
-                <img class="wavespunks-logo" src="/img/logo.png">
-                <!-- <div class="wavespunks-social">
-                    <a id="discord" target="_blank" href="https://discord.gg/gfpKDfRtvf">
-                        <img src="/img/discord.svg">
-                    </a>
-                    <a id="telegram" target="_blank" href="https://t.me/wavespunks">
-                        <img src="/img/telegram.svg">
-                    </a>
-                    <a id="instagram" target="_blank" href="https://instagram.com/waves.punks">
-                        <img src="/img/instagram.svg">
-                    </a>
-                    <a id="twitter" target="_blank" href="https://twitter.com/WavesPunks">
-                        <img src="/img/twitter.svg">
-                    </a>
-                </div> -->
-                <p class="wavespunks-text">NFT TSUNAMI IN...</p>
-                <div class="countdown">
-                    <div class="countdown-number">
-                        <span class="countdown-time">{{ days }}</span>
-                        <span class="countdown-text">Days</span>
-                    </div>
-                    <div class="countdown-number">
-                        <span class="countdown-time">{{ hours }}</span>
-                        <span class="countdown-text">Hours</span>
-                    </div>
-                    <div class="countdown-number">
-                        <span class="countdown-time">{{ minutes }}</span>
-                        <span class="countdown-text">Minutes</span>
-                    </div>
-                    <div class="countdown-number">
-                        <span class="countdown-time">{{ seconds }}</span>
-                        <span class="countdown-text">Seconds</span>
-                    </div>
+    <div class="wavesmarketplace-home">
+        <div class="wavesmarketplace-first border-radius-18">
+            <div class="wavesmarketplace-first-back border-radius-18">
+                <div class="wavesmarketplace-first-text">
+                    <h2 style="color: #FFFFFF;">RIDE THE WAVE OF<br>WAVES-BASED NFTs</h2>
+                    <p>Discover the world of NFTs on WAVES blockchain. Collect, list and sell unique pieces of art!</p>
+                    <a class="wavesmarketplace-go-to" href="/collection/wavespunks">GO TO WAVESPUNKS COLLECTION</a>
                 </div>
+                <img src="/img/punks.svg">
             </div>
         </div>
+
+        <div class="wavesmarketplace-second border-radius-18">
+            <img src="/img/crown.svg">
+            <div class="wavesmarketplace-second-text">
+                <h2>BE AMONG THE FIRST</h2>
+                <p>This is the world’s first multi-functional NFT marketplace, based on Waves Platform</p>
+            </div>
+        </div>
+
+        <div class="wavesmarketplace-second border-radius-18">
+            <img src="/img/banksy.svg">
+            <div class="wavesmarketplace-second-text">
+                <h2>TRUE DIGITAL ART</h2>
+                <p>Waves Marketplace provides professional moderation for almost every NFT listed on the platform.</p>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
     export default {
-        name: "Home",
-        data(){
-            return {
-                days: "",
-                hours: "",
-                minutes: "",
-                seconds: "",
-                deadline: "December 27 2021 00:00:00 GMT+0300"
-            }
-        },
-        mounted() {
-            this.initializeClock(this.deadline);
-        },
-        methods: {
-            initializeClock(endtime) {
-                let vm = this;
-
-                function getTimeRemaining(endtime) {
-                    var t = Date.parse(endtime) - Date.parse(new Date());
-                    var seconds = Math.floor((t / 1000) % 60);
-                    var minutes = Math.floor((t / 1000 / 60) % 60);
-                    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-                    var days = Math.floor(t / (1000 * 60 * 60 * 24));
-                    return {
-                        'total': t,
-                        'days': days,
-                        'hours': hours,
-                        'minutes': minutes,
-                        'seconds': seconds
-                    };
-                }
-
-                function updateClock() {
-                    var t = getTimeRemaining(endtime);
-
-                    vm.days = t.days;
-                    vm.hours = ('0' + t.hours).slice(-2);
-                    vm.minutes = ('0' + t.minutes).slice(-2);
-                    vm.seconds = ('0' + t.seconds).slice(-2);
-
-                    if (t.total <= 0) {
-                        clearInterval(timeinterval);
-                    }
-                }
-                
-                updateClock();
-                var timeinterval = setInterval(updateClock, 1000);
-            }
-        }
+        name: "Home"
     }
 </script>
 
 <style scoped>
-    @media only screen and (max-width: 1200px) {
-        .wavespunks-logo {
-            max-width: 800px !important;
-        }
-
-        .wavespunks-text {
-            font-size: 45px !important;
-        }
-
-        .countdown-time {
-            font-size: 40px !important;
-        }
+    h2 {
+        font-weight: 500;
+        font-size: 52px;
+        line-height: 63px;
+        margin: 0;
     }
 
-    @media only screen and (max-width: 800px) {
-        .wavespunks-logo {
-            max-width: 400px !important;
-        }
-
-        .wavespunks-text {
-            font-size: 35px !important;
-        }
-
-        .countdown-time {
-            font-size: 30px !important;
-        }
+    .border-radius-18 {
+        border-radius: 18px;
     }
 
-    @media only screen and (max-width: 400px) {
-        .wavespunks-logo {
-            max-width: 300px !important;
-        }
-
-        .wavespunks-text {
-            font-size: 25px !important;
-        }
-
-        .countdown-number {
-            margin: 0 10px !important;
-        }
-
-        .countdown-time {
-            font-size: 20px !important;
-        }
-    }
-
-    .wavespunks-home {
-        background: #000000;
-        color: white;
-        height: 100vh;
+    .wavesmarketplace-home {
+        margin: 40px;
         font-family: Inter;
         font-style: normal;
     }
 
-    .wavespunks-content {
-        background: radial-gradient(circle, rgba(121,0,121,1) 0%, rgba(0,0,0,1) 50%);
-        height: 100%;
+    .wavesmarketplace-first {
+        margin-top: 70px;
+        background: black;
+        height: 550px;
+        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2)
     }
 
-    .wavespunks-main {
+    .wavesmarketplace-first-back {
+        background: radial-gradient(96.9% 232.74% at 72.75% 136.22%, #7915A8 8.3%, rgba(0, 85, 255, 0) 100%);
+        height: 100%;
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: space-between;
+    }
+
+    .wavesmarketplace-first-back > img {
+        height: 600px;
+        margin: auto;
+        margin-top: -20px;
+    }
+
+    .wavesmarketplace-first-text {
+        display: flex;
         flex-direction: column;
-        width: 100%;
-        height: 100%;
+        justify-content: center;
+        padding: 0 60px;
     }
 
-    .wavespunks-logo {
-        max-width: 1200px;
+    .wavesmarketplace-first-text > p {
+        font-weight: 300;
+        font-size: 26px;
+        line-height: 31px;
+        color: #FFFFFF;
     }
 
-    .wavespunks-text {
+    .wavesmarketplace-go-to {
+        background: #FFD645;
+        border-radius: 8px;
         font-weight: 500;
-        font-size: 55px;
-        line-height: 67px;
+        font-size: 18px;
+        line-height: 22px;
+        padding: 10px 35px;
+        margin: 50px 0;
+        border: 0;
+        box-shadow: 2px 2px 2px 0px rgba(255, 214, 69, 0.6);
         text-align: center;
     }
 
-    .wavespunks-social {
+    .wavesmarketplace-go-to, .wavesmarketplace-go-to:hover, .wavesmarketplace-go-to:active {
+        text-decoration: none;
+        color: black;
+    }
+
+    .wavesmarketplace-go-to:hover {
+        cursor: pointer;
+    }
+
+    .wavesmarketplace-second {
+        margin-top: 70px;
+        height: 550px;
+        border: 2px solid #A400CC;
         display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 50%;
-        justify-content: center;
-        align-items: center;
+        margin: 70px 100px;
+    }
+
+    .wavesmarketplace-second > img {
+        height: 600px;
         margin: auto;
+        margin-top: -20px;
     }
 
-    .countdown {
-        display: flex;
-    }
-
-    .countdown-number {
+    .wavesmarketplace-second-text {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-        margin: 0px 25px;
+        padding: 0 60px;
+        color: black;
     }
 
-    .countdown-time {
-        font-size: 50px;
-    }
-
-    .countdown-text {
-        font-size: 12px;
+    .wavesmarketplace-second-text > p {
+        font-weight: 300;
+        font-size: 26px;
+        line-height: 31px;
     }
 </style>

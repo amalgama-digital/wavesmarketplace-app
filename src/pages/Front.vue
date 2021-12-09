@@ -18,19 +18,21 @@
             <router-view></router-view>
         </main>
         <footer>
-            <div class="wavesmarketplace-com">
-                © 2021 WavesMarketplace.com
-            </div>
-            <div class="wavesmarketplace-links">
-                <a id="discord" target="_blank" href="https://discord.gg/gfpKDfRtvf">
-                    <img src="/img/discord.svg">
-                </a>
-                <a id="telegram" target="_blank" href="https://t.me/wavespunks_en">
-                    <img src="/img/telegram.svg">
-                </a>
-                <a id="instagram" target="_blank" href="https://instagram.com/waves.punks">
-                    <img src="/img/instagram.svg">
-                </a>
+            <div class="wavesmarketplace-footer-wrapper">
+                <h2>GET ON THE LIST</h2>
+                <p>Send a request and get an early access for the Waves Marketplace</p>
+                <button>EARLY ACCESS</button>
+                <div class="wavesmarketplace-links">
+                    <a id="discord" target="_blank" href="https://discord.gg/gfpKDfRtvf">
+                        <img src="/img/discord-footer.svg">
+                    </a>
+                    <a id="telegram" target="_blank" href="https://t.me/wavespunks_en">
+                        <img src="/img/telegram-footer.svg">
+                    </a>
+                    <a id="instagram" target="_blank" href="https://instagram.com/waves.punks">
+                        <img src="/img/instagram-footer.svg">
+                    </a>
+                </div>
             </div>
         </footer>
         <connect-wallet v-if="connect" :connect="connect" v-on:close="connect = $event" v-on:success="login()"></connect-wallet>
@@ -74,7 +76,7 @@
 
 
 <style scoped>
-    header, footer {
+    header {
         display: flex;
         justify-content: space-between;
         margin: 55px;
@@ -110,11 +112,49 @@
         margin: 0px 15px;
     }
 
-    .wavesmarketplace-com {
+    footer {
+        font-family: Inter;
+        font-style: normal;
+        background: black;
+        color: white;
+        height: 500px;
+    }
+
+    .wavesmarketplace-footer-wrapper {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 0px 15px;
+        height: 100%;
+        /* background: radial-gradient(46.38% 222.62% at 47.18% 167.45%, #7915A8 0.22%, rgba(0, 85, 255, 0) 100%); */
+        background: radial-gradient(48.56% 121.64% at 48.37% 117%, #7915A8 0.22%, rgba(0, 85, 255, 0) 100%);
+    }
+
+    .wavesmarketplace-footer-wrapper > h2 {
+        font-weight: 500;
+        font-size: 35px;
+        line-height: 42px;
+    }
+
+    .wavesmarketplace-footer-wrapper > p {
         font-weight: 300;
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .wavesmarketplace-footer-wrapper > button {
+        background: #FFD645;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 22px;
+        padding: 10px 35px;
+        margin: 50px 0;
+        border: 0;
+        box-shadow: 2px 2px 2px 0px rgba(255, 214, 69, 0.6);
+    }
+
+    .wavesmarketplace-footer-wrapper > button:hover {
+        cursor: pointer;
     }
 </style>

@@ -27,7 +27,7 @@
             async connectKeeper() {
                 this.error = false;
                 if (window.signer) {
-                    const authData = { data: 'https://wavespunks.com/' };
+                    const authData = { data: 'https://wavesmarketplace.com/' };
                     await window.signer.setProvider(new ProviderKeeper(authData)).then(res => {
                         console.log(res);
                     }).catch(error => {
