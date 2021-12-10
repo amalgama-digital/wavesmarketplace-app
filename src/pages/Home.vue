@@ -19,6 +19,14 @@
             </div>
         </div>
 
+        <div class="wavesmarketplace-third border-radius-18">
+            <div class="wavesmarketplace-third-text">
+                <h2>EASY TO USE</h2>
+                <p>Buying and selling NFTs was never that easy. Create your account, and you’re in!</p>
+            </div>
+            <img src="/img/easy-to-use.svg">
+        </div>
+
         <div class="wavesmarketplace-second border-radius-18">
             <img src="/img/banksy.svg">
             <div class="wavesmarketplace-second-text">
@@ -134,6 +142,33 @@
     }
 
     .wavesmarketplace-second-text > p {
+        font-weight: 300;
+        font-size: 26px;
+        line-height: 31px;
+    }
+
+    .wavesmarketplace-third {
+        margin-top: 70px;
+        height: 550px;
+        display: flex;
+        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
+    }
+
+    .wavesmarketplace-third > img {
+        height: 600px;
+        margin: auto;
+        margin-top: -20px;
+    }
+
+    .wavesmarketplace-third-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 60px;
+        color: black;
+    }
+
+    .wavesmarketplace-third-text > p {
         font-weight: 300;
         font-size: 26px;
         line-height: 31px;
