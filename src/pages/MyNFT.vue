@@ -67,6 +67,25 @@
                     .catch(err => {
                         console.error(err);
                     });
+
+                await axios.get(`${window.nodeURL}/addresses/data/${window.contractAddress}`)
+                    .then(res => {
+                        for (let i = 0; i < res.data.length; i++) {
+                            if (res.data[i].key.endsWith("_owner") && res.data[i].value == address) {
+                                let data = {};
+
+                                let l = res.data[i].key.length;
+                                data.assetId = res.data[i].key.substring(0, l - 6);
+                                data.name = res.data.find(item => item.key == data.assetId + "_name").value;
+                                data.metadata = JSON.parse(res.data.find(item => item.key == data.assetId + "_description").value);
+
+                                this.nfts.push(data);
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
             }
         }
     }

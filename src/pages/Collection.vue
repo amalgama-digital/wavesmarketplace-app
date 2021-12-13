@@ -53,11 +53,8 @@
 
                             let l = res.data[i].key.length;
                             data.assetId = res.data[i].key.substring(0, l - 7);
-
                             data.name = res.data.find(item => item.key == data.assetId + "_name").value;
-
                             data.metadata = JSON.parse(res.data.find(item => item.key == data.assetId + "_description").value);
-
                             data.price = res.data.find(item => item.key == data.assetId + "_price").value / 100000000;
 
                             this.nfts.push(data);
