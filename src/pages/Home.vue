@@ -45,6 +45,76 @@
 </script>
 
 <style scoped>
+    @media only screen and (max-width: 1440px) {
+        h2 {
+            font-size: 42px !important;
+        }
+
+        .wavesmarketplace-first-text > p,
+        .wavesmarketplace-second-text > p,
+        .wavesmarketplace-third-text > p {
+            font-size: 24px !important;
+            line-height: 29px !important;
+        }
+
+        .border-radius-18 img {
+            height: 400px !important;
+            margin-top: auto !important;
+        }
+    }
+
+    @media only screen and (max-width: 1024px) {
+        h2 {
+            font-size: 32px !important;
+            line-height: 43px !important;
+        }
+
+        .wavesmarketplace-first-text > p,
+        .wavesmarketplace-second-text > p,
+        .wavesmarketplace-third-text > p {
+            font-size: 22px !important;
+            line-height: 27px !important;
+        }
+
+        .wavesmarketplace-second {
+            margin: 70px 0px !important;
+        }
+    }
+
+    @media only screen and (max-width: 983px) {
+        .border-radius-18 img {
+            display: none;
+        }
+    }
+
+    @media only screen and (max-width: 640px) {
+        h2 {
+            font-size: 26px !important;
+            line-height: 37px !important;
+        }
+
+        .wavesmarketplace-first-text > p,
+        .wavesmarketplace-second-text > p,
+        .wavesmarketplace-third-text > p {
+            font-size: 20px !important;
+            line-height: 25px !important;
+        }
+
+        .wavesmarketplace-first-text, .wavesmarketplace-second-text, .wavesmarketplace-third-text {
+            padding: 0 30px !important;
+        }
+
+        .wavesmarketplace-go-to {
+            font-size: 14px !important;
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .wavesmarketplace-go-to {
+            font-size: 12px !important;
+        }
+    }
+
     h2 {
         font-weight: 500;
         font-size: 52px;

@@ -95,6 +95,7 @@
         font-family: Inter;
         font-style: normal;
     }
+
     .wrapper {
         width: 340px;
         height: 160px;
@@ -106,6 +107,7 @@
         align-items: center;
         position: relative;
     }
+
     .close {
         position: absolute;
         top: 10px;
@@ -113,9 +115,11 @@
         border: 0;
         background-color: white;
     }
+
     .button:hover, .close:hover {
         cursor: pointer;
     }
+
     .close:before, .close:after {
         position: absolute;
         left: 0px;
@@ -124,20 +128,24 @@
         width: 2px;
         background-color: #333;
     }
+
     .close:before {
         transform: rotate(45deg);
     }
+
     .close:after {
         transform: rotate(-45deg);
     }
+
     .button {
-        background: #0055FF;
+        background: #FFD645;
         border: 0;
-        box-shadow: 2px 2px 2px 0px rgba(6, 59, 166, 0.6), -2px -2px 2px 0px rgba(255, 255, 255, 0.8);
+        box-shadow: 2px 2px 2px 0px rgba(255, 214, 69, 0.6);
         border-radius: 8px;
-        color: white;
+        color: black;
         padding: 10px 20px;
     }
+
     .error {
         position: absolute;
         bottom: 10px;

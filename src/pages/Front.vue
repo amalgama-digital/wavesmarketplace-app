@@ -74,8 +74,30 @@
     }
 </script>
 
-
 <style scoped>
+    @media only screen and (max-width: 640px) {
+        .wavesmarketplace-logo img {
+            width: 300px !important;
+        }
+
+        .wavesmarketplace-footer-wrapper > h2 {
+            font-size: 25px !important;
+            line-height: 32px !important;
+        }
+
+        .wavesmarketplace-footer-wrapper > p {
+            text-align: center;
+            font-size: 14px !important;
+            line-height: 18px !important;
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .wavesmarketplace-logo img {
+            width: 225px !important;
+        }
+    }
+
     header {
         display: flex;
         justify-content: space-between;
