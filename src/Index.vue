@@ -15,5 +15,6 @@
 <style>
     body {
         margin: 0;
+        background: #F0F0F0;
     }
 </style>
