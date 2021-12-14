@@ -156,7 +156,7 @@
     .collection-sort {
         margin: 55px;
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
 
     .collection-sort > select {
