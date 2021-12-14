@@ -10,6 +10,15 @@
             </div>
         </div>
 
+        <div class="collection-sort">
+            <select @change="onChange($event)">
+                <option value="price-low-to-high">Price: Low to High</option>
+                <option value="price-high-to-low">Price: High to Low</option>
+                <option value="id-low-to-high">Lowest NFT ID</option>
+                <option value="id-high-to-low">Highest NFT ID</option>
+            </select>
+        </div>
+
         <div class="collection-nfts">
             <a :href="`/asset/${nft.assetId}`" class="nft" v-for="(nft) in nfts" v-bind:key="nft.assetId">
                 <img :src="nft.metadata.url">
@@ -64,6 +73,36 @@
                 .catch(err => {
                     console.error(err);
                 });
+
+            this.sortLowestPrice();
+        },
+        // Lowest price >
+        // Highest price <
+        methods: {
+            onChange(event) {
+                let v = event.target.value;
+                if (v == "price-low-to-high") {
+                    this.sortLowestPrice();
+                } else if (v == "price-high-to-low") {
+                    this.sortHighestPrice();
+                } else if (v == "id-low-to-high") {
+                    this.sortLowestId();
+                } else if (v == "id-high-to-low") {
+                    this.sortHighestId();
+                }
+            },
+            sortLowestPrice() {
+                this.nfts = this.nfts.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0));
+            },
+            sortHighestPrice() {
+                this.nfts = this.nfts.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0));
+            },
+            sortLowestId() {
+                this.nfts = this.nfts.sort((a,b) => (a.metadata.id > b.metadata.id) ? 1 : ((b.metadata.id > a.metadata.id) ? -1 : 0));
+            },
+            sortHighestId() {
+                this.nfts = this.nfts.sort((a,b) => (a.metadata.id < b.metadata.id) ? 1 : ((b.metadata.id < a.metadata.id) ? -1 : 0));
+            }
         }
     }
 </script>
@@ -112,6 +151,27 @@
 
     .collection-header {
         margin: 55px;
+    }
+
+    .collection-sort {
+        margin: 55px;
+        display: flex;
+        justify-content: end;
+    }
+
+    .collection-sort > select {
+        padding: 10px;
+        border-radius: 18px;
+        border: 2px solid white;
+        background: #F0F0F0;
+    }
+
+    .collection-sort > select:hover, .collection-sort > select:active {
+        border: 2px solid white;
+    }
+
+    .collection-sort > select:focus-visible {
+        outline: none;
     }
 
     .collection-nfts {
