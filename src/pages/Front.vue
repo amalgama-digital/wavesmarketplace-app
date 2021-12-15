@@ -21,7 +21,7 @@
             <div class="wavesmarketplace-footer-wrapper">
                 <h2>GET ON THE LIST</h2>
                 <p>Send a request and get an early access for the Waves Marketplace</p>
-                <button>EARLY ACCESS</button>
+                <button @click="care">EARLY ACCESS</button>
                 <div class="wavesmarketplace-links">
                     <a id="discord" target="_blank" href="https://discord.gg/gfpKDfRtvf">
                         <img src="/img/discord-footer.svg">
@@ -69,6 +69,10 @@
             logout() {
                 window.localStorage.removeItem("loginChoice");
                 location.reload();
+            },
+
+            care() {
+                window.location.href = "mailto:care@wavesmarketplace.com";
             }
         }
     }
