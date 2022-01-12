@@ -38,14 +38,15 @@ export default {
 
     .news-articles {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         grid-gap: 32px;
         grid-auto-flow: dense;
-        margin-left: 15px;
+        max-width: 1200px;
+        margin: auto;
     }
 
     .news-article:nth-child(31n + 1) {
-        grid-column: 1 / -1;
+        grid-column: 1 / -2;
     }
 
     .news-article, .news-article:hover, .news-article:active {
