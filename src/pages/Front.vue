@@ -7,10 +7,12 @@
                 </a>
             </div>
             <div v-if="authorized" class="wavesmarketplace-links">
+                <a href="/news">NEWS</a>
                 <a href="/myNFT">MY NFT</a>
                 <a href="#" @click="logout">LOG OUT</a>
             </div>
             <div v-else-if="!authorized" class="wavesmarketplace-links">
+                <a href="/news">NEWS</a>
                 <a href="#" @click="connect = true">LOG IN</a>
             </div>
         </header>
@@ -79,6 +81,18 @@
 </script>
 
 <style scoped>
+    @media only screen and (max-width: 768px) {
+        header {
+            flex-direction: column;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+        header > .wavesmarketplace-links {
+            margin-top: 20px;
+        }
+    }
+
     @media only screen and (max-width: 640px) {
         .wavesmarketplace-logo img {
             width: 300px !important;

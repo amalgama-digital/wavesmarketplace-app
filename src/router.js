@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import MyNFT from "./pages/MyNFT";
 import Collection from "./pages/Collection";
 import Asset from "./pages/Asset";
+import News from "./pages/News";
 
 const routes = [{
     path: '/',
@@ -26,6 +27,10 @@ const routes = [{
         path: '/asset/:id',
         name: 'Asset',
         component: Asset
+    }, {
+        path: '/news',
+        name: 'News',
+        component: News
     }]
 }];
 
