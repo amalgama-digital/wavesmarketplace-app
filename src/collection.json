@@ -3,5 +3,10 @@
         "name": "WavesPunks",
         "description": "WAVES PUNKS is the first collection of digital punks on Waves blockchain, dedicated both to the major milestones in cryptocurrency history and to the role of Waves blockchain in it.",
         "address_issuer": "3P8rLVnwrTf4k5AB3emuduhZZb1yKcitTHy"
+    },
+    "zombiepunks": {
+        "name": "ZombiePunks",
+        "description": "Second Chapter of the first-ever NFT-punks on WAVES blockchain",
+        "address_issuer": "3P7QrWH1ETLfKAJcFHYPJmQusNbDuW98Hop"
     }
 }
