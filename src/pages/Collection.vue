@@ -169,7 +169,7 @@
     }
 
     .collection-sort {
-        margin: 55px;
+        margin: 55px 105px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -194,7 +194,7 @@
     }
 
     .collection-nfts {
-        margin: 55px;
+        margin: 65px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
