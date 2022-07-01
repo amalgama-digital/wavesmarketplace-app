@@ -3,11 +3,9 @@
         <div class="wavesmarketplace-first border-radius-18">
             <div class="wavesmarketplace-first-back border-radius-18">
                 <div class="wavesmarketplace-first-text">
-                    <h2 style="color: #FFFFFF;">RIDE THE WAVE OF<br>WAVES-BASED NFTs</h2>
-                    <p>Discover the world of NFTs on WAVES blockchain. Collect, list and sell unique pieces of art!</p>
-                    <a class="wavesmarketplace-go-to" href="/collection/wavespunks">GO TO WAVESPUNKS COLLECTION</a>
+                    <h2 style="color: #FFFFFF;">WATCH YOUR<br>BRAINS</h2>
+                    <a class="wavesmarketplace-go-to" href="/collection/zombiepunks">GO TO ZOMBIEPUNKS COLLECTION</a>
                 </div>
-                <img src="/img/punks.svg">
             </div>
         </div>
 
@@ -140,16 +138,12 @@
     }
 
     .wavesmarketplace-first-back {
-        background: radial-gradient(96.9% 232.74% at 72.75% 136.22%, #7915A8 8.3%, rgba(0, 85, 255, 0) 100%);
+        background-image: url('/img/first-block.png');
+        background-size: cover;
+        background-position: center;
         height: 100%;
         display: flex;
         justify-content: space-between;
-    }
-
-    .wavesmarketplace-first-back > img {
-        height: 600px;
-        margin: auto;
-        margin-top: -20px;
     }
 
     .wavesmarketplace-first-text {
@@ -167,22 +161,20 @@
     }
 
     .wavesmarketplace-go-to {
-        background: #FFD645;
+        color: #FFD645;
         border-radius: 8px;
         font-weight: 500;
         font-size: 18px;
         line-height: 22px;
-        padding: 10px 35px;
         margin: 50px 0;
         border: 0;
-        box-shadow: 2px 2px 2px 0px rgba(255, 214, 69, 0.6);
         text-align: center;
         width: max-content;
     }
 
     .wavesmarketplace-go-to, .wavesmarketplace-go-to:hover, .wavesmarketplace-go-to:active {
         text-decoration: none;
-        color: black;
+        color: #FFD645;
     }
 
     .wavesmarketplace-go-to:hover {

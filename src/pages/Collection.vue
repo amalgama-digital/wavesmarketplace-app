@@ -1,16 +1,19 @@
 <template>
     <div>
-        <div class="collection-header border-radius-18">
-            <div class="collection-header-back border-radius-18">
+        <div class="collection-header">
+            <div class="collection-header-back">
+                <img :src="`/collections/${params}/background.png`">
+            </div>
+            <div class="collection-desc">
                 <div class="collection-name">
                     <h1>{{ name }}</h1>
                     <p>{{ description }}</p>
                 </div>
-                <img :src="`/collections/${params}/logo.png`">
             </div>
         </div>
 
         <div class="collection-sort">
+            Sort by
             <select @change="onChange($event)">
                 <option value="price-low-to-high">Price: Low to High</option>
                 <option value="price-high-to-low">Price: High to Low</option>
@@ -22,11 +25,13 @@
         <div class="collection-nfts">
             <a :href="`/asset/${nft.assetId}`" class="nft" v-for="(nft) in nfts" v-bind:key="nft.assetId">
                 <img :src="nft.metadata.url">
-                <div class="nft-name">
-                    <p>{{ nft.name }}</p>
-                </div>
-                <div class="nft-price">
-                    <p>{{ nft.price }} WAVES</p>
+                <div class="nft-desc">
+                    <div class="nft-name">
+                        <p>{{ nft.name }}</p>
+                    </div>
+                    <div class="nft-price">
+                        <p>{{ nft.price }} <img src="/img/waves-token.svg" /></p>
+                    </div>
                 </div>
             </a>
         </div>
@@ -76,8 +81,6 @@
 
             this.sortLowestPrice();
         },
-        // Lowest price >
-        // Highest price <
         methods: {
             onChange(event) {
                 let v = event.target.value;
@@ -108,30 +111,38 @@
 </script>
 
 <style scoped>
-    .border-radius-18 {
-        border-radius: 18px;
-    }
-
     .collection-header {
         margin-top: 70px;
-        background: black;
         height: 550px;
-        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2)
     }
 
     .collection-header-back {
-        /* background: radial-gradient(96.9% 232.74% at 72.75% 136.22%, #7915A8 8.3%, rgba(0, 85, 255, 0) 100%); */
-        background: radial-gradient(49.91% 258.29% at 84.66% 31.09%,#05f 0,#000 100%);
-        height: 100%;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 0;
+        height: 550px;
+        max-width: max-content;
+        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 18px;
+        overflow: hidden;
+        margin: auto;
     }
 
     .collection-header-back > img {
-        height: 200px;
-        border-radius: 50%;
+        height: 100%;
+    }
+
+    .collection-desc {
+        background-color: #fff;
+        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 18px;
+        position: relative;
+        z-index: 1;
+        max-width: 880px;
         margin: auto;
-        margin-right: 100px;
+        margin-top: -90px;
     }
 
     .collection-name {
@@ -139,14 +150,18 @@
         flex-direction: column;
         justify-content: center;
         padding: 0 60px;
-        color: #FFFFFF;
+        color: #000;
+    }
+
+    .collection-name > h1 {
+        text-align: center;
     }
 
     .collection-name > p {
         font-weight: 300;
-        font-size: 26px;
+        font-size: 1rem;
         line-height: 31px;
-        width: 700px;
+        text-align: center;
     }
 
     .collection-header {
@@ -157,17 +172,21 @@
         margin: 55px;
         display: flex;
         justify-content: flex-end;
+        align-items: center;
     }
 
     .collection-sort > select {
-        padding: 10px;
-        border-radius: 18px;
-        border: 2px solid white;
         background: #F0F0F0;
+        color: #0055FF;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 500;
+        border: 0;
+        padding: 10px;
     }
 
     .collection-sort > select:hover, .collection-sort > select:active {
-        border: 2px solid white;
+        border: 0;
     }
 
     .collection-sort > select:focus-visible {
@@ -184,11 +203,7 @@
     .nft {
         width: 357px;
         height: 450px;
-        background: #F1F1F1;
-        border-radius: 18px;
-        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
         margin-top: 20px;
-        padding: 20px;
     }
 
     .nft, .nft:hover, .nft:active {
@@ -197,8 +212,17 @@
     }
 
     .nft > img {
+        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
+        border-radius: 18px;
         width: 100%;
         margin: auto;
+    }
+
+    .nft-desc {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .nft-name {
@@ -209,5 +233,16 @@
 
     .nft-price {
         font-weight: 300;
+    }
+
+    .nft-price > p {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nft-price > p > img {
+        margin-left: 10px;
     }
 </style>

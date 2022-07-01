@@ -133,12 +133,8 @@
 
     .nft {
         width: 357px;
-        height: 420px;
-        background: #F1F1F1;
-        border-radius: 18px;
-        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
+        height: 420px;        
         margin-top: 20px;
-        padding: 20px;
     }
 
     .nft, .nft:hover, .nft:active {
@@ -147,6 +143,8 @@
     }
 
     .nft > img {
+        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
+        border-radius: 18px;
         width: 100%;
         margin: auto;
     }
