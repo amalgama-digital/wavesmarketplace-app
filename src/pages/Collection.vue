@@ -12,15 +12,7 @@
             </div>
         </div>
 
-        <div class="sort">
-            Sort by
-            <select @change="onChange($event)">
-                <option value="price-low-to-high">Price: Low to High</option>
-                <option value="price-high-to-low">Price: High to Low</option>
-                <option value="id-low-to-high">Lowest NFT ID</option>
-                <option value="id-high-to-low">Highest NFT ID</option>
-            </select>
-        </div>
+        <sort :nfts="nfts"></sort>
 
         <div class="nfts">
             <NFT :nft="nft" v-for="nft in nfts" v-bind:key="nft.assetId"></NFT>
@@ -32,6 +24,9 @@
 import axios from "axios";
 import collection from "../collection.json";
 
+import { sortLowestPrice } from "../helpers/sort";
+
+import Sort from "../components/Sort.vue";
 import NFT from "../components/NFT.vue";
 
 export default {
@@ -46,6 +41,7 @@ export default {
         };
     },
     components: {
+        Sort,
         NFT,
     },
     async mounted() {
@@ -91,41 +87,7 @@ export default {
                 console.error(err);
             });
 
-        this.sortLowestPrice();
-    },
-    methods: {
-        onChange(event) {
-            let v = event.target.value;
-            if (v == "price-low-to-high") {
-                this.sortLowestPrice();
-            } else if (v == "price-high-to-low") {
-                this.sortHighestPrice();
-            } else if (v == "id-low-to-high") {
-                this.sortLowestId();
-            } else if (v == "id-high-to-low") {
-                this.sortHighestId();
-            }
-        },
-        sortLowestPrice() {
-            this.nfts = this.nfts.sort((a, b) =>
-                a.price > b.price ? 1 : b.price > a.price ? -1 : 0
-            );
-        },
-        sortHighestPrice() {
-            this.nfts = this.nfts.sort((a, b) =>
-                a.price < b.price ? 1 : b.price < a.price ? -1 : 0
-            );
-        },
-        sortLowestId() {
-            this.nfts = this.nfts.sort((a, b) =>
-                a.metadata.id > b.metadata.id ? 1 : b.metadata.id > a.metadata.id ? -1 : 0
-            );
-        },
-        sortHighestId() {
-            this.nfts = this.nfts.sort((a, b) =>
-                a.metadata.id < b.metadata.id ? 1 : b.metadata.id < a.metadata.id ? -1 : 0
-            );
-        },
+        this.nfts = sortLowestPrice(this.nfts);
     },
 };
 </script>
@@ -182,32 +144,6 @@ export default {
     font-size: 1rem;
     line-height: 31px;
     text-align: center;
-}
-
-.sort {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin: 55px 105px;
-}
-
-.sort > select {
-    padding: 10px;
-    border: 0;
-    background: #f0f0f0;
-    color: #0055ff;
-    font-family: Inter;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.sort > select:hover,
-.sort > select:active {
-    border: 0;
-}
-
-.sort > select:focus-visible {
-    outline: none;
 }
 
 .nfts {
