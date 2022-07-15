@@ -71,7 +71,6 @@ export default {
             assetId: "",
             nft: {},
             currentPrice: 0,
-            address: "",
             owner: "",
             offer: false,
             offerButton: false,
@@ -87,7 +86,7 @@ export default {
         this.assetId = this.$route.params["id"];
         const data = window.localStorage.getItem("loginChoice");
         if (!data) {
-            this.connect = true;
+            this.getInfo("");
         } else {
             this.wallet = JSON.parse(data);
             this.getInfo(this.wallet.address);
@@ -101,15 +100,16 @@ export default {
     },
     methods: {
         async getInfo(address) {
-            this.walletStatus = true;
-            this.address = address;
+            if (address !== "") {
+                this.walletStatus = true;
+            }
 
             await axios
                 .get(
                     `${window.nodeURL}/assets/balance/${address}/${this.assetId}`
                 )
                 .then((res) => {
-                    if (res.data.balance == 1) {
+                    if (this.walletStatus && res.data.balance == 1) {
                         this.owner = address;
                         this.offerButton = true;
                     }
@@ -126,10 +126,12 @@ export default {
                     .then((res) => {
                         this.owner = res.data[0].value;
                         this.currentPrice = res.data[1].value;
-                        if (this.owner == address) {
-                            this.cancelButton = true;
-                        } else {
-                            this.buyButton = true;
+                        if (this.walletStatus) {
+                            if (this.owner == address) {
+                                this.cancelButton = true;
+                            } else {
+                                this.buyButton = true;
+                            }
                         }
                     })
                     .catch((err) => {
