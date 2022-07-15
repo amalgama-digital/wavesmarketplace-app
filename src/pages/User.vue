@@ -1,25 +1,16 @@
 <template>
     <div>
-        <div class="wallet" v-if="!walletStatus">
-            <h2>Connect your Waves wallet</h2>
-            <button @click="connect = true">Connect Wallet</button>
-        </div>
+        <profile :address="address"></profile>
         <div v-if="nfts.length > 0">
             <sort :nfts="nfts"></sort>
             <div class="nfts">
                 <NFT :nft="nft" v-for="nft in nfts" v-bind:key="nft.assetId"></NFT>
             </div>
         </div>
-        <div class="empty" v-else-if="walletStatus && nfts.length <= 0">
+        <div class="empty" v-else-if="nfts.length <= 0">
             <p>?</p>
             <p>You don't have NFT yet</p>
         </div>
-        <connect-wallet
-            :connect="connect"
-            v-if="connect"
-            v-on:close="connect = $event"
-            v-on:success="getMyNFT($event)"
-        ></connect-wallet>
     </div>
 </template>
 
@@ -28,39 +19,29 @@ import axios from "axios";
 
 import { sortLowestPrice } from "../helpers/sort";
 
-import ConnectWallet from "../components/ConnectWallet.vue";
+import Profile from "../components/Profile.vue";
 import Sort from "../components/Sort.vue";
 import NFT from "../components/NFT.vue";
 
 export default {
-    name: "MyNFT",
+    name: "User",
     data() {
         return {
-            connect: false,
-            wallet: {},
-            walletStatus: false,
+            address: "",
             nfts: [],
         };
     },
     components: {
-        ConnectWallet,
+        Profile,
         Sort,
         NFT,
     },
     async mounted() {
-        const data = window.localStorage.getItem("loginChoice");
-        if (!data) {
-            this.connect = true;
-        } else {
-            this.wallet = JSON.parse(data);
-            this.getMyNFT(this.wallet.address);
-        }
+        this.address = this.$route.params["address"];
+        await this.getNFT(this.address);
     },
     methods: {
-        async getMyNFT(address) {
-            this.walletStatus = true;
-            this.wallet.address = address;
-
+        async getNFT(address) {
             await axios
                 .get(`${window.nodeURL}/assets/nft/${address}/limit/1000`)
                 .then((res) => {
@@ -128,22 +109,10 @@ export default {
 <style scoped>
 @import '../assets/styles/button.css';
 
-.wallet,
 .nfts,
 .empty {
     font-family: Inter;
     font-style: normal;
-}
-
-.wallet {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.wallet > h2 {
-    font-weight: 500;
 }
 
 .nfts {

@@ -2,7 +2,7 @@ import VueRouter from 'vue-router'
 
 import Front from "./pages/Front";
 import Home from "./pages/Home";
-import MyNFT from "./pages/MyNFT";
+import User from "./pages/User";
 import Collection from "./pages/Collection";
 import Asset from "./pages/Asset";
 import News from "./pages/News";
@@ -16,9 +16,9 @@ const routes = [{
         name: 'home',
         component: Home
     }, {
-        path: '/myNFT',
-        name: 'myNFT',
-        component: MyNFT
+        path: '/user/:address',
+        name: 'User',
+        component: User
     }, {
         path: '/collection/:name',
         name: 'Collection',
