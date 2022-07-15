@@ -11,6 +11,11 @@
                         <div class="nft__name">
                             <p>{{ nft.name }}</p>
                         </div>
+                        <div class="nft__owner">
+                            <p>Owned by
+                                <a :href="`/user/${owner}`">{{ owner }}</a>
+                            </p>
+                        </div>
                     </div>
                     <button v-if="offerButton" @click="offer = true">
                         Offer for sale
@@ -67,6 +72,7 @@ export default {
             nft: {},
             currentPrice: 0,
             address: "",
+            owner: "",
             offer: false,
             offerButton: false,
             cancelButton: false,
@@ -104,6 +110,7 @@ export default {
                 )
                 .then((res) => {
                     if (res.data.balance == 1) {
+                        this.owner = address;
                         this.offerButton = true;
                     }
                 })
@@ -117,8 +124,9 @@ export default {
                         `${window.nodeURL}/addresses/data/${window.contractAddress}?key=${this.assetId}_owner&key=${this.assetId}_price`
                     )
                     .then((res) => {
+                        this.owner = res.data[0].value;
                         this.currentPrice = res.data[1].value;
-                        if (res.data[0].value == address) {
+                        if (this.owner == address) {
                             this.cancelButton = true;
                         } else {
                             this.buyButton = true;
@@ -135,7 +143,6 @@ export default {
                 .get(`${window.nodeURL}/assets/details/${this.assetId}`)
                 .then((res) => {
                     try {
-                        console.log(res.data)
                         let data = {};
 
                         data.name = res.data.name;
@@ -293,6 +300,21 @@ export default {
     font-weight: 500;
     font-size: 35px;
     line-height: 42px;
+}
+
+.nft__owner > p {
+    margin-bottom: 90px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+}
+
+.nft__owner > p > a,
+.nft__owner > p > a:hover,
+.nft__owner > p > a:active {
+    color: #0055ff;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .nft__buy {
