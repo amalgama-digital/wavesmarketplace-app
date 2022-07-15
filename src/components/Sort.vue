@@ -14,7 +14,7 @@
 import { sortLowestPrice, sortHighestPrice, sortLowestId, sortHighestId } from "../helpers/sort";
 
 export default {
-    name: "Collection",
+    name: "Sort",
     props: ["nfts"],
     methods: {
         onChange(event) {
