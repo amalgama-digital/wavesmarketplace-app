@@ -16,6 +16,7 @@
     "@waves/signer": "^1.0.5",
     "axios": "^0.21.3",
     "dom-to-image": "^2.6.0",
+    "identity-img": "^2.0.0",
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "vue": "^2.6.14",
