@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="front">
         <header>
             <div class="header__logo">
                 <a href="/">
@@ -162,7 +162,7 @@ footer {
     margin-bottom: 25px;
 }
 
-.home {
+.front {
     font-family: Inter;
     font-style: normal;
 }
