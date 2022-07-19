@@ -95,12 +95,6 @@ export default {
 </script>
 
 <style scoped>
-@media only screen and (max-width: 1140px) {
-    .footer__text {
-        font-size: 6.1vw !important;
-    }
-}
-
 @media only screen and (max-width: 768px) {
     header {
         flex-direction: column;
@@ -125,12 +119,6 @@ export default {
     }
 }
 
-@media only screen and (max-width: 640px) {
-    /* .header__logo img {
-        width: 300px !important;
-    } */
-}
-
 @media only screen and (max-width: 500px) {
     .header__logo img {
         width: 225px !important;
@@ -140,10 +128,6 @@ export default {
 @media only screen and (max-width: 425px) {
     .header__links > a {
         margin: 0px 5px !important;
-    }
-
-    .footer__text {
-        font-size: 5.1vw !important;
     }
 }
 
@@ -158,8 +142,10 @@ main {
 }
 
 footer {
+    position: relative;
     margin: 65px;
     margin-bottom: 25px;
+    overflow: hidden;
 }
 
 .front {
@@ -187,8 +173,11 @@ footer {
 }
 
 .footer__text {
+    position: relative;
+    left: -20px;
+    width: max-content;
     font-weight: 900;
-    font-size: 8.1vw;
+    font-size: 8.6vw;
     line-height: 182px;
     text-align: center;
     text-transform: uppercase;

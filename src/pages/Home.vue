@@ -1,238 +1,270 @@
 <template>
-    <div class="wavesmarketplace-home">
-        <div class="wavesmarketplace-first border-radius-18">
-            <div class="wavesmarketplace-first-back border-radius-18">
-                <div class="wavesmarketplace-first-text">
-                    <h2 style="color: #FFFFFF;">WATCH YOUR<br>BRAINS</h2>
-                    <a class="wavesmarketplace-go-to" href="/collection/zombiepunks">GO TO ZOMBIEPUNKS COLLECTION</a>
+    <div class="home">
+        <div class="first">
+            <div class="first__cover">
+                <div class="first__text">
+                    <h2 style="color: #ffffff">WATCH YOUR<br />BRAINS</h2>
+                    <a href="/collection/zombiepunks">VIEW ZOMBIE COLLECTION</a>
                 </div>
             </div>
         </div>
 
-        <div class="wavesmarketplace-second border-radius-18">
-            <img src="/img/crown.svg">
-            <div class="wavesmarketplace-second-text">
-                <h2>BE AMONG THE FIRST</h2>
-                <p>This is the world’s first multi-functional NFT marketplace, based on Waves Platform</p>
+        <div class="highlights">
+            <div class="highlights__blocks">
+                <div class="highlights__block">
+                    <img src="/img/highlights/item1.svg" />
+                    <p>BE AMONG THE FIRST</p>
+                    <p>This is the world’s first multi-functional NFT marketplace, based on Waves Platform</p>
+                </div>
+                <div class="highlights__block">
+                    <img src="/img/highlights/item2.svg" />
+                    <p>EASY TO USE</p>
+                    <p>Buying and selling NFTs was never that easy. Create your account, and you’re in!</p>
+                </div>
+                <div class="highlights__block">
+                    <img src="/img/highlights/item3.svg" />
+                    <p>TRUE DIGITAL ART</p>
+                    <p>Waves Marketplace provides professional moderation for almost every NFT listed on the platform.</p>
+                </div>
+                <div class="highlights__block">
+                    <img src="/img/highlights/item4.svg" />
+                    <p>CREATE YOUR OWN COLLECTION</p>
+                    <p>If you’re a digital artist, it’s your chance to step into the top league of the NFT-industry.</p>
+                </div>
+            </div>
+            <div class="highlights__text">WAVES NFT RIDERS</div>
+        </div>
+
+        <div class="collections">
+            <div class="collections__title">
+                THE MOST NOTICEABLE COLLECTIONS
+            </div>
+            <div class="collections__blocks">
+                <a class="collections__block" href="/collection/zombiepunks">
+                    <img src="/img/collections/zombie.png" />
+                </a>
+                <a class="collections__block" href="/collection/wavespunks">
+                    <img src="/img/collections/punks.png" />
+                </a>
             </div>
         </div>
 
-        <div class="wavesmarketplace-third border-radius-18">
-            <div class="wavesmarketplace-third-text">
-                <h2>EASY TO USE</h2>
-                <p>Buying and selling NFTs was never that easy. Create your account, and you’re in!</p>
-            </div>
-            <img src="/img/easy-to-use.svg">
+        <div class="merch">
+            <img src="/img/merch.png" />
         </div>
-
-        <div class="wavesmarketplace-second border-radius-18">
-            <img src="/img/banksy.svg">
-            <div class="wavesmarketplace-second-text">
-                <h2>TRUE DIGITAL ART</h2>
-                <p>Waves Marketplace provides professional moderation for almost every NFT listed on the platform.</p>
-            </div>
-        </div>
-
     </div>
 </template>
 
 <script>
-    export default {
-        name: "Home"
-    }
+export default {
+    name: "Home",
+};
 </script>
 
 <style scoped>
-    @media only screen and (max-width: 1440px) {
-        h2 {
-            font-size: 42px !important;
-        }
-
-        .wavesmarketplace-first-text > p,
-        .wavesmarketplace-second-text > p,
-        .wavesmarketplace-third-text > p {
-            font-size: 24px !important;
-            line-height: 29px !important;
-        }
-
-        .border-radius-18 img {
-            height: 400px !important;
-            margin-top: auto !important;
-        }
+@media only screen and (max-width: 768px) {
+    .first__cover {
+        background-position: left !important;
     }
 
-    @media only screen and (max-width: 1024px) {
-        h2 {
-            font-size: 32px !important;
-            line-height: 43px !important;
-        }
-
-        .wavesmarketplace-first-text > p,
-        .wavesmarketplace-second-text > p,
-        .wavesmarketplace-third-text > p {
-            font-size: 22px !important;
-            line-height: 27px !important;
-        }
-
-        .wavesmarketplace-second {
-            margin: 70px 0px !important;
-        }
+    .first__text > h2 {
+        font-size: 42px !important;
     }
 
-    @media only screen and (max-width: 983px) {
-        .border-radius-18 img {
-            display: none;
-        }
+    .collections__block > img {
+        height: 170px !important;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .first__cover {
+        justify-content: center !important;
     }
 
-    @media only screen and (max-width: 640px) {
-        h2 {
-            font-size: 26px !important;
-            line-height: 37px !important;
-        }
-
-        .wavesmarketplace-first-text > p,
-        .wavesmarketplace-second-text > p,
-        .wavesmarketplace-third-text > p {
-            font-size: 20px !important;
-            line-height: 25px !important;
-        }
-
-        .wavesmarketplace-first-text, .wavesmarketplace-second-text, .wavesmarketplace-third-text {
-            padding: 0 30px !important;
-        }
-
-        .wavesmarketplace-go-to {
-            font-size: 14px !important;
-        }
+    .first__text {
+        padding: 0 !important;
     }
 
-    @media only screen and (max-width: 500px) {
-        .wavesmarketplace-go-to {
-            font-size: 12px !important;
-        }
-    }
-
-    h2 {
-        font-weight: 500;
-        font-size: 52px;
-        line-height: 63px;
-        margin: 0;
-    }
-
-    .border-radius-18 {
-        border-radius: 18px;
-    }
-
-    .wavesmarketplace-home {
-        margin: 40px;
-        font-family: Inter;
-        font-style: normal;
-    }
-
-    .wavesmarketplace-first {
-        margin-top: 70px;
-        background: black;
-        height: 550px;
-        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2)
-    }
-
-    .wavesmarketplace-first-back {
-        background-image: url('/img/first-block.png');
-        background-size: cover;
-        background-position: center;
-        height: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .wavesmarketplace-first-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 60px;
-    }
-
-    .wavesmarketplace-first-text > p {
-        font-weight: 300;
-        font-size: 26px;
-        line-height: 31px;
-        color: #FFFFFF;
-    }
-
-    .wavesmarketplace-go-to {
-        color: #FFD645;
-        border-radius: 8px;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 22px;
-        margin: 50px 0;
-        border: 0;
+    .first__text > h2 {
+        font-size: 32px !important;
         text-align: center;
-        width: max-content;
     }
 
-    .wavesmarketplace-go-to, .wavesmarketplace-go-to:hover, .wavesmarketplace-go-to:active {
-        text-decoration: none;
-        color: #FFD645;
+    .highlights__blocks {
+        gap: 15px !important;
     }
 
-    .wavesmarketplace-go-to:hover {
-        cursor: pointer;
+    .highlights__block {
+        width: 228px !important;
     }
+}
 
-    .wavesmarketplace-second {
-        margin-top: 70px;
-        height: 550px;
-        border: 2px solid #A400CC;
-        display: flex;
-        margin: 70px 100px;
-    }
+.home {
+    margin: 40px;
+    font-family: Inter;
+    font-style: normal;
+}
 
-    .wavesmarketplace-second > img {
-        height: 600px;
-        margin: auto;
-        margin-top: -20px;
-    }
+.first {
+    height: 550px;
+    margin-top: 70px;
+    border-radius: 18px;
+    background: black;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
 
-    .wavesmarketplace-second-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 60px;
-        color: black;
-    }
+.first__cover {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    border-radius: 18px;
+    background-image: url("/img/first-block.png");
+    background-size: cover;
+    background-position: center;
+}
 
-    .wavesmarketplace-second-text > p {
-        font-weight: 300;
-        font-size: 26px;
-        line-height: 31px;
-    }
+.first__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 60px;
+}
 
-    .wavesmarketplace-third {
-        margin-top: 70px;
-        height: 550px;
-        display: flex;
-        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
-    }
+.first__text > h2 {
+    margin: 0;
+    font-weight: 500;
+    font-size: 52px;
+    line-height: 63px;
+}
 
-    .wavesmarketplace-third > img {
-        height: 600px;
-        margin: auto;
-        margin-top: -20px;
-    }
+.first__text > a {
+    width: max-content;
+    margin: 50px 0;
+    border: 0;
+    border-radius: 8px;
+    color: #ffd645;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+}
 
-    .wavesmarketplace-third-text {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 60px;
-        color: black;
-    }
+.first__text > a,
+.first__text > a:hover,
+.first__text > a:active {
+    text-decoration: none;
+    color: #ffd645;
+    cursor: pointer;
+}
 
-    .wavesmarketplace-third-text > p {
-        font-weight: 300;
-        font-size: 26px;
-        line-height: 31px;
-    }
+.highlights {
+    position: relative;
+    margin-top: 100px;
+    overflow: hidden;
+}
+
+.highlights__blocks {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.highlights__block {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 246px;
+    height: 246px;
+    padding: 35px;
+    border-radius: 20px;
+    background: #f0f0f3;
+    box-shadow: 3px 3px 5px rgba(9, 12, 31, 0.25),
+        -3px -3px 6px rgba(255, 255, 255, 0.6);
+    text-align: center;
+}
+
+.highlights__block > p {
+    margin: 0;
+}
+
+.highlights__block > p:nth-child(2) {
+    font-weight: 500;
+    /* font-size: 30px; */
+    font-size: 26px;
+    /* line-height: 36px; */
+    line-height: 30px;
+}
+
+.highlights__block > p:last-child {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.highlights__text {
+    position: relative;
+    left: -20px;
+    width: max-content;
+    font-weight: 900;
+    font-size: 10.1vw;
+    line-height: 182px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #f0f0f3;
+    text-shadow: 3px 3px 5px rgba(9, 12, 31, 0.25),
+        -3px -3px 6px rgba(255, 255, 255, 0.6);
+}
+
+.collections {
+    margin-top: 100px;
+}
+
+.collections__title {
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 35px;
+    line-height: 42px;
+    text-align: center;
+}
+
+.collections__blocks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0 40px;
+    max-width: max-content;
+    margin: auto;
+    padding: 10px 10px;
+    overflow: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none;
+}
+
+.collections__blocks::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+.collections__block {
+    display: block;
+    border-radius: 20px;
+    filter: drop-shadow(3px 3px 5px rgba(9, 12, 31, 0.25))
+        drop-shadow(-3px -3px 6px rgba(255, 255, 255, 0.6));
+}
+
+.collections__block > img {
+    height: 246px;
+}
+
+.merch {
+    margin-top: 100px;
+}
+
+.merch > img {
+    width: 100%;
+}
 </style>
