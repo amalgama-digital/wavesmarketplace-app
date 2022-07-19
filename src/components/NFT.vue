@@ -21,9 +21,35 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 425px) {
+    .nft__img, .nft__img--empty {
+        width: 200px !important;
+    }
+
+    .nft__img {
+        height: 200px !important;
+    }
+
+    .nft__img--empty {
+        padding: 21px 0px !important;
+    }
+
+    .nft__info {
+        flex-direction: column !important;
+    }
+
+    .nft__name {
+        font-size: 14px !important;
+    }
+
+    .nft__price > p {
+        margin-top: 0;
+    }
+}
+
 .nft {
-    width: 357px;
-    height: 450px;
+    max-width: 357px;
+    max-height: 450px;
     margin-top: 20px;
 }
 

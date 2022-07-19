@@ -62,6 +62,22 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 768px) {
+    .profile__info {
+        margin-top: -50px !important;
+    }
+
+    .profile__name > h1 {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .profile__cover img {
+        height: 90px !important;
+    }
+}
+
 .profile {
     margin: 65px;
     height: 350px;
@@ -116,6 +132,8 @@ export default {
 
 .profile__name > h1 {
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .profile__name > p {

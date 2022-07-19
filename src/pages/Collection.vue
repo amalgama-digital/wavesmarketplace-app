@@ -93,6 +93,35 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 768px) {
+    .collection__name > h1 {
+        font-size: 18px;
+    }
+
+    .collection__name > p {
+        font-size: 14px !important;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .collection,
+    .collection__cover {
+        height: max-content !important;
+    }
+
+    .collection__cover {
+        display: none !important;
+    }
+
+    .collection__info {
+        margin-top: 0 !important;
+    }
+
+    .collection__name {
+        padding: 0 40px !important;
+    }
+}
+
 .collection {
     margin: 65px;
     height: 550px;
