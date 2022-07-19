@@ -73,8 +73,16 @@ export default {
 }
 
 @media only screen and (max-width: 425px) {
+    .profile {
+        margin: 15px !important;
+    }
+
     .profile__cover img {
         height: 90px !important;
+    }
+
+    .profile__info {
+        width: 300px;
     }
 }
 

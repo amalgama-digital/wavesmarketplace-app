@@ -23,15 +23,16 @@ export default {
 <style scoped>
 @media only screen and (max-width: 425px) {
     .nft__img, .nft__img--empty {
-        width: 200px !important;
+        width: 170px !important;
     }
 
     .nft__img {
-        height: 200px !important;
+        height: 170px !important;
     }
 
     .nft__img--empty {
-        padding: 21px 0px !important;
+        padding: 20px 0px !important;
+        font-size: 107px !important;
     }
 
     .nft__info {

@@ -93,6 +93,8 @@ export default {
 </script>
 
 <style scoped>
+@import '../assets/styles/nfts.css';
+
 @media only screen and (max-width: 768px) {
     .collection__name > h1 {
         font-size: 18px;
@@ -104,6 +106,11 @@ export default {
 }
 
 @media only screen and (max-width: 425px) {
+    .collection {
+        margin: 15px !important;
+        gap: 0px 10px !important;
+    }
+
     .collection,
     .collection__cover {
         height: max-content !important;
@@ -173,13 +180,5 @@ export default {
     font-size: 1rem;
     line-height: 31px;
     text-align: center;
-}
-
-.nfts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 65px;
-    gap: 0px 40px;
 }
 </style>

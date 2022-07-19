@@ -108,19 +108,12 @@ export default {
 
 <style scoped>
 @import '../assets/styles/button.css';
+@import '../assets/styles/nfts.css';
 
-.nfts,
+
 .empty {
     font-family: Inter;
     font-style: normal;
-}
-
-.nfts {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: 65px;
-    gap: 0px 40px;
 }
 
 .empty {

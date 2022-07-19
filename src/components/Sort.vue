@@ -36,8 +36,7 @@ export default {
 <style scoped>
 @media only screen and (max-width: 425px) {
     .sort {
-        justify-content: space-between !important;
-        margin: 55px 65px !important;
+        margin: 50px 15px 0px 15px !important;
     }
 }
 

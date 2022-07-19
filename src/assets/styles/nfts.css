@@ -1,0 +1,16 @@
+@media only screen and (max-width: 425px) {
+    .nfts {
+        margin: 15px !important;
+        gap: 0px 10px !important;
+    }
+}
+
+.nfts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 65px;
+    gap: 0px 40px;
+    font-family: Inter;
+    font-style: normal;
+}
