@@ -50,7 +50,7 @@
         </div>
 
         <div class="merch">
-            <img src="/img/merch.png" />
+            WHAT ABOUT<br>IRL NFT?
         </div>
     </div>
 </template>
@@ -96,6 +96,18 @@ export default {
 
     .highlights__block {
         width: 228px !important;
+    }
+
+    .collections__block {
+        display: flex !important;
+        justify-content: center;
+        min-width: 230px;
+        overflow: hidden;
+    }
+
+    .merch {
+        font-size: 38px !important;
+        text-align: center !important;
     }
 }
 
@@ -261,10 +273,17 @@ export default {
 }
 
 .merch {
+    height: 196px;
     margin-top: 100px;
-}
-
-.merch > img {
-    width: 100%;
+    padding: 60px;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 50px;
+    line-height: 61px;
+    color: #FFFFFF;
+    background-image: url('/img/merch.png');
+    background-size: cover;
+    background-position: center;
+    text-align: right;
 }
 </style>
