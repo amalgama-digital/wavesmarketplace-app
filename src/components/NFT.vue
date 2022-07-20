@@ -1,8 +1,14 @@
 <template>
-    <a :href="`/asset/${nft.assetId}`" class="nft">
-        <img v-if="nft.metadata.url" :src="nft.metadata.url" :alt="nft.name"  class="nft__img"/>
+    <component :is="nft.assetId ? 'a' : 'div'" :href="`/asset/${nft.assetId}`" class="nft">
+        <img
+            v-if="nft.metadata.url"
+            :src="nft.metadata.url"
+            :alt="nft.name"
+            :style="nft.metadata.style"
+            class="nft__img"
+        />
         <p v-else class="nft__img--empty">?</p>
-        <div class="nft__info">
+        <div v-if="viewInfo" class="nft__info">
             <div class="nft__name">
                 <p>{{ nft.name }}</p>
             </div>
@@ -10,19 +16,29 @@
                 <p>{{ nft.price }} <img src="/img/waves-token.svg" /></p>
             </div>
         </div>
-    </a>
+    </component>
 </template>
 
 <script>
+import { createStyle, createURL, parseName } from "../helpers/ducks";
+
 export default {
     name: "NFT",
-    props: ["nft"],
+    props: ["nft", "viewInfo"],
+    created() {
+        const ducks = parseName(this.nft.name);
+        if (ducks.length > 1) {
+            this.nft.metadata.url = createURL(this.nft.name, this.nft.assetId);
+            this.nft.metadata.style = createStyle(this.nft.name);
+        }
+    },
 };
 </script>
 
 <style scoped>
 @media only screen and (max-width: 425px) {
-    .nft__img, .nft__img--empty {
+    .nft__img,
+    .nft__img--empty {
         width: 170px !important;
     }
 
@@ -61,7 +77,8 @@ export default {
     text-decoration: none;
 }
 
-.nft__img, .nft__img--empty {
+.nft__img,
+.nft__img--empty {
     width: 375px;
     margin: auto;
     border-radius: 18px;

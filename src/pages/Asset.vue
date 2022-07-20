@@ -2,16 +2,16 @@
     <div>
         <div class="block">
             <div class="nft">
-                <img class="nft__img" :src="nft.metadata.url" />
+                <NFT v-if="nft.name" :nft="nft"></NFT>
                 <div class="nft__info">
                     <div>
-                        <a :href="nft.collection_url" class="nft__collection">
-                            {{ nft.collection_name }}
+                        <a :href="nft.collectionURL" class="nft__collection">
+                            {{ nft.collectionName }}
                         </a>
                         <div class="nft__name">
                             <p>{{ nft.name }}</p>
                         </div>
-                        <div class="nft__owner">
+                        <div v-if="owner" class="nft__owner">
                             <p>Owned by
                                 <a :href="`/user/${owner}`">{{ owner }}</a>
                             </p>
@@ -60,6 +60,7 @@ import { ProviderKeeper } from "@waves/provider-keeper";
 import { ProviderCloud } from "@waves.exchange/provider-cloud";
 
 import ConnectWallet from "../components/ConnectWallet.vue";
+import NFT from "../components/NFT.vue";
 import Offer from "../components/Offer.vue";
 
 export default {
@@ -80,6 +81,7 @@ export default {
     },
     components: {
         ConnectWallet,
+        NFT,
         Offer,
     },
     async mounted() {
@@ -151,11 +153,13 @@ export default {
 
                         data.metadata = JSON.parse(res.data.description);
 
-                        data.collection_name = Object.values(collection).find(
+                        const collectionName = Object.values(collection).find(
                             (item) => item.address_issuer == res.data.issuer
-                        ).name;
+                        );
 
-                        data.collection_url =
+                        data.collectionName = collectionName ? collectionName.name : "";
+
+                        data.collectionURL =
                             "/collection/" +
                             Object.keys(collection).find(
                                 (key) => collection[key].address_issuer == res.data.issuer
@@ -266,14 +270,6 @@ export default {
     justify-content: center;
     align-items: center;
     height: min-content;
-}
-
-.nft__img {
-    width: 357px;
-    height: 375px;
-    border-radius: 18px;
-    box-shadow: 2px 2px 2px 0px rgb(206, 206, 206),
-        -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
 }
 
 .nft__info {

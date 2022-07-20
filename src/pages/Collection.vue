@@ -15,7 +15,12 @@
         <sort :nfts="nfts"></sort>
 
         <div class="nfts">
-            <NFT :nft="nft" v-for="nft in nfts" v-bind:key="nft.assetId"></NFT>
+            <NFT
+                :nft="nft"
+                :viewInfo="true"
+                v-for="nft in nfts"
+                v-bind:key="nft.assetId"
+            ></NFT>
         </div>
     </div>
 </template>
@@ -93,7 +98,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../assets/styles/nfts.css';
+@import "../assets/styles/nfts.css";
 
 @media only screen and (max-width: 768px) {
     .collection__name > h1 {

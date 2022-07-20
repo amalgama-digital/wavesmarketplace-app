@@ -4,7 +4,12 @@
         <div v-if="nfts.length > 0">
             <sort :nfts="nfts"></sort>
             <div class="nfts">
-                <NFT :nft="nft" v-for="nft in nfts" v-bind:key="nft.assetId"></NFT>
+                <NFT
+                    :nft="nft"
+                    :viewInfo="true"
+                    v-for="nft in nfts"
+                    v-bind:key="nft.assetId"
+                ></NFT>
             </div>
         </div>
         <div class="empty" v-else-if="nfts.length <= 0">
@@ -107,9 +112,8 @@ export default {
 </script>
 
 <style scoped>
-@import '../assets/styles/button.css';
-@import '../assets/styles/nfts.css';
-
+@import "../assets/styles/button.css";
+@import "../assets/styles/nfts.css";
 
 .empty {
     font-family: Inter;
