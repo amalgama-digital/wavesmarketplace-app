@@ -102,7 +102,7 @@ export default {
     }
 
     .footer__text {
-        left: -25px;
+        left: -10px;
         margin: 0 !important;
         font-size: 9.6vw !important;
     }
@@ -163,12 +163,12 @@ footer {
     margin: auto;
     margin-top: 65px;
     margin-bottom: 25px;
-    overflow: hidden;
 }
 
 .front {
     font-family: Inter;
     font-style: normal;
+    overflow: hidden;
 }
 
 .header__links {

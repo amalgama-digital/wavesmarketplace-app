@@ -10,7 +10,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 65px;
-    gap: 0px 40px;
+    gap: 20px 40px;
     font-family: Inter;
     font-style: normal;
 }

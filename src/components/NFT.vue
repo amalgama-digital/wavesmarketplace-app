@@ -37,13 +37,22 @@ export default {
 
 <style scoped>
 @media only screen and (max-width: 425px) {
-    .nft__img,
-    .nft__img--empty {
+    a.nft > img.nft__img,
+    a.nft > img.nft__img--empty {
         width: 170px !important;
     }
 
-    .nft__img {
+    a.nft > img.nft__img {
         height: 170px !important;
+    }
+
+    div.nft > img.nft__img,
+    div.nft > img.nft__img--empty {
+        width: 340px !important;
+    }
+
+    div.nft > img.nft__img {
+        height: 340px !important;
     }
 
     .nft__img--empty {
@@ -67,7 +76,6 @@ export default {
 .nft {
     max-width: 357px;
     max-height: 450px;
-    margin-top: 20px;
 }
 
 .nft,

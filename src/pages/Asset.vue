@@ -256,6 +256,47 @@ export default {
 <style scoped>
 @import '../assets/styles/button.css';
 
+@media only screen and (min-width: 769px) {
+    .nft__info {
+        margin-left: 40px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .block {
+        max-width: 100% !important;
+        margin: 15px !important;
+        padding: 10px !important;
+    }
+
+    .nft {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    .nft__info {
+        width: 100%;
+        margin-top: 40px;
+    }
+
+    .nft__collection {
+        font-size: 14px !important;
+        line-height: 17px !important;
+    }
+
+    .nft__name {
+        font-size: 25px !important;
+        line-height: 30px !important;
+    }
+
+    .nft__owner > p > a {
+        display: block;
+        max-width: 200px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+}
+
 .block {
     max-width: max-content;
     margin: auto;
@@ -270,10 +311,6 @@ export default {
     justify-content: center;
     align-items: center;
     height: min-content;
-}
-
-.nft__info {
-    margin-left: 40px;
 }
 
 .nft__collection {
