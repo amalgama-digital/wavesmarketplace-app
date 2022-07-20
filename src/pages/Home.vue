@@ -98,6 +98,13 @@ export default {
         width: 228px !important;
     }
 
+    .highlights__text {
+        left: -55px;
+        width: max-content;
+        max-width: initial !important;
+        font-size: 11.1vw !important;
+    }
+
     .collections__block {
         display: flex !important;
         justify-content: center;
@@ -175,7 +182,6 @@ export default {
 .highlights {
     position: relative;
     margin-top: 100px;
-    overflow: hidden;
 }
 
 .highlights__blocks {
@@ -222,10 +228,12 @@ export default {
 
 .highlights__text {
     position: relative;
-    left: -10px;
-    width: max-content;
+    /* left: -10px;
+    width: max-content; */
+    max-width: 1360px;
+    margin: auto;
     font-weight: 900;
-    font-size: 10.1vw;
+    font-size: 8.1vw;
     line-height: 182px;
     text-align: center;
     text-transform: uppercase;
@@ -276,7 +284,7 @@ export default {
 }
 
 .merch {
-    max-width: 1360px;
+    max-width: 1240px;
     height: 196px;
     margin: auto;
     margin-top: 100px;

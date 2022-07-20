@@ -102,7 +102,7 @@ export default {
     }
 
     .footer__text {
-        left: -10px;
+        left: -35px;
         margin: 0 !important;
         font-size: 9.6vw !important;
     }
@@ -123,6 +123,10 @@ export default {
         margin-top: 20px;
     }
 
+    .footer__text {
+        left: -20px;
+    }
+
     .footer__blocks {
         flex-direction: column !important;
     }
@@ -135,6 +139,10 @@ export default {
 @media only screen and (max-width: 500px) {
     .header__logo img {
         width: 225px !important;
+    }
+
+    .footer__text {
+        left: -10px;
     }
 }
 
