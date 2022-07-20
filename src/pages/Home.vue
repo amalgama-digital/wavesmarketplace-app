@@ -107,6 +107,7 @@ export default {
 
     .merch {
         font-size: 38px !important;
+        line-height: 61px !important;
         text-align: center !important;
     }
 }
@@ -118,7 +119,9 @@ export default {
 }
 
 .first {
+    max-width: 1360px;
     height: 550px;
+    margin: auto;
     margin-top: 70px;
     border-radius: 18px;
     background: black;
@@ -219,7 +222,7 @@ export default {
 
 .highlights__text {
     position: relative;
-    left: -20px;
+    left: -10px;
     width: max-content;
     font-weight: 900;
     font-size: 10.1vw;
@@ -250,7 +253,7 @@ export default {
     gap: 0 40px;
     max-width: max-content;
     margin: auto;
-    padding: 10px 10px;
+    padding: 10px 0px;
     overflow: hidden;
     overflow-x: scroll;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
@@ -273,13 +276,15 @@ export default {
 }
 
 .merch {
+    max-width: 1360px;
     height: 196px;
+    margin: auto;
     margin-top: 100px;
     padding: 60px;
     border-radius: 20px;
     font-weight: 500;
     font-size: 50px;
-    line-height: 61px;
+    line-height: 90px;
     color: #FFFFFF;
     background-image: url('/img/merch.png');
     background-size: cover;

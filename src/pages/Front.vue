@@ -19,8 +19,8 @@
         <main>
             <router-view></router-view>
         </main>
+        <div class="footer__text">NFT TSUNAMI IS HERE</div>
         <footer>
-            <div class="footer__text">NFT TSUNAMI IS HERE</div>
             <div class="footer__blocks">
                 <div class="footer__logo">
                     <a href="/">
@@ -95,6 +95,19 @@ export default {
 </script>
 
 <style scoped>
+@media only screen and (max-width: 1440px) {
+    header,
+    footer {
+        margin: 65px !important;
+    }
+
+    .footer__text {
+        left: -25px;
+        margin: 0 !important;
+        font-size: 9.6vw !important;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     header {
         flex-direction: column;
@@ -134,7 +147,10 @@ export default {
 header {
     display: flex;
     justify-content: space-between;
-    margin: 65px;
+    max-width: 1360px;
+    margin: auto;
+    margin-top: 65px;
+    margin-bottom: 65px;
 }
 
 main {
@@ -143,7 +159,9 @@ main {
 
 footer {
     position: relative;
-    margin: 65px;
+    max-width: 1360px;
+    margin: auto;
+    margin-top: 65px;
     margin-bottom: 25px;
     overflow: hidden;
 }
@@ -174,8 +192,8 @@ footer {
 
 .footer__text {
     position: relative;
-    left: -20px;
     width: max-content;
+    margin: auto;
     font-weight: 900;
     font-size: 8.6vw;
     line-height: 182px;
@@ -200,6 +218,12 @@ footer {
 
 .footer__company {
     display: flex;
+}
+
+.footer__company > a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer__company > a:first-child {
