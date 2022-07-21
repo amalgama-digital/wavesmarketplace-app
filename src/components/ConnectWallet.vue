@@ -2,8 +2,14 @@
     <div class="modal">
         <div>
             <button class="close" @click="close"></button>
-            <button @click="connectKeeper">Waves Keeper</button>
-            <button @click="connectEmail">Waves Email</button>
+            <div class="connect" @click="connectKeeper">
+                <p>Waves Keeper</p>
+                <img src="/img/connect/keeper.png" />
+            </div>
+            <div class="connect" @click="connectEmail">
+                <p>Waves Exchange Email</p>
+                <img src="/img/connect/exchange.svg" />
+            </div>
             <p class="error" v-if="error">{{ error_text }}</p>
         </div>
     </div>
@@ -102,7 +108,24 @@ export default {
 @import '../assets/styles/modal.css';
 
 .modal > div {
+    flex-direction: column;
+}
+
+.connect {
+    display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0px 20px;
+    border: 1px solid rgb(241, 242, 254);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.connect > img {
+    width: 40px;
 }
 
 .error {
