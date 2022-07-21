@@ -9,8 +9,8 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.15.4",
-    "@vue/cli-plugin-babel": "^4.5.13",
-    "@vue/cli-service": "^4.5.13",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
     "@waves.exchange/provider-cloud": "^1.0.2",
     "@waves/provider-keeper": "^0.1.4",
     "@waves/signer": "^1.0.5",

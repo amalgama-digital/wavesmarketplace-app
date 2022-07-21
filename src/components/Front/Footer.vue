@@ -7,13 +7,13 @@
                 </a>
             </div>
             <div class="footer__links">
-                <a id="discord" target="_blank" href="https://discord.gg/gfpKDfRtvf">
+                <!-- <a id="discord" target="_blank" href="https://discord.gg/gfpKDfRtvf">
                     <img src="/img/footer/discord.svg" />
-                </a>
+                </a> -->
                 <a id="telegram" target="_blank" href="https://t.me/wavespunks_en">
                     <img src="/img/footer/telegram.svg" />
                 </a>
-                <a id="instagram" target="_blank" href="https://instagram.com/waves.punks">
+                <a id="instagram" target="_blank" href="https://instagram.com/waves_punks">
                     <img src="/img/footer/instagram.svg" />
                 </a>
             </div>
@@ -38,7 +38,7 @@ export default {
 <style scoped>
 @media only screen and (max-width: 1440px) {
     footer {
-        margin: 65px !important;
+        margin: 65px 40px !important;
     }
 
     .footer__text {

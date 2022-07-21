@@ -140,7 +140,7 @@ export default {
     justify-content: space-between;
     height: 100%;
     border-radius: 18px;
-    background-image: url("/img/first-block.png");
+    background-image: url("../assets/images/first-block.png");
     background-size: cover;
     background-position: center;
 }
@@ -294,7 +294,7 @@ export default {
     font-size: 50px;
     line-height: 90px;
     color: #FFFFFF;
-    background-image: url('/img/merch.png');
+    background-image: url('../assets/images/merch.png');
     background-size: cover;
     background-position: center;
     text-align: right;

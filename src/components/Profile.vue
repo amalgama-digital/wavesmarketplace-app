@@ -110,7 +110,7 @@ export default {
     display: flex;
     width: 100%;
     height: 100%;
-    background-image: url("/img/marketplace.svg");
+    background-image: url("../assets/images/marketplace.svg");
 }
 
 .profile__cover img {
