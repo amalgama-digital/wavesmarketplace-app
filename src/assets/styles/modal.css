@@ -1,0 +1,59 @@
+.modal {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    font-family: Inter;
+    font-style: normal;
+}
+
+.modal > div {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 340px;
+    min-height: max-content;
+    padding: 40px;
+    border-radius: 18px;
+    background-color: white;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 0;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: none;
+}
+
+.close:hover {
+    cursor: pointer;
+}
+
+.close:before,
+.close:after {
+    position: absolute;
+    top: 0px;
+    left: 25px;
+    content: " ";
+    height: 23px;
+    width: 2px;
+    background-color: #333;
+}
+
+.close:before {
+    transform: rotate(45deg);
+}
+
+.close:after {
+    transform: rotate(-45deg);
+}

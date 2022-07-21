@@ -1,0 +1,39 @@
+function assetIdAsFloat(assetId) {
+    let i = 0;
+    let hash = 0;
+    if (!assetId) return 0;
+    while (i < assetId.length)
+        hash = (hash << 5) + hash + assetId.charCodeAt(i++);
+
+    return Math.abs(((hash * 10) % 0x7fffffff) / 0x7fffffff);
+}
+
+function parseName(name) {
+    return name.match(/(DUCK)-([A-Z]{8})-([GMHIJKNLOR]{1})([BGRUY]{1})/);
+}
+
+function createURL(name, assetId) {
+    const duck = parseName(name);
+    const hasDruckGenes = duck[2].indexOf('I') !== -1;
+    const druck = "&druck=" + (hasDruckGenes ? assetIdAsFloat(assetId) > 0.5 ? "1" : "2" : "");
+    return `https://wavesducks.com/api/v1/ducks/${duck[2]}.svg?onPerch=false&jedi=false${druck}&color=${duck[4]}`;
+}
+
+function createStyle(name) {
+    const duck = parseName(name);
+    if (duck[4] == "B") {
+        return "background-color: rgb(173, 216, 230);";
+    } else if (duck[4] == "G") {
+        return "background-color: rgb(217, 246, 179);";
+    } else if (duck[4] == "Y") {
+        return "background-color: rgb(248, 238, 157);";
+    } else if (duck[4] == "R") {
+        return "background-color: rgb(255, 160, 122);";
+    } else if (duck[4] == "U") {
+        return "background-color: rgb(230, 212, 239);"
+    } else {
+        return "";
+    }
+}
+
+export { createStyle, createURL, parseName }

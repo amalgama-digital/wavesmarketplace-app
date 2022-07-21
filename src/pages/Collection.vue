@@ -1,248 +1,189 @@
 <template>
     <div>
-        <div class="collection-header">
-            <div class="collection-header-back">
-                <img :src="`/collections/${params}/background.png`">
+        <div class="collection">
+            <div class="collection__cover">
+                <img :src="`/collections/${params}/background.png`" />
             </div>
-            <div class="collection-desc">
-                <div class="collection-name">
+            <div class="collection__info">
+                <div class="collection__name">
                     <h1>{{ name }}</h1>
                     <p>{{ description }}</p>
                 </div>
             </div>
         </div>
 
-        <div class="collection-sort">
-            Sort by
-            <select @change="onChange($event)">
-                <option value="price-low-to-high">Price: Low to High</option>
-                <option value="price-high-to-low">Price: High to Low</option>
-                <option value="id-low-to-high">Lowest NFT ID</option>
-                <option value="id-high-to-low">Highest NFT ID</option>
-            </select>
-        </div>
+        <sort :nfts="nfts"></sort>
 
-        <div class="collection-nfts">
-            <a :href="`/asset/${nft.assetId}`" class="nft" v-for="(nft) in nfts" v-bind:key="nft.assetId">
-                <img :src="nft.metadata.url">
-                <div class="nft-desc">
-                    <div class="nft-name">
-                        <p>{{ nft.name }}</p>
-                    </div>
-                    <div class="nft-price">
-                        <p>{{ nft.price }} <img src="/img/waves-token.svg" /></p>
-                    </div>
-                </div>
-            </a>
+        <div class="nfts">
+            <NFT
+                :nft="nft"
+                :viewInfo="true"
+                v-for="nft in nfts"
+                v-bind:key="nft.assetId"
+            ></NFT>
         </div>
     </div>
 </template>
 
 <script>
-    import axios from "axios";
-    import collection from "../collection.json";
+import axios from "axios";
+import collection from "../collection.json";
 
-    export default {
-        name: "Collection",
-        data() {
-            return {
-                params: "",
-                name: "",
-                description: "",
-                issuer: "",
-                nfts: []
-            }
-        },
-        async mounted() {
-            this.params = this.$route.params["name"];
-            this.name = collection[this.params].name;
-            this.description = collection[this.params].description;
-            this.issuer = collection[this.params].address_issuer;
+import { sortLowestPrice } from "../helpers/sort";
 
-            await axios.get(`${window.nodeURL}/addresses/data/${window.contractAddress}`)
-                .then(res => {
-                    for (let i = 0; i < res.data.length; i++) {
-                        if (res.data[i].key.endsWith("_issuer") && res.data[i].value == this.issuer) {
-                            let data = {};
+import Sort from "../components/Sort.vue";
+import NFT from "../components/NFT.vue";
 
-                            let l = res.data[i].key.length;
-                            data.assetId = res.data[i].key.substring(0, l - 7);
-                            data.name = res.data.find(item => item.key == data.assetId + "_name").value;
-                            data.metadata = JSON.parse(res.data.find(item => item.key == data.assetId + "_description").value);
-                            data.price = res.data.find(item => item.key == data.assetId + "_price").value / 100000000;
+export default {
+    name: "Collection",
+    data() {
+        return {
+            params: "",
+            name: "",
+            description: "",
+            issuer: "",
+            nfts: [],
+        };
+    },
+    components: {
+        Sort,
+        NFT,
+    },
+    async mounted() {
+        this.params = this.$route.params["name"];
+        this.name = collection[this.params].name;
+        this.description = collection[this.params].description;
+        this.issuer = collection[this.params].address_issuer;
 
-                            this.nfts.push(data);
-                        }
+        await axios
+            .get(`${window.nodeURL}/addresses/data/${window.contractAddress}`)
+            .then((res) => {
+                for (let i = 0; i < res.data.length; i++) {
+                    if (
+                        res.data[i].key.endsWith("_issuer") &&
+                        res.data[i].value == this.issuer
+                    ) {
+                        let data = {};
+
+                        let l = res.data[i].key.length;
+
+                        data.assetId = res.data[i].key.substring(0, l - 7);
+
+                        data.name = res.data.find(
+                            (item) => item.key == data.assetId + "_name"
+                        ).value;
+
+                        data.metadata = JSON.parse(
+                            res.data.find(
+                                (item) => item.key == data.assetId + "_description"
+                            ).value
+                        );
+
+                        data.price =
+                            res.data.find(
+                                (item) => item.key == data.assetId + "_price"
+                            ).value / 100000000;
+
+                        this.nfts.push(data);
                     }
-                })
-                .catch(err => {
-                    console.error(err);
-                });
-
-            this.sortLowestPrice();
-        },
-        methods: {
-            onChange(event) {
-                let v = event.target.value;
-                if (v == "price-low-to-high") {
-                    this.sortLowestPrice();
-                } else if (v == "price-high-to-low") {
-                    this.sortHighestPrice();
-                } else if (v == "id-low-to-high") {
-                    this.sortLowestId();
-                } else if (v == "id-high-to-low") {
-                    this.sortHighestId();
                 }
-            },
-            sortLowestPrice() {
-                this.nfts = this.nfts.sort((a,b) => (a.price > b.price) ? 1 : ((b.price > a.price) ? -1 : 0));
-            },
-            sortHighestPrice() {
-                this.nfts = this.nfts.sort((a,b) => (a.price < b.price) ? 1 : ((b.price < a.price) ? -1 : 0));
-            },
-            sortLowestId() {
-                this.nfts = this.nfts.sort((a,b) => (a.metadata.id > b.metadata.id) ? 1 : ((b.metadata.id > a.metadata.id) ? -1 : 0));
-            },
-            sortHighestId() {
-                this.nfts = this.nfts.sort((a,b) => (a.metadata.id < b.metadata.id) ? 1 : ((b.metadata.id < a.metadata.id) ? -1 : 0));
-            }
-        }
-    }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+
+        this.nfts = sortLowestPrice(this.nfts);
+    },
+};
 </script>
 
 <style scoped>
-    .collection-header {
-        margin-top: 70px;
-        height: 550px;
+@import "../assets/styles/nfts.css";
+
+@media only screen and (max-width: 768px) {
+    .collection__name > h1 {
+        font-size: 18px;
     }
 
-    .collection-header-back {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-        z-index: 0;
-        height: 550px;
-        max-width: max-content;
-        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-        border-radius: 18px;
-        overflow: hidden;
-        margin: auto;
+    .collection__name > p {
+        font-size: 14px !important;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .collection {
+        margin: 15px !important;
+        gap: 0px 10px !important;
     }
 
-    .collection-header-back > img {
-        height: 100%;
+    .collection,
+    .collection__cover {
+        height: max-content !important;
     }
 
-    .collection-desc {
-        background-color: #fff;
-        box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
-        border-radius: 18px;
-        position: relative;
-        z-index: 1;
-        max-width: 880px;
-        margin: auto;
-        margin-top: -90px;
+    .collection__cover {
+        display: none !important;
     }
 
-    .collection-name {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 0 60px;
-        color: #000;
+    .collection__info {
+        margin-top: 0 !important;
     }
 
-    .collection-name > h1 {
-        text-align: center;
+    .collection__name {
+        padding: 0 40px !important;
     }
+}
 
-    .collection-name > p {
-        font-weight: 300;
-        font-size: 1rem;
-        line-height: 31px;
-        text-align: center;
-    }
+.collection {
+    margin: 65px;
+    height: 550px;
+}
 
-    .collection-header {
-        margin: 55px;
-    }
+.collection__cover {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 550px;
+    max-width: max-content;
+    margin: auto;
+    border-radius: 18px;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
 
-    .collection-sort {
-        margin: 55px 105px;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
+.collection__cover > img {
+    height: 100%;
+}
 
-    .collection-sort > select {
-        background: #F0F0F0;
-        color: #0055FF;
-        font-family: Inter;
-        font-size: 14px;
-        font-weight: 500;
-        border: 0;
-        padding: 10px;
-    }
+.collection__info {
+    position: relative;
+    z-index: 1;
+    margin: auto;
+    margin-top: -90px;
+    max-width: 880px;
+    border-radius: 18px;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
 
-    .collection-sort > select:hover, .collection-sort > select:active {
-        border: 0;
-    }
+.collection__name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 60px;
+    color: #000;
+}
 
-    .collection-sort > select:focus-visible {
-        outline: none;
-    }
+.collection__name > h1 {
+    text-align: center;
+}
 
-    .collection-nfts {
-        margin: 65px;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-
-    .nft {
-        width: 357px;
-        height: 450px;
-        margin-top: 20px;
-    }
-
-    .nft, .nft:hover, .nft:active {
-        color: black;
-        text-decoration: none;
-    }
-
-    .nft > img {
-        box-shadow: 2px 2px 2px 0px rgb(206, 206, 206), -2px -2px 2px 0px rgba(255, 255, 255, 0.5);
-        border-radius: 18px;
-        width: 100%;
-        margin: auto;
-    }
-
-    .nft-desc {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .nft-name {
-        font-weight: 500;
-        font-size: 22px;
-        line-height: 27px;
-    }
-
-    .nft-price {
-        font-weight: 300;
-    }
-
-    .nft-price > p {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nft-price > p > img {
-        margin-left: 10px;
-    }
+.collection__name > p {
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 31px;
+    text-align: center;
+}
 </style>
