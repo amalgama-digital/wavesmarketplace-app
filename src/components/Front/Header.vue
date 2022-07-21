@@ -64,7 +64,7 @@ export default {
 <style scoped>
 @media only screen and (max-width: 1440px) {
     header {
-        margin: 65px !important;
+        margin: 65px 40px !important;
     }
 }
 
