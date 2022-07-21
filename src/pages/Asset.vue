@@ -41,7 +41,7 @@
         <offer
             :assetId="assetId"
             v-if="offer"
-            v-on:close="offer = $event"
+            v-on:close="closeOffer($event)"
         ></offer>
         <connect-wallet
             :connect="connect"
@@ -67,6 +67,7 @@ export default {
     name: "Asset",
     data() {
         return {
+            address: "",
             connect: false,
             walletStatus: false,
             assetId: "",
@@ -88,12 +89,13 @@ export default {
         this.assetId = this.$route.params["id"];
         const data = window.localStorage.getItem("loginChoice");
         if (!data) {
-            this.getInfo("");
+            this.address = "";
         } else {
             this.wallet = JSON.parse(data);
-            this.getInfo(this.wallet.address);
+            this.address = this.wallet.address;
         }
-        this.getNFT();
+        await this.getInfo(this.address);
+        await this.getNFT();
     },
     computed: {
         viewCurrentPrice() {
@@ -175,6 +177,17 @@ export default {
                 });
         },
 
+        async closeOffer(offer) {
+            this.offer = offer;
+            await this.updateInfo();
+        },
+
+        async updateInfo() {
+            setTimeout(async () => {
+                await this.getInfo(this.address);
+            }, 5000);
+        },
+
         async provider() {
             const data = JSON.parse(window.localStorage.getItem("loginChoice"));
             if (data.choice == "keeper") {
@@ -212,6 +225,7 @@ export default {
                 .broadcast()
                 .then((res) => {
                     console.log(res);
+                    this.updateInfo();
                 })
                 .catch((error) => {
                     console.error(error);
@@ -244,6 +258,7 @@ export default {
                 .broadcast()
                 .then((res) => {
                     console.log(res);
+                    this.updateInfo();
                 })
                 .catch((error) => {
                     console.error(error);
