@@ -18,7 +18,7 @@
             :connect="connect"
             v-if="connect"
             v-on:close="connect = $event"
-            v-on:success="login()"
+            v-on:success="login($event)"
         ></connect-wallet>
     </header>
 </template>
@@ -48,8 +48,9 @@ export default {
         }
     },
     methods: {
-        login() {
+        login(address) {
             this.authorized = true;
+            this.wallet.address = address;
         },
 
         logout() {
