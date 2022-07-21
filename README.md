@@ -1,2 +1,2 @@
 # wavesmarketplace-app
-Waves Marketplace web interface
+Waves Marketplace web application
