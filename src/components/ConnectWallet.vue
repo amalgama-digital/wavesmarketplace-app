@@ -4,11 +4,11 @@
             <button class="close" @click="close"></button>
             <div class="connect" @click="connectKeeper">
                 <p>Waves Keeper</p>
-                <img src="/img/connect/keeper.png" />
+                <img src="@/assets/images/connect/keeper.png" />
             </div>
             <div class="connect" @click="connectEmail">
                 <p>Waves Exchange Email</p>
-                <img src="/img/connect/exchange.svg" />
+                <img src="@/assets/images/connect/exchange.svg" />
             </div>
             <p class="error" v-if="error">{{ error_text }}</p>
         </div>

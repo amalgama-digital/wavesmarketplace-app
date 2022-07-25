@@ -1,5 +1,5 @@
 <template>
-    <component :is="nft.assetId ? 'a' : 'div'" :href="`/asset/${nft.assetId}`" class="nft">
+    <component :is="nft.assetId ? 'a' : 'div'" :href="link" class="nft">
         <img
             v-if="nft.metadata.url"
             :src="nft.metadata.url"
@@ -13,7 +13,7 @@
                 <p>{{ nft.name }}</p>
             </div>
             <div v-if="nft.price" class="nft__price">
-                <p>{{ nft.price }} <img src="/img/waves-token.svg" /></p>
+                <p>{{ nft.price }} <img src="@/assets/images/waves-token.svg" /></p>
             </div>
         </div>
     </component>
@@ -24,7 +24,7 @@ import { createStyle, createURL, parseName } from "../helpers/ducks";
 
 export default {
     name: "NFT",
-    props: ["nft", "viewInfo"],
+    props: ["nft", "viewInfo", "url"],
     created() {
         const ducks = parseName(this.nft.name);
         if (ducks.length > 1) {
@@ -32,6 +32,15 @@ export default {
             this.nft.metadata.style = createStyle(this.nft.name);
         }
     },
+    computed: {
+        link() {
+            if (this.url) {
+                return `${this.url}/asset/${this.nft.assetId}`
+            } else {
+                return `/asset/${this.nft.assetId}`
+            }
+        }
+    }
 };
 </script>
 
@@ -74,6 +83,7 @@ export default {
 }
 
 .nft {
+    font-family: Inter;
     max-width: 357px;
     max-height: 450px;
 }

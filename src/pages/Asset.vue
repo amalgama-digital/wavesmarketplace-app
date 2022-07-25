@@ -21,13 +21,13 @@
                         Offer for sale
                     </button>
                     <div v-else-if="cancelButton" class="nft__buy">
-                        <p>{{ this.viewCurrentPrice }} <img src="/img/waves-token.svg" /></p>
+                        <p>{{ this.viewCurrentPrice }} <img src="@/assets/images/waves-token.svg" /></p>
                         <button @click="cancelSelling">
                             Cancel selling
                         </button>
                     </div>
                     <div v-else-if="buyButton" class="nft__buy">
-                        <p>{{ this.viewCurrentPrice }} <img src="/img/waves-token.svg" /></p>
+                        <p>{{ this.viewCurrentPrice }} <img src="@/assets/images/waves-token.svg" /></p>
                         <button @click="buy">
                             Buy now
                         </button>
