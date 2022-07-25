@@ -4,11 +4,11 @@
             <button class="close" @click="close"></button>
             <div class="connect" @click="connectKeeper">
                 <p>Waves Keeper</p>
-                <img src="@/assets/images/connect/keeper.png" />
+                <p></p>
             </div>
             <div class="connect" @click="connectEmail">
                 <p>Waves Exchange Email</p>
-                <img src="@/assets/images/connect/exchange.svg" />
+                <p></p>
             </div>
             <p class="error" v-if="error">{{ error_text }}</p>
         </div>
@@ -124,8 +124,22 @@ export default {
     cursor: pointer;
 }
 
-.connect > img {
+.modal > div > div.connect:nth-child(2) > p:last-child::before {
+    content: '';
+    display: inline-block;
     width: 40px;
+    height: 40px;
+    background-image: url("../assets/images/connect/keeper.png");
+    background-size: 40px 40px;
+}
+
+.modal > div > div.connect:last-child > p:last-child::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background-image: url("../assets/images/connect/exchange.svg");
+    background-size: 40px 40px;
 }
 
 .error {

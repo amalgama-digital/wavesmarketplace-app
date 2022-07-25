@@ -13,7 +13,7 @@
                 <p>{{ nft.name }}</p>
             </div>
             <div v-if="nft.price" class="nft__price">
-                <p>{{ nft.price }} <img src="@/assets/images/waves-token.svg" /></p>
+                <p>{{ nft.price }}</p>
             </div>
         </div>
     </component>
@@ -138,7 +138,9 @@ export default {
     align-items: center;
 }
 
-.nft__price > p > img {
+.nft__price > p::after {
+    content: url("../assets/images/waves-token.svg");
+    margin-top: 5px;
     margin-left: 10px;
 }
 </style>
