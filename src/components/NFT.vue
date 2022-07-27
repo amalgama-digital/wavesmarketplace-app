@@ -30,6 +30,9 @@ export default {
         const ducks = parseName(this.nft.name);
         try {
             if (ducks.length > 1) {
+                if (ducks[1] == "BABY") {
+                    this.nft.metadata = {};
+                }
                 this.nft.metadata.url = createURL(this.nft.name, this.nft.assetId);
                 this.nft.metadata.style = createStyle(this.nft.name);
             }
