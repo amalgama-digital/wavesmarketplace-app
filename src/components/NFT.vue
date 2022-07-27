@@ -1,13 +1,17 @@
 <template>
     <component :is="nft.assetId ? 'a' : 'div'" :href="link" class="nft">
-        <img
-            v-if="nft.metadata.url"
-            :src="nft.metadata.url"
-            :alt="nft.name"
-            :style="nft.metadata.style"
-            class="nft__img"
-        />
-        <p v-else class="nft__img--empty">?</p>
+        <vue-load-image v-if="nft.metadata.url">
+            <img
+                :src="nft.metadata.url"
+                :alt="nft.name"
+                :style="nft.metadata.style"
+                slot="image"
+                class="nft__img"
+            />
+            <div slot="preloader" class="nft__img nft__img--preloader"></div>
+            <div slot="error" class="nft__img nft__img--preloader"></div>
+        </vue-load-image>
+        <div v-else class="nft__img nft__img--preloader"></div>
         <div v-if="viewInfo" class="nft__info">
             <div class="nft__name">
                 <p>{{ nft.name }}</p>
@@ -20,11 +24,16 @@
 </template>
 
 <script>
+import VueLoadImage from "vue-load-image";
+
 import { createStyle, createURL, parseName } from "../helpers/ducks";
 
 export default {
     name: "NFT",
     props: ["nft", "viewInfo", "url"],
+    components: {
+        "vue-load-image": VueLoadImage,
+    },
     created() {
         // WavesDucks
         const ducks = parseName(this.nft.name);
@@ -33,7 +42,10 @@ export default {
                 if (ducks[1] == "BABY") {
                     this.nft.metadata = {};
                 }
-                this.nft.metadata.url = createURL(this.nft.name, this.nft.assetId);
+                this.nft.metadata.url = createURL(
+                    this.nft.name,
+                    this.nft.assetId
+                );
                 this.nft.metadata.style = createStyle(this.nft.name);
             }
         } catch {
@@ -43,38 +55,31 @@ export default {
     computed: {
         link() {
             if (this.url) {
-                return `${this.url}/asset/${this.nft.assetId}`
+                return `${this.url}/asset/${this.nft.assetId}`;
             } else {
-                return `/asset/${this.nft.assetId}`
+                return `/asset/${this.nft.assetId}`;
             }
-        }
-    }
+        },
+    },
 };
 </script>
 
 <style scoped>
 @media only screen and (max-width: 425px) {
-    a.nft > img.nft__img,
-    a.nft > img.nft__img--empty {
+    a.nft .nft__img {
         width: 170px !important;
     }
 
-    a.nft > img.nft__img {
+    a.nft .nft__img {
         height: 170px !important;
     }
 
-    div.nft > img.nft__img,
-    div.nft > img.nft__img--empty {
+    div.nft .nft__img {
         width: 340px !important;
     }
 
-    div.nft > img.nft__img {
+    div.nft .nft__img {
         height: 340px !important;
-    }
-
-    .nft__img--empty {
-        padding: 20px 0px !important;
-        font-size: 107px !important;
     }
 
     .nft__info {
@@ -87,6 +92,18 @@ export default {
 
     .nft__price > p {
         margin-top: 0;
+    }
+}
+
+@keyframes AnimateBG {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
     }
 }
 
@@ -103,8 +120,7 @@ export default {
     text-decoration: none;
 }
 
-.nft__img,
-.nft__img--empty {
+.nft__img {
     width: 375px;
     margin: auto;
     border-radius: 18px;
@@ -116,10 +132,16 @@ export default {
     height: 375px;
 }
 
-.nft__img--empty {
-    padding: 109px 0px;
-    font-size: 130px;
-    text-align: center;
+.nft__img--preloader {
+    background-size: 300% 300%;
+    background-image: linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(102, 135, 200, 1) 25%,
+        rgba(6, 59, 166, 1) 51%,
+        rgba(0, 0, 0, 1) 100%
+    );
+    animation: AnimateBG 5s ease infinite;
 }
 
 .nft__info {
