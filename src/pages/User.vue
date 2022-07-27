@@ -22,6 +22,8 @@
 <script>
 import axios from "axios";
 
+import { getMetadata } from "../helpers/metadata";
+import { getMarketInfo } from "../helpers/market";
 import { sortLowestPrice } from "../helpers/sort";
 
 import Profile from "../components/Profile.vue";
@@ -49,14 +51,19 @@ export default {
         async getNFT(address) {
             await axios
                 .get(`${window.nodeURL}/assets/nft/${address}/limit/1000`)
-                .then((res) => {
+                .then(async (res) => {
                     for (let i = 0; i < res.data.length; i++) {
                         try {
                             let data = {};
+
                             data.name = res.data[i].name;
                             data.assetId = res.data[i].assetId;
-                            data.metadata = JSON.parse(res.data[i].description);
+
+                            data.issuer = res.data[i].issuer;
+                            data.metadata = await getMetadata(data.assetId, data.issuer, res.data[i].description);
+
                             data.price = 0;
+
                             this.nfts.push(data);
                         } catch (err) {
                             console.error(err);
@@ -67,43 +74,7 @@ export default {
                     console.error(err);
                 });
 
-            await axios
-                .get(
-                    `${window.nodeURL}/addresses/data/${window.contractAddress}`
-                )
-                .then((res) => {
-                    for (let i = 0; i < res.data.length; i++) {
-                        if (
-                            res.data[i].key.endsWith("_owner") &&
-                            res.data[i].value == address
-                        ) {
-                            let data = {};
-
-                            let l = res.data[i].key.length;
-
-                            data.assetId = res.data[i].key.substring(0, l - 6);
-
-                            data.name = res.data.find(
-                                (item) => item.key == data.assetId + "_name"
-                            ).value;
-
-                            data.metadata = JSON.parse(
-                                res.data.find(
-                                    (item) => item.key == data.assetId + "_description"
-                                ).value
-                            );
-
-                            data.price = res.data.find(
-                                (item) => item.key == data.assetId + "_price"
-                            ).value / 100000000;
-
-                            this.nfts.push(data);
-                        }
-                    }
-                })
-                .catch((err) => {
-                    console.error(err);
-                });
+            this.nfts = this.nfts.concat(await getMarketInfo("_owner", address));
 
             this.nfts = sortLowestPrice(this.nfts);
         },

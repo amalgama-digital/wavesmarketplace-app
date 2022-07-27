@@ -59,6 +59,8 @@ import collection from "../collection.json";
 import { ProviderKeeper } from "@waves/provider-keeper";
 import { ProviderCloud } from "@waves.exchange/provider-cloud";
 
+import { getMetadata } from "../helpers/metadata";
+
 import ConnectWallet from "../components/ConnectWallet.vue";
 import NFT from "../components/NFT.vue";
 import Offer from "../components/Offer.vue";
@@ -147,13 +149,15 @@ export default {
         async getNFT() {
             await axios
                 .get(`${window.nodeURL}/assets/details/${this.assetId}`)
-                .then((res) => {
+                .then(async (res) => {
                     try {
                         let data = {};
 
                         data.name = res.data.name;
 
-                        data.metadata = JSON.parse(res.data.description);
+                        data.issuer = res.data.issuer;
+
+                        data.metadata = await getMetadata(this.assetId, data.issuer, res.data.description);
 
                         const collectionName = Object.values(collection).find(
                             (item) => item.address_issuer == res.data.issuer

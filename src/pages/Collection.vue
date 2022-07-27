@@ -26,9 +26,9 @@
 </template>
 
 <script>
-import axios from "axios";
 import collection from "../collection.json";
 
+import { getMarketInfo } from "../helpers/market";
 import { sortLowestPrice } from "../helpers/sort";
 
 import Sort from "../components/Sort.vue";
@@ -55,42 +55,7 @@ export default {
         this.description = collection[this.params].description;
         this.issuer = collection[this.params].address_issuer;
 
-        await axios
-            .get(`${window.nodeURL}/addresses/data/${window.contractAddress}`)
-            .then((res) => {
-                for (let i = 0; i < res.data.length; i++) {
-                    if (
-                        res.data[i].key.endsWith("_issuer") &&
-                        res.data[i].value == this.issuer
-                    ) {
-                        let data = {};
-
-                        let l = res.data[i].key.length;
-
-                        data.assetId = res.data[i].key.substring(0, l - 7);
-
-                        data.name = res.data.find(
-                            (item) => item.key == data.assetId + "_name"
-                        ).value;
-
-                        data.metadata = JSON.parse(
-                            res.data.find(
-                                (item) => item.key == data.assetId + "_description"
-                            ).value
-                        );
-
-                        data.price =
-                            res.data.find(
-                                (item) => item.key == data.assetId + "_price"
-                            ).value / 100000000;
-
-                        this.nfts.push(data);
-                    }
-                }
-            })
-            .catch((err) => {
-                console.error(err);
-            });
+        this.nfts = await getMarketInfo("_issuer", this.issuer);
 
         this.nfts = sortLowestPrice(this.nfts);
     },

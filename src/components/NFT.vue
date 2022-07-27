@@ -26,10 +26,15 @@ export default {
     name: "NFT",
     props: ["nft", "viewInfo", "url"],
     created() {
+        // WavesDucks
         const ducks = parseName(this.nft.name);
-        if (ducks.length > 1) {
-            this.nft.metadata.url = createURL(this.nft.name, this.nft.assetId);
-            this.nft.metadata.style = createStyle(this.nft.name);
+        try {
+            if (ducks.length > 1) {
+                this.nft.metadata.url = createURL(this.nft.name, this.nft.assetId);
+                this.nft.metadata.style = createStyle(this.nft.name);
+            }
+        } catch {
+            console.log(this.nft.name + ": Not a duck!");
         }
     },
     computed: {
