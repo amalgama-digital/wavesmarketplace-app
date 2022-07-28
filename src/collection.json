@@ -8,5 +8,15 @@
         "name": "ZombiePunks",
         "description": "Second Chapter of the first-ever NFT-punks on WAVES blockchain",
         "address_issuer": "3P7QrWH1ETLfKAJcFHYPJmQusNbDuW98Hop"
+    },
+    "wavesducks_incubator": {
+        "name": "WavesDucks Incubator",
+        "description": "Second Chapter of the first-ever NFT-punks on WAVES blockchain",
+        "address_issuer": "3PEktVux2RhchSN63DsDo4b4mz4QqzKSeDv"
+    },
+    "wavesducks_breeding": {
+        "name": "WavesDucks Breeding",
+        "description": "Second Chapter of the first-ever NFT-punks on WAVES blockchain",
+        "address_issuer": "3PDVuU45H7Eh5dmtNbnRNRStGwULA7NY6Hb"
     }
 }

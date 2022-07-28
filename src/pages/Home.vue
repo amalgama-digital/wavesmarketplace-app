@@ -46,6 +46,12 @@
                 <a class="collections__block" href="/collection/wavespunks">
                     <img src="/img/collections/punks.png" />
                 </a>
+                <a class="collections__block" href="/collection/wavesducks_incubator">
+                    <img src="/img/collections/wavesducks_incubator.jpg" />
+                </a>
+                <a class="collections__block" href="/collection/wavesducks_breeding">
+                    <img src="/img/collections/wavesducks_breeding.jpg" />
+                </a>
             </div>
         </div>
 
@@ -69,6 +75,10 @@ export default {
 
     .first__text > h2 {
         font-size: 42px !important;
+    }
+
+    .collections__block {
+        min-width: 460px !important;
     }
 
     .collections__block > img {
@@ -108,8 +118,7 @@ export default {
     .collections__block {
         display: flex !important;
         justify-content: center;
-        min-width: 230px;
-        overflow: hidden;
+        min-width: 230px !important;
     }
 
     .merch {
@@ -259,7 +268,7 @@ export default {
     flex-direction: row;
     align-items: center;
     gap: 0 40px;
-    max-width: max-content;
+    max-width: 1360px;
     margin: auto;
     padding: 10px 0px;
     overflow: hidden;
@@ -274,7 +283,9 @@ export default {
 
 .collections__block {
     display: block;
+    min-width: 665px;
     border-radius: 20px;
+    overflow: hidden;
     filter: drop-shadow(3px 3px 5px rgba(9, 12, 31, 0.25))
         drop-shadow(-3px -3px 6px rgba(255, 255, 255, 0.6));
 }
