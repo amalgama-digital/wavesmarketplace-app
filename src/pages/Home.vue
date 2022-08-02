@@ -39,18 +39,30 @@
             <div class="collections__title">
                 THE MOST NOTICEABLE COLLECTIONS
             </div>
-            <div class="collections__blocks">
-                <a class="collections__block" href="/collection/zombiepunks">
-                    <img src="/img/collections/zombie.png" />
-                </a>
-                <a class="collections__block" href="/collection/wavespunks">
-                    <img src="/img/collections/punks.png" />
-                </a>
-                <a class="collections__block" href="/collection/wavesducks_incubator">
-                    <img src="/img/collections/wavesducks_incubator.jpg" />
-                </a>
-                <a class="collections__block" href="/collection/wavesducks_breeding">
-                    <img src="/img/collections/wavesducks_breeding.jpg" />
+            <div class="collections__blocks"
+                @scroll="scrollCollections"
+                ref="collectionsRef"
+            >
+                <button class="collections__scroller scroller-left" @click="scrollLeft">
+                    <svg style="transform: rotate(180deg);" viewBox="0 0 128 128" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z" stroke="#2C7DFF" fill="#2C7DFF"/>
+                        </g>
+                    </svg>
+                </button>
+                <button class="collections__scroller scroller-right" @click="scrollRight">
+                    <svg viewBox="0 0 128 128" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <path d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z" stroke="#2C7DFF" fill="#2C7DFF"/>
+                        </g>
+                    </svg>
+                </button>
+                <a class="collections__block"
+                    v-for="(collection, n) in collections"
+                    :key="n"
+                    :href="collection.href"
+                >
+                    <img :src="collection.imgSrc" >
                 </a>
             </div>
         </div>
@@ -62,12 +74,91 @@
 </template>
 
 <script>
-export default {
-    name: "Home",
-};
+    export default {
+        name: "Home",
+        data: () => {
+            return {
+                curOffset: 0, // used to scroll the collection 
+                collections: [
+                    {
+                        href: '/collection/zombiepunks',
+                        imgSrc: '/img/collections/zombie.png'
+                    },
+                    {
+                        href: '/collection/wavespunks',
+                        imgSrc : '/img/collections/punks.png'
+                    },
+                    {
+                        href: '/collection/wavesducks_incubator',
+                        imgSrc : '/img/collections/wavesducks_incubator.jpg'
+                    },
+                    {
+                        href: '/collection/wavesducks_breeding',
+                        imgSrc : '/img/collections/wavesducks_breeding.jpg'
+                    }
+                ]
+            };
+        },
+        methods: {
+            scrollCollections (ev) {
+                this.curOffset = ev.target.scrollLeft;
+            },
+
+            scrollLeft () {
+                const clientWidth = this.$refs.collectionsRef.clientWidth;
+                // there are 2 buttons at the moment and already 1st element is visible, so -3
+                const childCount = this.$refs.collectionsRef.childElementCount-3;
+
+                const step = clientWidth ? Math.ceil(clientWidth / childCount): -450;
+                const maxOffset = 0;
+                if (this.curOffset > maxOffset) {
+                    this.curOffset -= step;
+                    setTimeout( // `fix` chromium-based browsers flaw
+                        () => {
+                            this.$refs.collectionsRef.scrollTo({behavior: 'smooth', top:0, left: this.curOffset});
+                        }, 5
+                    );
+                }
+            },
+
+            scrollRight () {
+                const scrollWidth = this.$refs.collectionsRef.scrollWidth;
+                const clientWidth = this.$refs.collectionsRef.clientWidth;
+                // there are 2 buttons at the moment and already 1st element is visible, so -3
+                const childCount = this.$refs.collectionsRef.childElementCount-2;
+
+                const step = clientWidth ? Math.ceil(scrollWidth / childCount): 450;
+
+                // some browsers doesn't have `scrollLeftMax` element property
+                // there are 2 buttons at the moment and already 1st element is visible, so -3
+                const maxOffset = this.$refs.collectionsRef.scrollLeftMax
+                    ?? (scrollWidth-clientWidth);
+
+                if (this.curOffset < maxOffset) {
+                    this.curOffset += step;
+                    console.debug({sw: this.$refs.collectionsRef.scrollWidth, step, cu: this.curOffset, maxOffset});
+                    setTimeout( // fix` chromium-based browsers flaw
+                        () => {
+                            this.$refs.collectionsRef.scrollTo({behavior: 'smooth', top:0, left: this.curOffset});
+                        }, 5
+                    );
+                }
+            }
+        }
+    }
 </script>
 
 <style scoped>
+@media only screen and (max-width: 1080px) {
+    .scroller-left {
+        left: 0 !important;
+    }
+
+    .scroller-right {
+        right: 0 !important;
+    }
+}
+
 @media only screen and (max-width: 768px) {
     .first__cover {
         background-position: left !important;
@@ -288,6 +379,32 @@ export default {
     overflow: hidden;
     filter: drop-shadow(3px 3px 5px rgba(9, 12, 31, 0.25))
         drop-shadow(-3px -3px 6px rgba(255, 255, 255, 0.6));
+}
+
+.collections__scroller {
+    position: absolute;
+    display: flex;
+    align-items: center;
+
+    font-size: 2.5rem;
+
+    min-height: 4rem;
+    min-width: 4rem;
+    border-radius: 5rem;
+    max-height: 4rem;
+    max-width: 4rem;
+
+    background-color: rgba(240, 240, 245, 0.7);
+    color: #2c7dff;
+    z-index: 1;
+}
+
+.scroller-left {
+    left: 14rem;
+}
+
+.scroller-right {
+    right: 14rem;
 }
 
 .collections__block > img {
