@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
 async function getPuzzleImage(assetId) {
-    let metadata = {};
+    const metadata = {};
     await axios
         .get(
             `${window.nodeURL}/addresses/data/3PFQjjDMiZKQZdu5JqTHD7HwgSXyp9Rw9By?key=nft_${assetId}_image`
@@ -16,4 +16,4 @@ async function getPuzzleImage(assetId) {
     return metadata;
 }
 
-export { getPuzzleImage }
+export { getPuzzleImage };

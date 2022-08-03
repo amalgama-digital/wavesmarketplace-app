@@ -16,15 +16,15 @@
 </template>
 
 <script>
-import { ProviderKeeper } from "@waves/provider-keeper";
-import { ProviderCloud } from "@waves.exchange/provider-cloud";
+import { ProviderKeeper } from '@waves/provider-keeper';
+import { ProviderCloud } from '@waves.exchange/provider-cloud';
 
 export default {
-    name: "ConnectWallet",
+    name: 'ConnectWallet',
     data() {
         return {
             error: false,
-            error_text: "",
+            error_text: '',
         };
     },
     mounted() {
@@ -34,9 +34,10 @@ export default {
         async connectKeeper() {
             this.error = false;
             if (window.signer) {
-                const authData = { data: "https://wavesmarketplace.com/" };
+                const authData = { data: 'https://wavesmarketplace.com/' };
 
-                await window.signer.setProvider(new ProviderKeeper(authData))
+                await window.signer
+                    .setProvider(new ProviderKeeper(authData))
                     .then((res) => {
                         console.log(res);
                     })
@@ -46,16 +47,20 @@ export default {
                         this.error_text = error;
                     });
 
-                await window.signer.login()
+                await window.signer
+                    .login()
                     .then((res) => {
                         console.log(res);
 
-                        let data = {};
-                        data.choice = "keeper";
+                        const data = {};
+                        data.choice = 'keeper';
                         data.address = res.address;
                         data.publicKey = res.publicKey;
 
-                        window.localStorage.setItem("loginChoice", JSON.stringify(data));
+                        window.localStorage.setItem(
+                            'loginChoice',
+                            JSON.stringify(data)
+                        );
 
                         this.close();
                         this.success(data.address);
@@ -72,16 +77,20 @@ export default {
             if (window.signer) {
                 window.signer.setProvider(new ProviderCloud());
 
-                await window.signer.login()
+                await window.signer
+                    .login()
                     .then((res) => {
                         console.log(res);
 
-                        let data = {};
-                        data.choice = "email";
+                        const data = {};
+                        data.choice = 'email';
                         data.address = res.address;
                         data.publicKey = res.publicKey;
 
-                        window.localStorage.setItem("loginChoice", JSON.stringify(data));
+                        window.localStorage.setItem(
+                            'loginChoice',
+                            JSON.stringify(data)
+                        );
 
                         this.close();
                         this.success(data.address);
@@ -94,10 +103,10 @@ export default {
             }
         },
         success(address) {
-            this.$emit("success", address);
+            this.$emit('success', address);
         },
         close() {
-            this.$emit("close", false);
+            this.$emit('close', false);
         },
     },
 };
@@ -129,7 +138,7 @@ export default {
     display: inline-block;
     width: 40px;
     height: 40px;
-    background-image: url("../assets/images/connect/keeper.png");
+    background-image: url('../assets/images/connect/keeper.png');
     background-size: 40px 40px;
 }
 
@@ -138,7 +147,7 @@ export default {
     display: inline-block;
     width: 40px;
     height: 40px;
-    background-image: url("../assets/images/connect/exchange.svg");
+    background-image: url('../assets/images/connect/exchange.svg');
     background-size: 40px 40px;
 }
 

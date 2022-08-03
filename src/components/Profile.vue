@@ -15,38 +15,40 @@
 </template>
 
 <script>
-import axios from "axios";
-import { create } from "identity-img";
+import axios from 'axios';
+import { create } from 'identity-img';
 
 export default {
-    name: "Profile",
+    name: 'Profile',
     data() {
         return {
-            name: "",
-            description: "",
-            img: "",
-        }
+            name: '',
+            description: '',
+            img: '',
+        };
     },
-    props: ["address"],
+    props: ['address'],
     async mounted() {
         await axios
-            .get(`${window.nodeURL}/addresses/data/3PGSWDgad4RtceQYXBpq2x73mXLRJYLRqRP?matches=%5Euser(.*)${this.address}`)
+            .get(
+                `${window.nodeURL}/addresses/data/3PGSWDgad4RtceQYXBpq2x73mXLRJYLRqRP?matches=%5Euser(.*)${this.address}`
+            )
             .then((res) => {
                 for (let i = 0; i < res.data.length; i++) {
                     this.name = res.data.find(
-                        (item) => item.key == "user_name_" + this.address
+                        (item) => item.key == 'user_name_' + this.address
                     ).value;
 
                     this.description = res.data.find(
-                        (item) => item.key == "user_desc_" + this.address
+                        (item) => item.key == 'user_desc_' + this.address
                     ).value;
 
                     const thumb = res.data.find(
-                        (item) => item.key == "user_thumb_" + this.address
+                        (item) => item.key == 'user_thumb_' + this.address
                     ).value;
 
                     if (thumb !== undefined) {
-                        this.img = "https://infura-ipfs.io/ipfs/" + thumb;
+                        this.img = 'https://infura-ipfs.io/ipfs/' + thumb;
                     }
                 }
             })
@@ -54,11 +56,11 @@ export default {
                 console.error(err);
             });
 
-        if (this.img == "") {
+        if (this.img == '') {
             this.img = await create(this.address, { size: 120 });
         }
     },
-}
+};
 </script>
 
 <style scoped>
@@ -101,7 +103,11 @@ export default {
     max-width: 1400px;
     margin: auto;
     border-radius: 18px;
-    background: radial-gradient(49.91% 258.29% at 60.66% 81.09%,#05f 0,#000 100%);
+    background: radial-gradient(
+        49.91% 258.29% at 60.66% 81.09%,
+        #05f 0,
+        #000 100%
+    );
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
@@ -110,7 +116,7 @@ export default {
     display: flex;
     width: 100%;
     height: 100%;
-    background-image: url("../assets/images/marketplace.svg");
+    background-image: url('../assets/images/marketplace.svg');
 }
 
 .profile__cover img {

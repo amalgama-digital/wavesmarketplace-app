@@ -24,22 +24,22 @@
 </template>
 
 <script>
-import VueLoadImage from "vue-load-image";
+import VueLoadImage from 'vue-load-image';
 
-import { createStyle, createURL, parseName } from "../helpers/ducks";
+import { createStyle, createURL, parseName } from '../helpers/ducks';
 
 export default {
-    name: "NFT",
-    props: ["nft", "viewInfo", "url"],
+    name: 'NFT',
+    props: ['nft', 'viewInfo', 'url'],
     components: {
-        "vue-load-image": VueLoadImage,
+        'vue-load-image': VueLoadImage,
     },
     created() {
         // WavesDucks
         const ducks = parseName(this.nft.name);
         try {
             if (ducks.length > 1) {
-                if (ducks[1] == "BABY") {
+                if (ducks[1] == 'BABY') {
                     this.nft.metadata = {};
                 }
                 this.nft.metadata.url = createURL(
@@ -49,7 +49,7 @@ export default {
                 this.nft.metadata.style = createStyle(this.nft.name);
             }
         } catch {
-            console.log(this.nft.name + ": Not a duck!");
+            console.log(this.nft.name + ': Not a duck!');
         }
     },
     computed: {
@@ -169,7 +169,7 @@ export default {
 }
 
 .nft__price > p::after {
-    content: url("../assets/images/waves-token.svg");
+    content: url('../assets/images/waves-token.svg');
     margin-top: 5px;
     margin-left: 10px;
 }

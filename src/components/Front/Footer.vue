@@ -10,10 +10,18 @@
                 <!-- <a id="discord" target="_blank" href="https://discord.gg/gfpKDfRtvf">
                     <img src="/img/footer/discord.svg" />
                 </a> -->
-                <a id="telegram" target="_blank" href="https://t.me/wavespunks_en">
+                <a
+                    id="telegram"
+                    target="_blank"
+                    href="https://t.me/wavespunks_en"
+                >
                     <img src="/img/footer/telegram.svg" />
                 </a>
-                <a id="instagram" target="_blank" href="https://instagram.com/waves_punks">
+                <a
+                    id="instagram"
+                    target="_blank"
+                    href="https://instagram.com/waves_punks"
+                >
                     <img src="/img/footer/instagram.svg" />
                 </a>
             </div>
@@ -31,7 +39,7 @@
 
 <script>
 export default {
-    name: "Footer",
+    name: 'Footer',
 };
 </script>
 

@@ -20,21 +20,21 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
-import { getMetadata } from "../helpers/metadata";
-import { getMarketInfo } from "../helpers/market";
-import { sortLowestPrice } from "../helpers/sort";
+import { getMetadata } from '../helpers/metadata';
+import { getMarketInfo } from '../helpers/market';
+import { sortLowestPrice } from '../helpers/sort';
 
-import Profile from "../components/Profile.vue";
-import Sort from "../components/Sort.vue";
-import NFT from "../components/NFT.vue";
+import Profile from '../components/Profile.vue';
+import Sort from '../components/Sort.vue';
+import NFT from '../components/NFT.vue';
 
 export default {
-    name: "User",
+    name: 'User',
     data() {
         return {
-            address: "",
+            address: '',
             nfts: [],
         };
     },
@@ -44,7 +44,7 @@ export default {
         NFT,
     },
     async mounted() {
-        this.address = this.$route.params["address"];
+        this.address = this.$route.params.address;
         await this.getNFT(this.address);
     },
     methods: {
@@ -54,13 +54,17 @@ export default {
                 .then(async (res) => {
                     for (let i = 0; i < res.data.length; i++) {
                         try {
-                            let data = {};
+                            const data = {};
 
                             data.name = res.data[i].name;
                             data.assetId = res.data[i].assetId;
 
                             data.issuer = res.data[i].issuer;
-                            data.metadata = await getMetadata(data.assetId, data.issuer, res.data[i].description);
+                            data.metadata = await getMetadata(
+                                data.assetId,
+                                data.issuer,
+                                res.data[i].description
+                            );
 
                             data.price = 0;
 
@@ -74,7 +78,9 @@ export default {
                     console.error(err);
                 });
 
-            this.nfts = this.nfts.concat(await getMarketInfo("_owner", address));
+            this.nfts = this.nfts.concat(
+                await getMarketInfo('_owner', address)
+            );
 
             this.nfts = sortLowestPrice(this.nfts);
         },
@@ -83,8 +89,8 @@ export default {
 </script>
 
 <style scoped>
-@import "../assets/styles/button.css";
-@import "../assets/styles/nfts.css";
+@import '../assets/styles/button.css';
+@import '../assets/styles/nfts.css';
 
 .empty {
     font-family: Inter;

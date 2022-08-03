@@ -11,26 +11,31 @@
 </template>
 
 <script>
-import { sortLowestPrice, sortHighestPrice, sortLowestId, sortHighestId } from "../helpers/sort";
+import {
+    sortLowestPrice,
+    sortHighestPrice,
+    sortLowestId,
+    sortHighestId,
+} from '../helpers/sort';
 
 export default {
-    name: "Sort",
-    props: ["nfts"],
+    name: 'Sort',
+    props: ['nfts'],
     methods: {
         onChange(event) {
             const v = event.target.value;
-            if (v == "price-low-to-high") {
+            if (v == 'price-low-to-high') {
                 this.nfts = sortLowestPrice(this.nfts);
-            } else if (v == "price-high-to-low") {
+            } else if (v == 'price-high-to-low') {
                 this.nfts = sortHighestPrice(this.nfts);
-            } else if (v == "id-low-to-high") {
+            } else if (v == 'id-low-to-high') {
                 this.nfts = sortLowestId(this.nfts);
-            } else if (v == "id-high-to-low") {
+            } else if (v == 'id-high-to-low') {
                 this.nfts = sortHighestId(this.nfts);
             }
         },
     },
-}
+};
 </script>
 
 <style scoped>

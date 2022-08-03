@@ -26,22 +26,22 @@
 </template>
 
 <script>
-import collection from "../collection.json";
+import collection from '../collection.json';
 
-import { getMarketInfo } from "../helpers/market";
-import { sortLowestPrice } from "../helpers/sort";
+import { getMarketInfo } from '../helpers/market';
+import { sortLowestPrice } from '../helpers/sort';
 
-import Sort from "../components/Sort.vue";
-import NFT from "../components/NFT.vue";
+import Sort from '../components/Sort.vue';
+import NFT from '../components/NFT.vue';
 
 export default {
-    name: "Collection",
+    name: 'Collection',
     data() {
         return {
-            params: "",
-            name: "",
-            description: "",
-            issuer: "",
+            params: '',
+            name: '',
+            description: '',
+            issuer: '',
             nfts: [],
         };
     },
@@ -50,12 +50,12 @@ export default {
         NFT,
     },
     async mounted() {
-        this.params = this.$route.params["name"];
+        this.params = this.$route.params.name;
         this.name = collection[this.params].name;
         this.description = collection[this.params].description;
         this.issuer = collection[this.params].address_issuer;
 
-        this.nfts = await getMarketInfo("_issuer", this.issuer);
+        this.nfts = await getMarketInfo('_issuer', this.issuer);
 
         this.nfts = sortLowestPrice(this.nfts);
     },
@@ -63,7 +63,7 @@ export default {
 </script>
 
 <style scoped>
-@import "../assets/styles/nfts.css";
+@import '../assets/styles/nfts.css';
 
 @media only screen and (max-width: 768px) {
     .collection__name > h1 {

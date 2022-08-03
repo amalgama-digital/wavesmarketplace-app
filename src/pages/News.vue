@@ -1,15 +1,20 @@
 <template>
     <div class="news">
         <div class="news__articles">
-            <a :href="article.guid" class="article" v-for="article in articles" v-bind:key="article.title">
+            <a
+                :href="article.guid"
+                class="article"
+                v-for="article in articles"
+                v-bind:key="article.title"
+            >
                 <img :src="article.thumbnail" />
                 <p class="article__title">{{ article.title }}</p>
                 <p class="article__date">
                     {{
-                        new Date(article.pubDate).toLocaleDateString("en-US", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
+                        new Date(article.pubDate).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
                         })
                     }}
                 </p>
@@ -20,7 +25,7 @@
 
 <script>
 export default {
-    name: "News",
+    name: 'News',
     data() {
         return {
             articles: [],
@@ -29,7 +34,7 @@ export default {
     async mounted() {
         try {
             const res = await this.$http.get(
-                "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40wavespunks"
+                'https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fmedium.com%2Ffeed%2F%40wavespunks'
             );
             if (res.status == 200) {
                 this.articles = res.data.items;
@@ -74,7 +79,7 @@ export default {
 .article__title {
     width: 100%;
     margin-top: 10px;
-    color: #0055FF !important;
+    color: #0055ff !important;
     font-size: 20px;
     font-weight: 500;
     text-overflow: clip;

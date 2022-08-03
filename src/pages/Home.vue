@@ -14,22 +14,34 @@
                 <div class="highlights__block">
                     <img src="/img/highlights/item1.svg" />
                     <p>BE AMONG THE FIRST</p>
-                    <p>This is the world’s first multi-functional NFT marketplace, based on Waves Platform</p>
+                    <p>
+                        This is the world’s first multi-functional NFT
+                        marketplace, based on Waves Platform
+                    </p>
                 </div>
                 <div class="highlights__block">
                     <img src="/img/highlights/item2.svg" />
                     <p>EASY TO USE</p>
-                    <p>Buying and selling NFTs was never that easy. Create your account, and you’re in!</p>
+                    <p>
+                        Buying and selling NFTs was never that easy. Create your
+                        account, and you’re in!
+                    </p>
                 </div>
                 <div class="highlights__block">
                     <img src="/img/highlights/item3.svg" />
                     <p>TRUE DIGITAL ART</p>
-                    <p>Waves Marketplace provides professional moderation for almost every NFT listed on the platform.</p>
+                    <p>
+                        Waves Marketplace provides professional moderation for
+                        almost every NFT listed on the platform.
+                    </p>
                 </div>
                 <div class="highlights__block">
                     <img src="/img/highlights/item4.svg" />
                     <p>CREATE YOUR OWN COLLECTION</p>
-                    <p>If you’re a digital artist, it’s your chance to step into the top league of the NFT-industry.</p>
+                    <p>
+                        If you’re a digital artist, it’s your chance to step
+                        into the top league of the NFT-industry.
+                    </p>
                 </div>
             </div>
             <div class="highlights__text">WAVES NFT RIDERS</div>
@@ -39,113 +51,160 @@
             <div class="collections__title">
                 THE MOST NOTICEABLE COLLECTIONS
             </div>
-            <div class="collections__blocks"
+            <div
+                class="collections__blocks"
                 @scroll="scrollCollections"
                 ref="collectionsRef"
             >
-                <button class="collections__scroller scroller-left" @click="scrollLeft">
-                    <svg style="transform: rotate(180deg);" viewBox="0 0 128 128" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                <button
+                    class="collections__scroller scroller-left"
+                    @click="scrollLeft"
+                >
+                    <svg
+                        style="transform: rotate(180deg)"
+                        viewBox="0 0 128 128"
+                        width="28"
+                        height="28"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
                         <g>
-                            <path d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z" stroke="#2C7DFF" fill="#2C7DFF"/>
+                            <path
+                                d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z"
+                                stroke="#2C7DFF"
+                                fill="#2C7DFF"
+                            />
                         </g>
                     </svg>
                 </button>
-                <button class="collections__scroller scroller-right" @click="scrollRight">
-                    <svg viewBox="0 0 128 128" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+                <button
+                    class="collections__scroller scroller-right"
+                    @click="scrollRight"
+                >
+                    <svg
+                        viewBox="0 0 128 128"
+                        width="28"
+                        height="28"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
                         <g>
-                            <path d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z" stroke="#2C7DFF" fill="#2C7DFF"/>
+                            <path
+                                d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z"
+                                stroke="#2C7DFF"
+                                fill="#2C7DFF"
+                            />
                         </g>
                     </svg>
                 </button>
-                <a class="collections__block"
+                <a
+                    class="collections__block"
                     v-for="(collection, n) in collections"
                     :key="n"
                     :href="collection.href"
                 >
-                    <img :src="collection.imgSrc" >
+                    <img :src="collection.imgSrc" />
                 </a>
             </div>
         </div>
 
-        <div class="merch">
-            WHAT ABOUT<br>IRL NFT?
-        </div>
+        <div class="merch">WHAT ABOUT<br />IRL NFT?</div>
     </div>
 </template>
 
 <script>
-    export default {
-        name: "Home",
-        data: () => {
-            return {
-                curOffset: 0, // used to scroll the collection 
-                collections: [
-                    {
-                        href: '/collection/zombiepunks',
-                        imgSrc: '/img/collections/zombie.png'
-                    },
-                    {
-                        href: '/collection/wavespunks',
-                        imgSrc : '/img/collections/punks.png'
-                    },
-                    {
-                        href: '/collection/wavesducks_incubator',
-                        imgSrc : '/img/collections/wavesducks_incubator.jpg'
-                    },
-                    {
-                        href: '/collection/wavesducks_breeding',
-                        imgSrc : '/img/collections/wavesducks_breeding.jpg'
-                    }
-                ]
-            };
+export default {
+    name: 'Home',
+    data: () => {
+        return {
+            curOffset: 0, // used to scroll the collection
+            collections: [
+                {
+                    href: '/collection/zombiepunks',
+                    imgSrc: '/img/collections/zombie.png',
+                },
+                {
+                    href: '/collection/wavespunks',
+                    imgSrc: '/img/collections/punks.png',
+                },
+                {
+                    href: '/collection/wavesducks_incubator',
+                    imgSrc: '/img/collections/wavesducks_incubator.jpg',
+                },
+                {
+                    href: '/collection/wavesducks_breeding',
+                    imgSrc: '/img/collections/wavesducks_breeding.jpg',
+                },
+            ],
+        };
+    },
+    methods: {
+        scrollCollections(ev) {
+            this.curOffset = ev.target.scrollLeft;
         },
-        methods: {
-            scrollCollections (ev) {
-                this.curOffset = ev.target.scrollLeft;
-            },
 
-            scrollLeft () {
-                const clientWidth = this.$refs.collectionsRef.clientWidth;
-                // there are 2 buttons at the moment and already 1st element is visible, so -3
-                const childCount = this.$refs.collectionsRef.childElementCount-3;
+        scrollLeft() {
+            const clientWidth = this.$refs.collectionsRef.clientWidth;
+            // there are 2 buttons at the moment and already 1st element is visible, so -3
+            const childCount = this.$refs.collectionsRef.childElementCount - 3;
 
-                const step = clientWidth ? Math.ceil(clientWidth / childCount): -450;
-                const maxOffset = 0;
-                if (this.curOffset > maxOffset) {
-                    this.curOffset -= step;
-                    setTimeout( // `fix` chromium-based browsers flaw
-                        () => {
-                            this.$refs.collectionsRef.scrollTo({behavior: 'smooth', top:0, left: this.curOffset});
-                        }, 5
-                    );
-                }
-            },
-
-            scrollRight () {
-                const scrollWidth = this.$refs.collectionsRef.scrollWidth;
-                const clientWidth = this.$refs.collectionsRef.clientWidth;
-                // there are 2 buttons at the moment and already 1st element is visible, so -3
-                const childCount = this.$refs.collectionsRef.childElementCount-2;
-
-                const step = clientWidth ? Math.ceil(scrollWidth / childCount): 450;
-
-                // some browsers doesn't have `scrollLeftMax` element property
-                // there are 2 buttons at the moment and already 1st element is visible, so -3
-                const maxOffset = this.$refs.collectionsRef.scrollLeftMax
-                    ?? (scrollWidth-clientWidth);
-
-                if (this.curOffset < maxOffset) {
-                    this.curOffset += step;
-                    console.debug({sw: this.$refs.collectionsRef.scrollWidth, step, cu: this.curOffset, maxOffset});
-                    setTimeout( // fix` chromium-based browsers flaw
-                        () => {
-                            this.$refs.collectionsRef.scrollTo({behavior: 'smooth', top:0, left: this.curOffset});
-                        }, 5
-                    );
-                }
+            const step = clientWidth
+                ? Math.ceil(clientWidth / childCount)
+                : -450;
+            const maxOffset = 0;
+            if (this.curOffset > maxOffset) {
+                this.curOffset -= step;
+                setTimeout(
+                    // `fix` chromium-based browsers flaw
+                    () => {
+                        this.$refs.collectionsRef.scrollTo({
+                            behavior: 'smooth',
+                            top: 0,
+                            left: this.curOffset,
+                        });
+                    },
+                    5
+                );
             }
-        }
-    }
+        },
+
+        scrollRight() {
+            const scrollWidth = this.$refs.collectionsRef.scrollWidth;
+            const clientWidth = this.$refs.collectionsRef.clientWidth;
+            // there are 2 buttons at the moment and already 1st element is visible, so -3
+            const childCount = this.$refs.collectionsRef.childElementCount - 2;
+
+            const step = clientWidth
+                ? Math.ceil(scrollWidth / childCount)
+                : 450;
+
+            // some browsers doesn't have `scrollLeftMax` element property
+            // there are 2 buttons at the moment and already 1st element is visible, so -3
+            const maxOffset =
+                this.$refs.collectionsRef.scrollLeftMax ??
+                scrollWidth - clientWidth;
+
+            if (this.curOffset < maxOffset) {
+                this.curOffset += step;
+                console.debug({
+                    sw: this.$refs.collectionsRef.scrollWidth,
+                    step,
+                    cu: this.curOffset,
+                    maxOffset,
+                });
+                setTimeout(
+                    // fix` chromium-based browsers flaw
+                    () => {
+                        this.$refs.collectionsRef.scrollTo({
+                            behavior: 'smooth',
+                            top: 0,
+                            left: this.curOffset,
+                        });
+                    },
+                    5
+                );
+            }
+        },
+    },
+};
 </script>
 
 <style scoped>
@@ -240,7 +299,7 @@
     justify-content: space-between;
     height: 100%;
     border-radius: 18px;
-    background-image: url("../assets/images/first-block.png");
+    background-image: url('../assets/images/first-block.png');
     background-size: cover;
     background-position: center;
 }
@@ -421,7 +480,7 @@
     font-weight: 500;
     font-size: 50px;
     line-height: 90px;
-    color: #FFFFFF;
+    color: #ffffff;
     background-image: url('../assets/images/merch.png');
     background-size: cover;
     background-position: center;

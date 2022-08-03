@@ -12,7 +12,8 @@
                             <p>{{ nft.name }}</p>
                         </div>
                         <div v-if="owner" class="nft__owner">
-                            <p>Owned by
+                            <p>
+                                Owned by
                                 <a :href="`/user/${owner}`">{{ owner }}</a>
                             </p>
                         </div>
@@ -21,16 +22,18 @@
                         Offer for sale
                     </button>
                     <div v-else-if="cancelButton" class="nft__buy">
-                        <p>{{ this.viewCurrentPrice }} <img src="@/assets/images/waves-token.svg" /></p>
-                        <button @click="cancelSelling">
-                            Cancel selling
-                        </button>
+                        <p>
+                            {{ this.viewCurrentPrice }}
+                            <img src="@/assets/images/waves-token.svg" />
+                        </p>
+                        <button @click="cancelSelling">Cancel selling</button>
                     </div>
                     <div v-else-if="buyButton" class="nft__buy">
-                        <p>{{ this.viewCurrentPrice }} <img src="@/assets/images/waves-token.svg" /></p>
-                        <button @click="buy">
-                            Buy now
-                        </button>
+                        <p>
+                            {{ this.viewCurrentPrice }}
+                            <img src="@/assets/images/waves-token.svg" />
+                        </p>
+                        <button @click="buy">Buy now</button>
                     </div>
                     <button v-else-if="!walletStatus" @click="connect = true">
                         Connect wallet
@@ -53,29 +56,29 @@
 </template>
 
 <script>
-import axios from "axios";
-import collection from "../collection.json";
+import axios from 'axios';
+import collection from '../collection.json';
 
-import { ProviderKeeper } from "@waves/provider-keeper";
-import { ProviderCloud } from "@waves.exchange/provider-cloud";
+import { ProviderKeeper } from '@waves/provider-keeper';
+import { ProviderCloud } from '@waves.exchange/provider-cloud';
 
-import { getMetadata } from "../helpers/metadata";
+import { getMetadata } from '../helpers/metadata';
 
-import ConnectWallet from "../components/ConnectWallet.vue";
-import NFT from "../components/NFT.vue";
-import Offer from "../components/Offer.vue";
+import ConnectWallet from '../components/ConnectWallet.vue';
+import NFT from '../components/NFT.vue';
+import Offer from '../components/Offer.vue';
 
 export default {
-    name: "Asset",
+    name: 'Asset',
     data() {
         return {
-            address: "",
+            address: '',
             connect: false,
             walletStatus: false,
-            assetId: "",
+            assetId: '',
             nft: {},
             currentPrice: 0,
-            owner: "",
+            owner: '',
             offer: false,
             offerButton: false,
             cancelButton: false,
@@ -88,10 +91,10 @@ export default {
         Offer,
     },
     async mounted() {
-        this.assetId = this.$route.params["id"];
-        const data = window.localStorage.getItem("loginChoice");
+        this.assetId = this.$route.params.id;
+        const data = window.localStorage.getItem('loginChoice');
         if (!data) {
-            this.address = "";
+            this.address = '';
         } else {
             this.wallet = JSON.parse(data);
             this.address = this.wallet.address;
@@ -106,7 +109,7 @@ export default {
     },
     methods: {
         async getInfo(address) {
-            if (address !== "") {
+            if (address !== '') {
                 this.walletStatus = true;
             }
 
@@ -151,24 +154,32 @@ export default {
                 .get(`${window.nodeURL}/assets/details/${this.assetId}`)
                 .then(async (res) => {
                     try {
-                        let data = {};
+                        const data = {};
 
                         data.name = res.data.name;
 
                         data.issuer = res.data.issuer;
 
-                        data.metadata = await getMetadata(this.assetId, data.issuer, res.data.description);
+                        data.metadata = await getMetadata(
+                            this.assetId,
+                            data.issuer,
+                            res.data.description
+                        );
 
                         const collectionName = Object.values(collection).find(
                             (item) => item.address_issuer == res.data.issuer
                         );
 
-                        data.collectionName = collectionName ? collectionName.name : "";
+                        data.collectionName = collectionName
+                            ? collectionName.name
+                            : '';
 
                         data.collectionURL =
-                            "/collection/" +
+                            '/collection/' +
                             Object.keys(collection).find(
-                                (key) => collection[key].address_issuer == res.data.issuer
+                                (key) =>
+                                    collection[key].address_issuer ==
+                                    res.data.issuer
                             );
 
                         this.nft = data;
@@ -193,17 +204,18 @@ export default {
         },
 
         async provider() {
-            const data = JSON.parse(window.localStorage.getItem("loginChoice"));
-            if (data.choice == "keeper") {
-                const authData = { data: "https://wavesmarketplace.com/" };
-                await window.signer.setProvider(new ProviderKeeper(authData))
+            const data = JSON.parse(window.localStorage.getItem('loginChoice'));
+            if (data.choice == 'keeper') {
+                const authData = { data: 'https://wavesmarketplace.com/' };
+                await window.signer
+                    .setProvider(new ProviderKeeper(authData))
                     .then((res) => {
                         console.log(res);
                     })
                     .catch((error) => {
                         console.error(error);
                     });
-            } else if (data.choice == "email") {
+            } else if (data.choice == 'email') {
                 window.signer.setProvider(new ProviderCloud());
             }
         },
@@ -217,10 +229,10 @@ export default {
                     fee: 900000,
                     payment: [],
                     call: {
-                        function: "cancelSelling",
+                        function: 'cancelSelling',
                         args: [
                             {
-                                type: "string",
+                                type: 'string',
                                 value: this.assetId,
                             },
                         ],
@@ -245,15 +257,15 @@ export default {
                     fee: 900000,
                     payment: [
                         {
-                            assetId: "WAVES",
+                            assetId: 'WAVES',
                             amount: this.currentPrice,
                         },
                     ],
                     call: {
-                        function: "buy",
+                        function: 'buy',
                         args: [
                             {
-                                type: "string",
+                                type: 'string',
                                 value: this.assetId,
                             },
                         ],
@@ -322,7 +334,8 @@ export default {
     padding: 60px;
     border-radius: 20px;
     background-color: white;
-    box-shadow: 3px 3px 5px rgba(9, 12, 31, 0.25), -3px -3px 6px rgba(255, 255, 255, 0.6);
+    box-shadow: 3px 3px 5px rgba(9, 12, 31, 0.25),
+        -3px -3px 6px rgba(255, 255, 255, 0.6);
 }
 
 .nft {
@@ -377,8 +390,9 @@ export default {
     justify-content: space-between;
     align-items: center;
     border-radius: 26px;
-    background: #F0F0F3;
-    box-shadow: inset 0px -2px 4px rgba(255, 255, 255, 0.5), inset 0px 4px 4px rgba(7, 7, 7, 0.15);
+    background: #f0f0f3;
+    box-shadow: inset 0px -2px 4px rgba(255, 255, 255, 0.5),
+        inset 0px 4px 4px rgba(7, 7, 7, 0.15);
 }
 
 .nft__buy > p {

@@ -10,22 +10,22 @@
 </template>
 
 <script>
-import { ProviderKeeper } from "@waves/provider-keeper";
-import { ProviderCloud } from "@waves.exchange/provider-cloud";
+import { ProviderKeeper } from '@waves/provider-keeper';
+import { ProviderCloud } from '@waves.exchange/provider-cloud';
 
 export default {
-    name: "Offer",
+    name: 'Offer',
     data() {
         return {
             price: 0,
         };
     },
-    props: ["assetId"],
+    props: ['assetId'],
     methods: {
         async provider() {
-            const data = JSON.parse(window.localStorage.getItem("loginChoice"));
-            if (data.choice == "keeper") {
-                const authData = { data: "https://wavesmarketplace.com/" };
+            const data = JSON.parse(window.localStorage.getItem('loginChoice'));
+            if (data.choice == 'keeper') {
+                const authData = { data: 'https://wavesmarketplace.com/' };
                 await window.signer
                     .setProvider(new ProviderKeeper(authData))
                     .then((res) => {
@@ -34,7 +34,7 @@ export default {
                     .catch((error) => {
                         console.error(error);
                     });
-            } else if (data.choice == "email") {
+            } else if (data.choice == 'email') {
                 window.signer.setProvider(new ProviderCloud());
             }
         },
@@ -52,10 +52,10 @@ export default {
                         },
                     ],
                     call: {
-                        function: "offerForSale",
+                        function: 'offerForSale',
                         args: [
                             {
-                                type: "integer",
+                                type: 'integer',
                                 value: this.price * 100000000,
                             },
                         ],
@@ -71,7 +71,7 @@ export default {
                 });
         },
         close() {
-            this.$emit("close", false);
+            this.$emit('close', false);
         },
     },
 };
