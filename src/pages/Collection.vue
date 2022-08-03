@@ -29,7 +29,6 @@
 import collection from '../collection.json';
 
 import { getMarketInfo } from '../helpers/market';
-import { sortLowestPrice } from '../helpers/sort';
 
 import { useCollectionsStore } from '../stores/collections';
 

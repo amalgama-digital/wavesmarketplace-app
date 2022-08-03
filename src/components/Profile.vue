@@ -36,15 +36,15 @@ export default {
             .then((res) => {
                 for (let i = 0; i < res.data.length; i++) {
                     this.name = res.data.find(
-                        (item) => item.key == 'user_name_' + this.address
+                        (item) => item.key === 'user_name_' + this.address
                     ).value;
 
                     this.description = res.data.find(
-                        (item) => item.key == 'user_desc_' + this.address
+                        (item) => item.key === 'user_desc_' + this.address
                     ).value;
 
                     const thumb = res.data.find(
-                        (item) => item.key == 'user_thumb_' + this.address
+                        (item) => item.key === 'user_thumb_' + this.address
                     ).value;
 
                     if (thumb !== undefined) {

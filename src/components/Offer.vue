@@ -24,7 +24,7 @@ export default {
     methods: {
         async provider() {
             const data = JSON.parse(window.localStorage.getItem('loginChoice'));
-            if (data.choice == 'keeper') {
+            if (data.choice === 'keeper') {
                 const authData = { data: 'https://wavesmarketplace.com/' };
                 await window.signer
                     .setProvider(new ProviderKeeper(authData))
@@ -34,7 +34,7 @@ export default {
                     .catch((error) => {
                         console.error(error);
                     });
-            } else if (data.choice == 'email') {
+            } else if (data.choice === 'email') {
                 window.signer.setProvider(new ProviderCloud());
             }
         },

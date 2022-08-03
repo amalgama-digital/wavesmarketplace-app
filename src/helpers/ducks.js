@@ -29,17 +29,17 @@ function createURL(name, assetId) {
 
 function createStyle(name) {
     const duck = parseName(name);
-    if (duck[1] == 'BABY') {
+    if (duck[1] === 'BABY') {
         return 'background-color: rgb(240, 231, 213)';
-    } else if (duck[4] == 'B') {
+    } else if (duck[4] === 'B') {
         return 'background-color: rgb(173, 216, 230);';
-    } else if (duck[4] == 'G') {
+    } else if (duck[4] === 'G') {
         return 'background-color: rgb(217, 246, 179);';
-    } else if (duck[4] == 'Y') {
+    } else if (duck[4] === 'Y') {
         return 'background-color: rgb(248, 238, 157);';
-    } else if (duck[4] == 'R') {
+    } else if (duck[4] === 'R') {
         return 'background-color: rgb(255, 160, 122);';
-    } else if (duck[4] == 'U') {
+    } else if (duck[4] === 'U') {
         return 'background-color: rgb(230, 212, 239);';
     } else {
         return '';

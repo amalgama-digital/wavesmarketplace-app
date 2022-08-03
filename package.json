@@ -5,7 +5,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "es-lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+    "es-lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "pretty-check": "prettier --check ./src/",
+    "pretty": "prettier --write ./src/"
   },
   "license": "MIT",
   "dependencies": {

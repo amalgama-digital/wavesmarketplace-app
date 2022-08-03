@@ -8,7 +8,7 @@ async function getMarketInfo(key, value) {
             for (let i = 0; i < res.data.length; i++) {
                 if (
                     res.data[i].key.endsWith(key) &&
-                    res.data[i].value == value
+                    res.data[i].value === value
                 ) {
                     const data = {};
 
@@ -17,18 +17,18 @@ async function getMarketInfo(key, value) {
                     data.assetId = res.data[i].key.substring(0, l - key.length);
 
                     data.name = res.data.find(
-                        (item) => item.key == data.assetId + '_name'
+                        (item) => item.key === data.assetId + '_name'
                     ).value;
 
                     data.metadata = JSON.parse(
                         res.data.find(
-                            (item) => item.key == data.assetId + '_description'
+                            (item) => item.key === data.assetId + '_description'
                         ).value
                     );
 
                     data.price =
                         res.data.find(
-                            (item) => item.key == data.assetId + '_price'
+                            (item) => item.key === data.assetId + '_price'
                         ).value / 100000000;
 
                     nfts.push(data);

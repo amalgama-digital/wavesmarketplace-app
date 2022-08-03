@@ -39,7 +39,7 @@ export default {
         const ducks = parseName(this.nft.name);
         try {
             if (ducks.length > 1) {
-                if (ducks[1] == 'BABY') {
+                if (ducks[1] === 'BABY') {
                     this.nft.metadata = {};
                 }
                 this.nft.metadata.url = createURL(
@@ -119,6 +119,7 @@ export default {
     font-family: Inter;
     max-width: 357px;
     max-height: 450px;
+    cursor: pointer;
 }
 
 .nft,
