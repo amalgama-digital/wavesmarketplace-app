@@ -1,5 +1,5 @@
 <template>
-    <component :is="nft.assetId ? 'a' : 'div'" :href="link" class="nft">
+    <component :is="nft.assetId ? 'a' : 'div'" @click="gotoNft" class="nft">
         <vue-load-image v-if="nft.metadata.url">
             <img
                 :src="nft.metadata.url"
@@ -61,6 +61,14 @@ export default {
             }
         },
     },
+    methods: {
+        gotoNft() {
+            this.$router.push({
+                name: 'Asset',
+                params: { id: this.nft.assetId }
+            });
+        }
+    }
 };
 </script>
 

@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <sort :nfts="nfts"></sort>
+        <sort :nfts="nfts" @change="setNfts"></sort>
 
         <div class="nfts">
             <NFT
@@ -31,11 +31,19 @@ import collection from '../collection.json';
 import { getMarketInfo } from '../helpers/market';
 import { sortLowestPrice } from '../helpers/sort';
 
+import { useCollectionsStore } from '../stores/collections';
+
 import Sort from '../components/Sort.vue';
 import NFT from '../components/NFT.vue';
 
 export default {
     name: 'Collection',
+    setup() {
+        const store = useCollectionsStore();
+        return {
+            store,
+        };
+    },
     data() {
         return {
             params: '',
@@ -55,10 +63,16 @@ export default {
         this.description = collection[this.params].description;
         this.issuer = collection[this.params].address_issuer;
 
-        this.nfts = await getMarketInfo('_issuer', this.issuer);
+        const nfts = await getMarketInfo('_issuer', this.issuer);
 
-        this.nfts = sortLowestPrice(this.nfts);
+        this.nfts = this.store.sortMethod(nfts);
     },
+
+    methods: {
+        setNfts() {
+            this.nfts = this.store.sortMethod(this.nfts);
+        }
+    }
 };
 </script>
 

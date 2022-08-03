@@ -1591,6 +1591,16 @@
   optionalDependencies:
     "prettier" "^1.18.2 || ^2.0.0"
 
+"@vue/composition-api@^1.0.0-rc.1", "@vue/composition-api@^1.4.0", "@vue/composition-api@^1.7.0":
+  "integrity" "sha512-hxOgLYR+wjuPX9bkP2pAPlqUs98XxBoa9DSLyp1z6+YR92wC42PZcZKs4d+VRtcv4udOv041Kss+F6ap5nj8YA=="
+  "resolved" "https://registry.npmjs.org/@vue/composition-api/-/composition-api-1.7.0.tgz"
+  "version" "1.7.0"
+
+"@vue/devtools-api@^6.2.1":
+  "integrity" "sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ=="
+  "resolved" "https://registry.npmjs.org/@vue/devtools-api/-/devtools-api-6.2.1.tgz"
+  "version" "6.2.1"
+
 "@vue/vue-loader-v15@npm:vue-loader@^15.9.7":
   "integrity" "sha512-VU6tuO8eKajrFeBzMssFUP9SvakEeeSi1BxdTH5o3+1yUyrldp8IERkSdXlMI2t4kxF2sqYUDsQY+WJBxzBmZg=="
   "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-15.10.0.tgz"
@@ -5034,6 +5044,14 @@
   "resolved" "https://registry.npmjs.org/picomatch/-/picomatch-2.3.1.tgz"
   "version" "2.3.1"
 
+"pinia@^2.0.17":
+  "integrity" "sha512-AtwLwEWQgIjofjgeFT+nxbnK5lT2QwQjaHNEDqpsi2AiCwf/NY78uWTeHUyEhiiJy8+sBmw0ujgQMoQbWiZDfA=="
+  "resolved" "https://registry.npmjs.org/pinia/-/pinia-2.0.17.tgz"
+  "version" "2.0.17"
+  dependencies:
+    "@vue/devtools-api" "^6.2.1"
+    "vue-demi" "*"
+
 "pkg-dir@^4.1.0":
   "integrity" "sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ=="
   "resolved" "https://registry.npmjs.org/pkg-dir/-/pkg-dir-4.2.0.tgz"
@@ -6356,6 +6374,11 @@
   "resolved" "https://registry.npmjs.org/vue-axios/-/vue-axios-3.4.0.tgz"
   "version" "3.4.0"
 
+"vue-demi@*":
+  "integrity" "sha512-02NYpxgyGE2kKGegRPYlNQSL1UWfA/+JqvzhGCOYjhfbLWXU5QQX0+9pAm/R2sCOPKr5NBxVIab7fvFU0B1RxQ=="
+  "resolved" "https://registry.npmjs.org/vue-demi/-/vue-demi-0.13.6.tgz"
+  "version" "0.13.6"
+
 "vue-eslint-parser@^9.0.1":
   "integrity" "sha512-yL+ZDb+9T0ELG4VIFo/2anAOz8SvBdlqEnQnvJ3M7Scq56DvtjY0VY88bByRZB0D4J0u8olBcfrXTVONXsh4og=="
   "resolved" "https://registry.npmjs.org/vue-eslint-parser/-/vue-eslint-parser-9.0.3.tgz"
@@ -6414,7 +6437,7 @@
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2 || ^3.2.13", "vue@^2.0.0", "vue@^2.6.14", "vue@^3.0.0 || ^2.0.0", "vue@2.x":
+"vue@^2 || ^3.2.13", "vue@^2.0.0", "vue@^2.6.14", "vue@^2.6.14 || ^3.2.0", "vue@^3.0.0 || ^2.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@>= 2.5 < 2.7", "vue@2.x":
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"

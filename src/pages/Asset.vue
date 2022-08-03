@@ -92,6 +92,7 @@ export default {
     },
     async mounted() {
         this.assetId = this.$route.params.id;
+        console.debug(this.assetId);
         const data = window.localStorage.getItem('loginChoice');
         if (!data) {
             this.address = '';
