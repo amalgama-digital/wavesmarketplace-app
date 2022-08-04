@@ -34,18 +34,20 @@ export default {
                 `${window.nodeURL}/addresses/data/3PGSWDgad4RtceQYXBpq2x73mXLRJYLRqRP?matches=%5Euser(.*)${this.address}`
             )
             .then((res) => {
-                for (let i = 0; i < res.data.length; i++) {
-                    this.name = res.data.find(
+                const resData = res.data;
+                // TODO:BACKEND - expensive operation
+                for (let i = 0; i < resData?.length; i++) {
+                    this.name = resData?.find(
                         (item) => item.key === 'user_name_' + this.address
-                    ).value;
+                    )?.value;
 
-                    this.description = res.data.find(
+                    this.description = resData?.find(
                         (item) => item.key === 'user_desc_' + this.address
-                    ).value;
+                    )?.value;
 
-                    const thumb = res.data.find(
+                    const thumb = resData?.find(
                         (item) => item.key === 'user_thumb_' + this.address
-                    ).value;
+                    )?.value;
 
                     if (thumb !== undefined) {
                         this.img = 'https://infura-ipfs.io/ipfs/' + thumb;
@@ -57,7 +59,7 @@ export default {
             });
 
         if (this.img == '') {
-            this.img = await create(this.address, { size: 120 });
+            this.img = create(this.address, { size: 120 });
         }
     },
 };

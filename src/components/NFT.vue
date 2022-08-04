@@ -63,10 +63,12 @@ export default {
     },
     methods: {
         gotoNft() {
-            this.$router.push({
-                name: 'Asset',
-                params: { id: this.nft.assetId }
-            });
+            if (this.nft.assetId) {
+                this.$router.push({
+                    name: 'Asset',
+                    params: { id: this.nft.assetId }
+                });
+            }
         }
     }
 };
@@ -115,11 +117,14 @@ export default {
     }
 }
 
+a.nft {
+    cursor: pointer;
+}
+
 .nft {
     font-family: Inter;
     max-width: 357px;
     max-height: 450px;
-    cursor: pointer;
 }
 
 .nft,

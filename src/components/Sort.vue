@@ -25,7 +25,6 @@ import { useCollectionsStore } from '../stores/collections';
 
 export default {
     name: 'Sort',
-    props: ['nfts'],
     setup() {
         const store = useCollectionsStore();
         return {
@@ -34,7 +33,6 @@ export default {
     },
     mounted() {
         this.store.sortMethod = this.sortMethodByName();
-        console.debug(this.store.sortBy, this.store.sortMethod);
     },
     methods: {
         sortMethodByName() {

@@ -2,7 +2,7 @@
     <div>
         <profile :address="address"></profile>
         <div v-if="nfts.length > 0">
-            <sort :nfts="nfts"></sort>
+            <sort @change="setNfts"></sort>
             <div class="nfts">
                 <NFT
                     :nft="nft"
@@ -26,12 +26,20 @@ import { getMetadata } from '../helpers/metadata';
 import { getMarketInfo } from '../helpers/market';
 import { sortLowestPrice } from '../helpers/sort';
 
+import { useCollectionsStore } from '../stores/collections';
+
 import Profile from '../components/Profile.vue';
 import Sort from '../components/Sort.vue';
 import NFT from '../components/NFT.vue';
 
 export default {
     name: 'User',
+    setup() {
+        const store = useCollectionsStore();
+        return {
+            store,
+        };
+    },
     data() {
         return {
             address: '',
@@ -83,6 +91,9 @@ export default {
             );
 
             this.nfts = sortLowestPrice(this.nfts);
+        },
+        setNfts() {
+            this.nfts = this.store.sortMethod(this.nfts);
         },
     },
 };

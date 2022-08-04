@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <sort :nfts="nfts" @change="setNfts"></sort>
+        <sort @change="setNfts"></sort>
 
         <div class="nfts">
             <NFT
