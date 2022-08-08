@@ -66,11 +66,11 @@ export default {
             if (this.nft.assetId) {
                 this.$router.push({
                     name: 'Asset',
-                    params: { id: this.nft.assetId }
+                    params: { id: this.nft.assetId },
                 });
             }
-        }
-    }
+        },
+    },
 };
 </script>
 

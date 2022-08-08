@@ -35,23 +35,21 @@ export default {
             )
             .then((res) => {
                 const resData = res.data;
-                // TODO:BACKEND - expensive operation
-                for (let i = 0; i < resData?.length; i++) {
-                    this.name = resData?.find(
-                        (item) => item.key === 'user_name_' + this.address
-                    )?.value;
 
-                    this.description = resData?.find(
-                        (item) => item.key === 'user_desc_' + this.address
-                    )?.value;
+                this.name = resData?.find(
+                    (item) => item.key === 'user_name_' + this.address
+                )?.value;
 
-                    const thumb = resData?.find(
-                        (item) => item.key === 'user_thumb_' + this.address
-                    )?.value;
+                this.description = resData?.find(
+                    (item) => item.key === 'user_desc_' + this.address
+                )?.value;
 
-                    if (thumb !== undefined) {
-                        this.img = 'https://infura-ipfs.io/ipfs/' + thumb;
-                    }
+                const thumb = resData?.find(
+                    (item) => item.key === 'user_thumb_' + this.address
+                )?.value;
+
+                if (thumb !== undefined) {
+                    this.img = 'https://infura-ipfs.io/ipfs/' + thumb;
                 }
             })
             .catch((err) => {

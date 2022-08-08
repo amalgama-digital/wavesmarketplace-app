@@ -70,8 +70,8 @@ export default {
     methods: {
         setNfts() {
             this.nfts = this.store.sortMethod(this.nfts);
-        }
-    }
+        },
+    },
 };
 </script>
 

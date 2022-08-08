@@ -1,10 +1,7 @@
 <template>
     <div class="sort">
         Sort by
-        <select
-            v-model="store.sortBy"
-            @change="onChange"
-        >
+        <select v-model="store.sortBy" @change="onChange">
             <option value="price-low-to-high">Price: Low to High</option>
             <option value="price-high-to-low">Price: High to Low</option>
             <option value="id-low-to-high">Lowest NFT ID</option>

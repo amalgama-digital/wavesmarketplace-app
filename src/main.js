@@ -5,7 +5,7 @@ import VueAxios from 'vue-axios';
 import VueRouter from 'vue-router';
 import router from './router';
 import Index from './Index';
-import { createPinia, PiniaVuePlugin } from 'pinia'
+import { createPinia, PiniaVuePlugin } from 'pinia';
 
 import { Signer } from '@waves/signer';
 
