@@ -7,14 +7,14 @@
 </template>
 
 <script>
-    export default {
-        name: 'Index'
-    }
+export default {
+    name: 'Index',
+};
 </script>
 
 <style>
-    body {
-        margin: 0;
-        background: #F0F0F0;
-    }
+body {
+    margin: 0;
+    background: #f0f0f0;
+}
 </style>

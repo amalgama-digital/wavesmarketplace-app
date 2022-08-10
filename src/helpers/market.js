@@ -1,34 +1,35 @@
-import axios from "axios";
+import axios from 'axios';
 
 async function getMarketInfo(key, value) {
-    let nfts = [];
+    const nfts = [];
     await axios
         .get(`${window.nodeURL}/addresses/data/${window.contractAddress}`)
         .then((res) => {
-            for (let i = 0; i < res.data.length; i++) {
+            const resData = res.data;
+            for (let i = 0; i < resData?.length; i++) {
                 if (
-                    res.data[i].key.endsWith(key) &&
-                    res.data[i].value == value
+                    resData[i].key.endsWith(key) &&
+                    resData[i].value === value
                 ) {
-                    let data = {};
+                    const data = {};
 
-                    let l = res.data[i].key.length;
+                    const l = resData[i].key.length;
 
-                    data.assetId = res.data[i].key.substring(0, l - key.length);
+                    data.assetId = resData[i].key.substring(0, l - key.length);
 
-                    data.name = res.data.find(
-                        (item) => item.key == data.assetId + "_name"
+                    data.name = resData.find(
+                        (item) => item.key === data.assetId + '_name'
                     ).value;
 
                     data.metadata = JSON.parse(
-                        res.data.find(
-                            (item) => item.key == data.assetId + "_description"
+                        resData.find(
+                            (item) => item.key === data.assetId + '_description'
                         ).value
                     );
 
                     data.price =
-                        res.data.find(
-                            (item) => item.key == data.assetId + "_price"
+                        resData.find(
+                            (item) => item.key === data.assetId + '_price'
                         ).value / 100000000;
 
                     nfts.push(data);
@@ -42,4 +43,4 @@ async function getMarketInfo(key, value) {
     return nfts;
 }
 
-export { getMarketInfo }
+export { getMarketInfo };

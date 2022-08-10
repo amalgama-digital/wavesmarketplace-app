@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import Header from "../components/Front/Header.vue";
-import Footer from "../components/Front/Footer.vue";
+import Header from '../components/Front/Header.vue';
+import Footer from '../components/Front/Footer.vue';
 
 export default {
-    name: "Front",
+    name: 'Front',
     components: {
         Header,
         Footer,

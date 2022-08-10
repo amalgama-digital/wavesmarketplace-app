@@ -1,7 +1,7 @@
 <template>
     <div class="sort">
         Sort by
-        <select @change="onChange($event)">
+        <select v-model="store.sortBy" @change="onChange">
             <option value="price-low-to-high">Price: Low to High</option>
             <option value="price-high-to-low">Price: High to Low</option>
             <option value="id-low-to-high">Lowest NFT ID</option>
@@ -11,26 +11,47 @@
 </template>
 
 <script>
-import { sortLowestPrice, sortHighestPrice, sortLowestId, sortHighestId } from "../helpers/sort";
+import {
+    sortLowestPrice,
+    sortHighestPrice,
+    sortLowestId,
+    sortHighestId,
+} from '../helpers/sort';
+
+import { useCollectionsStore } from '../stores/collections';
 
 export default {
-    name: "Sort",
-    props: ["nfts"],
+    name: 'Sort',
+    setup() {
+        const store = useCollectionsStore();
+        return {
+            store,
+        };
+    },
+    mounted() {
+        this.store.sortMethod = this.sortMethodByName();
+    },
     methods: {
-        onChange(event) {
-            const v = event.target.value;
-            if (v == "price-low-to-high") {
-                this.nfts = sortLowestPrice(this.nfts);
-            } else if (v == "price-high-to-low") {
-                this.nfts = sortHighestPrice(this.nfts);
-            } else if (v == "id-low-to-high") {
-                this.nfts = sortLowestId(this.nfts);
-            } else if (v == "id-high-to-low") {
-                this.nfts = sortHighestId(this.nfts);
+        sortMethodByName() {
+            switch (this.store.sortBy) {
+                case 'price-low-to-high':
+                    return sortLowestPrice;
+                case 'price-high-to-low':
+                    return sortHighestPrice;
+                case 'id-low-to-high':
+                    return sortLowestId;
+                case 'id-high-to-low':
+                    return sortHighestId;
+                default:
+                    return sortLowestPrice;
             }
         },
+        onChange() {
+            this.store.sortMethod = this.sortMethodByName();
+            this.$emit('change');
+        },
     },
-}
+};
 </script>
 
 <style scoped>

@@ -24,10 +24,10 @@
 </template>
 
 <script>
-import ConnectWallet from "../ConnectWallet.vue";
+import ConnectWallet from '../ConnectWallet.vue';
 
 export default {
-    name: "Header",
+    name: 'Header',
     data() {
         return {
             authorized: false,
@@ -39,7 +39,7 @@ export default {
         ConnectWallet,
     },
     mounted() {
-        const data = window.localStorage.getItem("loginChoice");
+        const data = window.localStorage.getItem('loginChoice');
         if (!data) {
             this.authorized = false;
         } else {
@@ -54,7 +54,7 @@ export default {
         },
 
         logout() {
-            window.localStorage.removeItem("loginChoice");
+            window.localStorage.removeItem('loginChoice');
             location.reload();
         },
     },

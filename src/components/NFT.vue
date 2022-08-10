@@ -1,5 +1,5 @@
 <template>
-    <component :is="nft.assetId ? 'a' : 'div'" :href="link" class="nft">
+    <component :is="nft.assetId ? 'a' : 'div'" @click="gotoNft" class="nft">
         <vue-load-image v-if="nft.metadata.url">
             <img
                 :src="nft.metadata.url"
@@ -24,22 +24,22 @@
 </template>
 
 <script>
-import VueLoadImage from "vue-load-image";
+import VueLoadImage from 'vue-load-image';
 
-import { createStyle, createURL, parseName } from "../helpers/ducks";
+import { createStyle, createURL, parseName } from '../helpers/ducks';
 
 export default {
-    name: "NFT",
-    props: ["nft", "viewInfo", "url"],
+    name: 'NFT',
+    props: ['nft', 'viewInfo', 'url'],
     components: {
-        "vue-load-image": VueLoadImage,
+        'vue-load-image': VueLoadImage,
     },
     created() {
         // WavesDucks
         const ducks = parseName(this.nft.name);
         try {
             if (ducks.length > 1) {
-                if (ducks[1] == "BABY") {
+                if (ducks[1] === 'BABY') {
                     this.nft.metadata = {};
                 }
                 this.nft.metadata.url = createURL(
@@ -47,17 +47,29 @@ export default {
                     this.nft.assetId
                 );
                 this.nft.metadata.style = createStyle(this.nft.name);
+
             }
         } catch {
-            console.log(this.nft.name + ": Not a duck!");
+            console.debug(this.nft.name + ': Not a duck!');
         }
     },
     computed: {
         link() {
             if (this.url) {
+                console.debug(this.nft.metadata.url);
                 return `${this.url}/asset/${this.nft.assetId}`;
             } else {
                 return `/asset/${this.nft.assetId}`;
+            }
+        },
+    },
+    methods: {
+        gotoNft() {
+            if (this.nft.assetId) {
+                this.$router.push({
+                    name: 'Asset',
+                    params: { id: this.nft.assetId },
+                });
             }
         },
     },
@@ -105,6 +117,10 @@ export default {
     100% {
         background-position: 0% 50%;
     }
+}
+
+a.nft {
+    cursor: pointer;
 }
 
 .nft {
@@ -169,7 +185,7 @@ export default {
 }
 
 .nft__price > p::after {
-    content: url("../assets/images/waves-token.svg");
+    content: url('../assets/images/waves-token.svg');
     margin-top: 5px;
     margin-left: 10px;
 }
