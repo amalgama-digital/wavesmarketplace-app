@@ -1,10 +1,9 @@
 <template>
     <div class="home">
         <div class="first">
-            <div class="first__cover">
+            <div @click="goToCollection('memaliens')" class="first__cover">
                 <div class="first__text">
-                    <h2 style="color: #ffffff">WATCH YOUR<br />BRAINS</h2>
-                    <a href="/collection/zombiepunks">VIEW ZOMBIE COLLECTION</a>
+                    <a href="/collection/memaliens">VIEW COLLECTION</a>
                 </div>
             </div>
         </div>
@@ -118,6 +117,10 @@ export default {
             curOffset: 0, // used to scroll the collection
             collections: [
                 {
+                    href: '/collection/memaliens',
+                    imgSrc: '/img/collections/memaliens.png'
+                },
+                {
                     href: '/collection/zombiepunks',
                     imgSrc: '/img/collections/zombie.png',
                 },
@@ -132,7 +135,7 @@ export default {
                 {
                     href: '/collection/wavesducks_breeding',
                     imgSrc: '/img/collections/wavesducks_breeding.jpg',
-                },
+                }
             ],
         };
     },
@@ -203,6 +206,14 @@ export default {
                 );
             }
         },
+        goToCollection(name) {
+            this.$router.push(
+                {
+                    name: 'Collection',
+                    params: {name}
+                }
+            );
+        }
     },
 };
 </script>
@@ -290,7 +301,7 @@ export default {
     margin: auto;
     margin-top: 70px;
     border-radius: 18px;
-    background: black;
+    background: rgba(0, 0, 0, 0.8);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -300,8 +311,10 @@ export default {
     height: 100%;
     border-radius: 18px;
     background-image: url('../assets/images/first-block.png');
-    background-size: cover;
+    background-size: 100%;
+    background-repeat: no-repeat;
     background-position: center;
+    cursor: pointer;
 }
 
 .first__text {
@@ -320,7 +333,7 @@ export default {
 
 .first__text > a {
     width: max-content;
-    margin: 50px 0;
+    margin: 40% 0 0 0;
     border: 0;
     border-radius: 8px;
     color: #ffd645;

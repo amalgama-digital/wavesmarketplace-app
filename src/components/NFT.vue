@@ -47,14 +47,16 @@ export default {
                     this.nft.assetId
                 );
                 this.nft.metadata.style = createStyle(this.nft.name);
+
             }
         } catch {
-            console.log(this.nft.name + ': Not a duck!');
+            console.debug(this.nft.name + ': Not a duck!');
         }
     },
     computed: {
         link() {
             if (this.url) {
+                console.debug(this.nft.metadata.url);
                 return `${this.url}/asset/${this.nft.assetId}`;
             } else {
                 return `/asset/${this.nft.assetId}`;

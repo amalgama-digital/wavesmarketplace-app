@@ -18,5 +18,10 @@
         "name": "WavesDucks Breeding",
         "description": "Secret NFT society, granting you access to unique experiences",
         "address_issuer": "3PDVuU45H7Eh5dmtNbnRNRStGwULA7NY6Hb"
+    },
+    "memaliens": {
+        "name": "Memaliens",
+        "description": "We has taken roots among you and feed on your cultural code",
+        "address_issuer": "3PBkrb5LrGDvCwkx4VHZzZkqMNvvGqrJJWj"
     }
 }
