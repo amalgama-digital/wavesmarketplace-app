@@ -118,7 +118,7 @@ export default {
             collections: [
                 {
                     href: '/collection/memaliens',
-                    imgSrc: '/img/collections/memaliens.png'
+                    imgSrc: '/img/collections/memaliens.png',
                 },
                 {
                     href: '/collection/zombiepunks',
@@ -135,7 +135,7 @@ export default {
                 {
                     href: '/collection/wavesducks_breeding',
                     imgSrc: '/img/collections/wavesducks_breeding.jpg',
-                }
+                },
             ],
         };
     },
@@ -207,13 +207,11 @@ export default {
             }
         },
         goToCollection(name) {
-            this.$router.push(
-                {
-                    name: 'Collection',
-                    params: {name}
-                }
-            );
-        }
+            this.$router.push({
+                name: 'Collection',
+                params: { name },
+            });
+        },
     },
 };
 </script>

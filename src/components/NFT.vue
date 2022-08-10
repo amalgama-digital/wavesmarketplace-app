@@ -47,7 +47,6 @@ export default {
                     this.nft.assetId
                 );
                 this.nft.metadata.style = createStyle(this.nft.name);
-
             }
         } catch {
             console.debug(this.nft.name + ': Not a duck!');
