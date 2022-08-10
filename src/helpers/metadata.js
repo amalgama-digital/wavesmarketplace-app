@@ -8,7 +8,7 @@ async function getMetadata(assetId, issuer, description) {
         try {
             resp = JSON.parse(description);
         } catch {
-            const regex = '{"id": ([0-9]*)"?, "url": "(https:\/\/[a-z./0-9]*)"}';
+            const regex = '{"id": ([0-9]*)"?, "url": "(https://[a-z./0-9]*)"}';
             const matched = description.match(regex);
             resp = {
                 id: matched[1],
