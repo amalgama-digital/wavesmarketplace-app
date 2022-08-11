@@ -150,8 +150,8 @@ export default {
             const childCount = this.$refs.collectionsRef.childElementCount - 3;
 
             const step = clientWidth
-                ? Math.ceil(clientWidth / childCount)
-                : -450;
+                ? Math.ceil(clientWidth / childCount) + 500
+                : -550;
             const maxOffset = 0;
             if (this.curOffset > maxOffset) {
                 this.curOffset -= step;
@@ -187,12 +187,6 @@ export default {
 
             if (this.curOffset < maxOffset) {
                 this.curOffset += step;
-                console.debug({
-                    sw: this.$refs.collectionsRef.scrollWidth,
-                    step,
-                    cu: this.curOffset,
-                    maxOffset,
-                });
                 setTimeout(
                     // fix` chromium-based browsers flaw
                     () => {
@@ -313,13 +307,34 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
+    transition: background-size 0.5s;
+}
+
+.first__cover:hover {
+    background-size: 130%;
+}
+
+.first__cover:hover .first__text {
+    visibility: visible;
 }
 
 .first__text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 60px;
+    align-items: center;
+    width: 100%;
+    border-radius: 18px;
+    
+    background-color: rgba(240, 255, 255, 0.5);
+
+    transition: -webkit-backdrop-filter .7s, backdrop-filter .7s;
+    visibility: hidden;
+}
+
+.first__text:hover {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .first__text > h2 {
@@ -331,14 +346,14 @@ export default {
 
 .first__text > a {
     width: max-content;
-    margin: 40% 0 0 0;
     border: 0;
     border-radius: 8px;
     color: #ffd645;
     font-weight: 500;
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 23px;
+    line-height: 24px;
     text-align: center;
+    text-shadow: 2px 2px 3px #685100;
 }
 
 .first__text > a,
@@ -346,7 +361,6 @@ export default {
 .first__text > a:active {
     text-decoration: none;
     color: #ffd645;
-    cursor: pointer;
 }
 
 .highlights {
