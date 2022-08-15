@@ -6,6 +6,8 @@ import User from './pages/User';
 import Collection from './pages/Collection';
 import Asset from './pages/Asset';
 import News from './pages/News';
+import LoginPage from './pages/LoginPage';
+import AdminPage from './pages/AdminPage';
 
 const routes = [
     {
@@ -37,6 +39,16 @@ const routes = [
                 path: '/news',
                 name: 'News',
                 component: News,
+            },
+            {
+                path: '/login',
+                name: 'Login',
+                component: LoginPage,
+            },
+            {
+                path: '/admin',
+                name: 'Admin',
+                component: AdminPage,
             },
         ],
     },
