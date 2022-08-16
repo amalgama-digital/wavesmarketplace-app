@@ -1,12 +1,17 @@
 <template>
 <div class="admin">
     <h1>UNDER CONSTRUCTION</h1>
+    <CollectionComponent />
 </div>
 </template>
 
 <script>
-export default {
+import CollectionComponent from '../components/admin/CollectionComponent.vue';
 
+export default {
+    components: {
+    CollectionComponent,
+}
 }
 </script>
 
