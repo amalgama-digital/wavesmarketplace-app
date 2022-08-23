@@ -159,6 +159,7 @@ export default {
                         data.name = res.data.name;
 
                         data.issuer = res.data.issuer;
+                        data.assetId = this.assetId;
 
                         data.metadata = await getMetadata(
                             this.assetId,
