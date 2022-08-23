@@ -4,6 +4,21 @@
         "description": "WAVES PUNKS is the first collection of digital punks on Waves blockchain",
         "address_issuer": "3P8rLVnwrTf4k5AB3emuduhZZb1yKcitTHy"
     },
+    "free_nomads": {
+        "name": "Free Nomads",
+        "description": "",
+        "address_issuer": "3PJXfYMavRVzBDXqsFfwkLdEV7yuF5RToya"
+    },
+    "empire_of_progress": {
+        "name": "Empire of progress",
+        "description": "",
+        "address_issuer": "3P8LcmWrr9SFrxwheZQENov5fPHEWtiwroN"
+    },
+    "mutation_adepts": {
+        "name": "Mutation Adepts",
+        "description": "",
+        "address_issuer": "3PD5eTW5ZWzTBTph3LQmEt877DPCjQsGwwz"
+    },
     "zombiepunks": {
         "name": "ZombiePunks",
         "description": "Second Chapter of the first-ever NFT-punks on WAVES blockchain",
