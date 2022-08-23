@@ -1,8 +1,8 @@
 <template>
     <component :is="nft.assetId ? 'a' : 'div'" @click="gotoNft" class="nft">
-        <vue-load-image v-if="nft.metadata.url">
+        <vue-load-image v-if="url">
             <img
-                :src="nft.metadata.url"
+                :src="url"
                 :alt="nft.name"
                 :style="nft.metadata.style"
                 slot="image"
@@ -24,17 +24,23 @@
 </template>
 
 <script>
+import axios from 'axios';
 import VueLoadImage from 'vue-load-image';
 
 import { createStyle, createURL, parseName } from '../helpers/ducks';
 
 export default {
     name: 'NFT',
-    props: ['nft', 'viewInfo', 'url'],
+    props: ['nft', 'viewInfo'],
+    data () {
+        return {
+            url: "",
+        };
+    },
     components: {
         'vue-load-image': VueLoadImage,
     },
-    created() {
+    async created() {
         // WavesDucks
         const ducks = parseName(this.nft.name);
         try {
@@ -50,6 +56,20 @@ export default {
             }
         } catch {
             console.debug(this.nft.name + ': Not a duck!');
+        }
+        if (this.nft.metadata.url === undefined) {
+            const response = await axios.post(
+                `${window.nodeURL}/addresses/data/${this.nft.issuer}`,
+                {
+                    "keys": [
+                        `${this.nft.assetId}_url`
+                    ]
+                }
+            );
+            console.debug('val', response.data[0]?.value);
+            this.url = response.data[0]?.value;
+        } else {
+            this.url = this.nft.metadata.url;
         }
     },
     computed: {
