@@ -16,6 +16,8 @@ async function getMarketInfo(key, value) {
 
                 data.assetId = resData[i].key.substring(0, l - key.length);
 
+                data.issuer = key === '_issuer' ? value: '';
+
                 data.name = resData.find(
                     (item) => item.key === data.assetId + '_name'
                 ).value;
