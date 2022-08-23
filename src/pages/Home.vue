@@ -117,6 +117,18 @@ export default {
             curOffset: 0, // used to scroll the collection
             collections: [
                 {
+                    href: '/collection/empire_of_progress',
+                    imgSrc: '/img/collections/mad_empire.png'
+                },
+                {
+                    href: '/collection/mutation_adepts',
+                    imgSrc: '/img/collections/mad_mutation.png'
+                },
+                {
+                    href: '/collection/free_nomads',
+                    imgSrc: '/img/collections/mad_nomads.png'
+                },
+                {
                     href: '/collection/memaliens',
                     imgSrc: '/img/collections/memaliens.png',
                 },
