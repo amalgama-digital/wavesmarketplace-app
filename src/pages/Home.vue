@@ -6,7 +6,6 @@
                 class="first__cover"
                 :style="'background-image: url(collections/' + new_selected + '/background.png);'"
             >
-                <!-- <div class="ribbon ribbon-top-right"><span>NEW!</span></div> -->
                 <div class="first__text">
                     <a href="/collection/memaliens">VIEW COLLECTION</a>
                 </div>
@@ -347,8 +346,7 @@ export default {
     justify-content: space-between;
     height: 100%;
     border-radius: 18px;
-    /* background-image: url('../assets/images/first-block.png'); */
-    background-size: 100%;
+    background-size: 110%;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
@@ -539,6 +537,7 @@ export default {
 
 .collections__block > img {
     height: 246px;
+    width: 100%;
 }
 
 .merch {
@@ -578,58 +577,4 @@ export default {
 .active, .dot:hover {
   background-color: #717171;
 }
-
-/* common */
-.ribbon {
-  width: 150px;
-  height: 150px;
-  overflow: hidden;
-  position: absolute;
-}
-.ribbon::before,
-.ribbon::after {
-  position: absolute;
-  z-index: -1;
-  content: '';
-  display: block;
-  border: 5px solid #0055FF;
-}
-.ribbon span {
-  position: absolute;
-  display: block;
-  width: 225px;
-  padding: 15px 0;
-  background-color: #3498db;
-  box-shadow: 0 5px 10px rgba(0,0,0,.1);
-  color: #fff;
-  font: 700 18px/1 'Lato', sans-serif;
-  text-shadow: 0 1px 1px rgba(0,0,0,.2);
-  text-transform: uppercase;
-  text-align: center;
-}
-
-/* top right*/
-.ribbon-top-right {
-  top: -10px;
-  right: -10px;
-}
-.ribbon-top-right::before,
-.ribbon-top-right::after {
-  border-top-color: transparent;
-  border-right-color: transparent;
-}
-.ribbon-top-right::before {
-  top: 0;
-  left: 0;
-}
-.ribbon-top-right::after {
-  bottom: 0;
-  right: 0;
-}
-.ribbon-top-right span {
-  left: -25px;
-  top: 30px;
-  transform: rotate(45deg);
-}
-
 </style>
