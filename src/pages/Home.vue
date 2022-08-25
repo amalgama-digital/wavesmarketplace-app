@@ -1,10 +1,23 @@
 <template>
     <div class="home">
         <div class="first">
-            <div @click="goToCollection('memaliens')" class="first__cover">
+            <div
+                @click="goToCollection(new_selected)"
+                class="first__cover"
+                :style="'background-image: url(collections/' + new_selected + '/background.png);'"
+            >
+                <!-- <div class="ribbon ribbon-top-right"><span>NEW!</span></div> -->
                 <div class="first__text">
                     <a href="/collection/memaliens">VIEW COLLECTION</a>
                 </div>
+            </div>
+            <div class="dots">
+                <span
+                    v-for="(val, n) in new_collections"
+                    :key="n"
+                    :class="['dot', val.selected ? 'active': '']"
+                    @click="selectNew(n)"
+                ></span>
             </div>
         </div>
 
@@ -114,6 +127,21 @@ export default {
     name: 'Home',
     data: () => {
         return {
+            new_selected: "empire_of_progress",
+            new_collections: [
+                {
+                    name: "empire_of_progress",
+                    selected: true
+                },
+                {
+                    name: "free_nomads",
+                    selected: false
+                },
+                {
+                    name: "mutation_adepts",
+                    selected: false
+                },
+            ],
             curOffset: 0, // used to scroll the collection
             collections: [
                 {
@@ -218,6 +246,11 @@ export default {
                 params: { name },
             });
         },
+        selectNew(coll_n) {
+            this.new_selected = this.new_collections[coll_n].name;
+            this.new_collections.forEach(v => v.selected = false);
+            this.new_collections[coll_n].selected = true;
+        }
     },
 };
 </script>
@@ -314,7 +347,7 @@ export default {
     justify-content: space-between;
     height: 100%;
     border-radius: 18px;
-    background-image: url('../assets/images/first-block.png');
+    /* background-image: url('../assets/images/first-block.png'); */
     background-size: 100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -342,6 +375,7 @@ export default {
 
     transition: -webkit-backdrop-filter .7s, backdrop-filter .7s;
     visibility: hidden;
+    z-index: 2;
 }
 
 .first__text:hover {
@@ -523,4 +557,79 @@ export default {
     background-position: center;
     text-align: right;
 }
+
+
+/* The dots/bullets/indicators */
+.dots {
+    margin-top: 5px;
+    text-align:center;
+}
+.dot {
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+  margin: 0 3px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* common */
+.ribbon {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+}
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border: 5px solid #0055FF;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 225px;
+  padding: 15px 0;
+  background-color: #3498db;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color: #fff;
+  font: 700 18px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* top right*/
+.ribbon-top-right {
+  top: -10px;
+  right: -10px;
+}
+.ribbon-top-right::before,
+.ribbon-top-right::after {
+  border-top-color: transparent;
+  border-right-color: transparent;
+}
+.ribbon-top-right::before {
+  top: 0;
+  left: 0;
+}
+.ribbon-top-right::after {
+  bottom: 0;
+  right: 0;
+}
+.ribbon-top-right span {
+  left: -25px;
+  top: 30px;
+  transform: rotate(45deg);
+}
+
 </style>
