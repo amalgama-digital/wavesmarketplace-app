@@ -31,7 +31,13 @@ async function getMarketInfo(key, value) {
                     undefined,
                     raw_meta
                 );
+                data.metadata.id = data.metadata.id
+                                   ? data.metadata.id
+                                   : Number(data.name
+                                   .replace('#', '')
+                                   .split(' ')[1])
 
+                console.debug("meta id:", data.metadata.id)
                 data.price =
                     resData.find((item) => item.key === data.assetId + '_price')
                         .value / 100000000;

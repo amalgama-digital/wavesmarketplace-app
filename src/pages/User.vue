@@ -66,6 +66,8 @@ export default {
 
                             data.name = res.data[i].name;
                             data.assetId = res.data[i].assetId;
+                            data.issuer = res.data[i].issuer;
+
 
                             data.issuer = res.data[i].issuer;
                             data.metadata = await getMetadata(
@@ -73,6 +75,10 @@ export default {
                                 data.issuer,
                                 res.data[i].description
                             );
+
+                            data.metadata.id = Number(data.name
+                                .replace('#', '')
+                                .split(' ')[1]);
 
                             data.price = 0;
 

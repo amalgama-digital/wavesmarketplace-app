@@ -66,7 +66,6 @@ export default {
                     ]
                 }
             );
-            console.debug('val', response.data[0]?.value);
             this.url = response.data[0]?.value;
         } else {
             this.url = this.nft.metadata.url;
