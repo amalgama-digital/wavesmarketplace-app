@@ -6,12 +6,12 @@
     },
     "free_nomads": {
         "name": "Free Nomads",
-        "description": "Bounty hunters, raiders, sheriffs, tribal warriors and adrenaline junkies. These guys know a lot about a real post-apocalyptic party.",
+        "description": "Bounty hunters, raiders, sheriffs, tribal warriors and adrenaline junkies.",
         "address_issuer": "3PJXfYMavRVzBDXqsFfwkLdEV7yuF5RToya"
     },
     "empire_of_progress": {
         "name": "Empire of progress",
-        "description": "Crazy militarists obsessed with combat technology. Watch your step with  them — they just want to shoot someone.",
+        "description": "Crazy militarists obsessed with combat technology",
         "address_issuer": "3P8LcmWrr9SFrxwheZQENov5fPHEWtiwroN"
     },
     "mutation_adepts": {
