@@ -6,17 +6,17 @@
     },
     "free_nomads": {
         "name": "Free Nomads",
-        "description": "",
+        "description": "Bounty hunters, raiders, sheriffs, tribal warriors and adrenaline junkies. These guys know a lot about a real post-apocalyptic party.",
         "address_issuer": "3PJXfYMavRVzBDXqsFfwkLdEV7yuF5RToya"
     },
     "empire_of_progress": {
         "name": "Empire of progress",
-        "description": "",
+        "description": "Crazy militarists obsessed with combat technology. Watch your step with  them — they just want to shoot someone.",
         "address_issuer": "3P8LcmWrr9SFrxwheZQENov5fPHEWtiwroN"
     },
     "mutation_adepts": {
         "name": "Mutation Adepts",
-        "description": "",
+        "description": "Vegetarians? Why not! Especially with radioactive superpowers.",
         "address_issuer": "3PD5eTW5ZWzTBTph3LQmEt877DPCjQsGwwz"
     },
     "zombiepunks": {
