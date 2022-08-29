@@ -4,10 +4,11 @@
             <div
                 @click="goToCollection(new_selected)"
                 class="first__cover"
-                :style="'background-image: url(collections/' + new_selected + '/background.png);'"
             >
+                <ribbon-top-right class="z-1">NEW!</ribbon-top-right>
+                <img :src="`collections/${new_selected}/background.png`" alt="">
                 <div class="first__text">
-                    <a href="/collection/memaliens">VIEW COLLECTION</a>
+                    <a href="#">VIEW COLLECTION</a>
                 </div>
             </div>
             <div class="dots">
@@ -122,6 +123,8 @@
 </template>
 
 <script>
+import RibbonTopRight from '../components/RibbonTopRight.vue'
+
 export default {
     name: 'Home',
     data: () => {
@@ -177,6 +180,9 @@ export default {
                 },
             ],
         };
+    },
+    components: {
+        RibbonTopRight,
     },
     methods: {
         scrollCollections(ev) {
@@ -337,24 +343,29 @@ export default {
     margin: auto;
     margin-top: 70px;
     border-radius: 18px;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.3);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
 .first__cover {
-    display: flex;
-    justify-content: space-between;
+    display: block;
+    position: relative;
     height: 100%;
     border-radius: 18px;
-    background-size: 110%;
-    background-repeat: no-repeat;
-    background-position: center;
+    overflow: hidden;
     cursor: pointer;
-    transition: background-size 0.5s;
 }
 
-.first__cover:hover {
-    background-size: 130%;
+.first__cover > img {
+    border-radius: inherit;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+}
+
+
+.first__cover:hover img {
+    transform: scale(110%, 110%);
 }
 
 .first__cover:hover .first__text {
@@ -367,7 +378,11 @@ export default {
     justify-content: center;
     align-items: center;
     width: 100%;
-    border-radius: 18px;
+    height: 100%;
+    border-radius: inherit;
+
+    position: absolute;
+    top: 0;
     
     background-color: rgba(240, 255, 255, 0.5);
 
@@ -576,5 +591,9 @@ export default {
 
 .active, .dot:hover {
   background-color: #717171;
+}
+
+.z-1 {
+    z-index: 1;
 }
 </style>
