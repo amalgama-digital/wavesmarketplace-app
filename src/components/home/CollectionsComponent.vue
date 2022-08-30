@@ -196,24 +196,6 @@ export default {
         drop-shadow(-3px -3px 6px rgba(255, 255, 255, 0.6));
 }
 
-.scroller {
-    position: absolute;
-    display: flex;
-    align-items: center;
-
-    font-size: 2.5rem;
-
-    min-height: 4rem;
-    min-width: 4rem;
-    border-radius: 5rem;
-    max-height: 4rem;
-    max-width: 4rem;
-
-    background-color: rgba(240, 240, 245, 0.7);
-    color: #2c7dff;
-    z-index: 1;
-}
-
 .scroller-left {
     left: 14rem;
 }

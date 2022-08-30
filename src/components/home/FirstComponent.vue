@@ -1,25 +1,27 @@
 <template>
-<div class="first">
-    <div
-        @click="goToCollection(new_selected)"
-        class="first__cover"
-    >
-        <ribbon-top-right class="z-1">NEW!</ribbon-top-right>
-        <img :src="`collections/${new_selected}/background.png`" alt="">
-        <div class="first__text">
-            <a href="#">VIEW COLLECTION</a>
+<div>
+    <div class="first">
+        <div
+            @click="goToCollection(new_selected)"
+            class="first__cover"
+        >
+            <ribbon-top-right class="z-1">NEW!</ribbon-top-right>
+            <img :src="`collections/${new_selected}/background.png`" alt="">
+            <div class="first__text">
+                <a href="#">VIEW COLLECTION</a>
+            </div>
         </div>
-    </div>
-    <div v-if="new_collections.length > 1">
-        <button-arrow
-            class="scroll-right"
-            @click.native="nextColl"
-        ></button-arrow>
-        <button-arrow
-            left
-            class="scroll-left"
-            @click.native="prevColl"
-        ></button-arrow>
+        <div v-if="new_collections.length > 1">
+            <button-arrow
+                class="scroll-right"
+                @click.native="nextColl"
+            ></button-arrow>
+            <button-arrow
+                left
+                class="scroll-left"
+                @click.native="prevColl"
+            ></button-arrow>
+        </div>
     </div>
     <div class="dots">
         <span
@@ -100,11 +102,20 @@ export default {
     .first__text > h2 {
         font-size: 42px !important;
     }
+
+    .scroll-left {
+        top: 30% !important;
+    }
+
+    .scroll-right {
+        top: 30% !important;
+    }
 }
 
 @media only screen and (max-width: 425px) {
     .first__cover {
         justify-content: center !important;
+        
     }
 
     .first__text {
@@ -120,7 +131,8 @@ export default {
 .first {
     position: relative;
     max-width: 1360px;
-    height: 550px;
+    max-height: 550px;
+    height: auto;
     margin: auto;
     margin-top: 70px;
     border-radius: 18px;
@@ -131,7 +143,7 @@ export default {
 .first__cover {
     display: block;
     position: relative;
-    height: 100%;
+    height: auto;
     border-radius: 18px;
     overflow: hidden;
     cursor: pointer;
@@ -139,8 +151,8 @@ export default {
 
 .first__cover > img {
     border-radius: inherit;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    height: auto;
     transition: transform 0.5s;
 }
 
@@ -232,7 +244,7 @@ export default {
 }
 
 .active, .dot:hover {
-  background-color: #717171;
+  background-color: #0055FF;
 }
 
 .z-1 {
