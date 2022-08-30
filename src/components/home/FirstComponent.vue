@@ -10,6 +10,17 @@
             <a href="#">VIEW COLLECTION</a>
         </div>
     </div>
+    <div v-if="new_collections.length > 1">
+        <button-arrow
+            class="scroll-right"
+            @click.native="nextColl"
+        ></button-arrow>
+        <button-arrow
+            left
+            class="scroll-left"
+            @click.native="prevColl"
+        ></button-arrow>
+    </div>
     <div class="dots">
         <span
             v-for="(val, n) in new_collections"
@@ -23,11 +34,13 @@
 
 <script>
 import RibbonTopRight from '../RibbonTopRight.vue'
+import ButtonArrow from '../ButtonArrow.vue';
 
 export default {
     name: "FirstComponent",
     components: {
         RibbonTopRight,
+        ButtonArrow,
     },
     data() {
         return {
@@ -59,6 +72,24 @@ export default {
             this.new_selected = this.new_collections[coll_n].name;
             this.new_collections.forEach(v => v.selected = false);
             this.new_collections[coll_n].selected = true;
+        },
+        nextColl() {
+            const sel_num = this.new_collections.findIndex((v) => v.selected);
+            if (sel_num < this.new_collections.length - 1) {
+                const next_sel = sel_num + 1;
+                this.new_collections[sel_num].selected = false;
+                this.new_collections[next_sel].selected = true;
+                this.new_selected = this.new_collections[next_sel].name;
+            }
+        },
+        prevColl() {
+            const sel_num = this.new_collections.findIndex((v) => v.selected);
+            if (sel_num !== 0) {
+                const next_sel = sel_num - 1;
+                this.new_collections[sel_num].selected = false;
+                this.new_collections[next_sel].selected = true;
+                this.new_selected = this.new_collections[next_sel].name;
+            }
         }
     }
 }
@@ -87,6 +118,7 @@ export default {
 }
 
 .first {
+    position: relative;
     max-width: 1360px;
     height: 550px;
     margin: auto;
@@ -169,6 +201,18 @@ export default {
 .first__text > a:active {
     text-decoration: none;
     color: #ffd645;
+}
+
+/* Scroll buttons */
+
+.scroll-right {
+    top: 50%;
+    right: -5%;
+}
+
+.scroll-left {
+    top: 50%;
+    left: -5%;
 }
 
 /* The dots/bullets/indicators */

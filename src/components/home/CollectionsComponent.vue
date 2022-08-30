@@ -8,45 +8,15 @@
             @scroll="scrollCollections"
             ref="collectionsRef"
         >
-            <button
-                class="collections__scroller scroller-left"
-                @click="scrollLeft"
-            >
-                <svg
-                    style="transform: rotate(180deg)"
-                    viewBox="0 0 128 128"
-                    width="28"
-                    height="28"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <g>
-                        <path
-                            d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z"
-                            stroke="#2C7DFF"
-                            fill="#2C7DFF"
-                        />
-                    </g>
-                </svg>
-            </button>
-            <button
-                class="collections__scroller scroller-right"
-                @click="scrollRight"
-            >
-                <svg
-                    viewBox="0 0 128 128"
-                    width="28"
-                    height="28"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-                    <g>
-                        <path
-                            d="m71.41066,64.00002l-43.41066,-61.63161l28.58935,0l43.41066,61.63161l-43.41066,61.63156l-28.58935,0l43.41066,-61.63156z"
-                            stroke="#2C7DFF"
-                            fill="#2C7DFF"
-                        />
-                    </g>
-                </svg>
-            </button>
+            <button-arrow
+                left
+                class="scroller-left"
+                @click.native="scrollLeft"
+            ></button-arrow>
+            <button-arrow
+                class="scroller-right"
+                @click.native="scrollRight"
+            ></button-arrow>
             <a
                 class="collections__block"
                 v-for="(collection, n) in collections"
@@ -60,43 +30,44 @@
 </template>
 
 <script>
+import ButtonArrow from '../ButtonArrow.vue';
 export default {
     name: "CollectionsComponent",
     data: () => {
         return {
-            curOffset: 0, // used to scroll the collection
+            curOffset: 0,
             collections: [
                 {
-                    href: '/collection/empire_of_progress',
-                    imgSrc: '/img/collections/mad_empire.png'
+                    href: "/collection/empire_of_progress",
+                    imgSrc: "/img/collections/mad_empire.png"
                 },
                 {
-                    href: '/collection/mutation_adepts',
-                    imgSrc: '/img/collections/mad_mutation.png'
+                    href: "/collection/mutation_adepts",
+                    imgSrc: "/img/collections/mad_mutation.png"
                 },
                 {
-                    href: '/collection/free_nomads',
-                    imgSrc: '/img/collections/mad_nomads.png'
+                    href: "/collection/free_nomads",
+                    imgSrc: "/img/collections/mad_nomads.png"
                 },
                 {
-                    href: '/collection/memaliens',
-                    imgSrc: '/img/collections/memaliens.png',
+                    href: "/collection/memaliens",
+                    imgSrc: "/img/collections/memaliens.png",
                 },
                 {
-                    href: '/collection/zombiepunks',
-                    imgSrc: '/img/collections/zombie.png',
+                    href: "/collection/zombiepunks",
+                    imgSrc: "/img/collections/zombie.png",
                 },
                 {
-                    href: '/collection/wavespunks',
-                    imgSrc: '/img/collections/punks.png',
+                    href: "/collection/wavespunks",
+                    imgSrc: "/img/collections/punks.png",
                 },
                 {
-                    href: '/collection/wavesducks_incubator',
-                    imgSrc: '/img/collections/wavesducks_incubator.jpg',
+                    href: "/collection/wavesducks_incubator",
+                    imgSrc: "/img/collections/wavesducks_incubator.jpg",
                 },
                 {
-                    href: '/collection/wavesducks_breeding',
-                    imgSrc: '/img/collections/wavesducks_breeding.jpg',
+                    href: "/collection/wavesducks_breeding",
+                    imgSrc: "/img/collections/wavesducks_breeding.jpg",
                 },
             ],
         };
@@ -105,12 +76,10 @@ export default {
         scrollCollections(ev) {
             this.curOffset = ev.target.scrollLeft;
         },
-
         scrollLeft() {
             const clientWidth = this.$refs.collectionsRef.clientWidth;
             // there are 2 buttons at the moment and already 1st element is visible, so -3
             const childCount = this.$refs.collectionsRef.childElementCount - 3;
-
             const step = clientWidth
                 ? Math.ceil(clientWidth / childCount) + 500
                 : -550;
@@ -118,51 +87,43 @@ export default {
             if (this.curOffset > maxOffset) {
                 this.curOffset -= step;
                 setTimeout(
-                    // `fix` chromium-based browsers flaw
-                    () => {
-                        this.$refs.collectionsRef.scrollTo({
-                            behavior: 'smooth',
-                            top: 0,
-                            left: this.curOffset,
-                        });
-                    },
-                    5
-                );
+                // `fix` chromium-based browsers flaw
+                () => {
+                    this.$refs.collectionsRef.scrollTo({
+                        behavior: "smooth",
+                        top: 0,
+                        left: this.curOffset,
+                    });
+                }, 5);
             }
         },
-
         scrollRight() {
             const scrollWidth = this.$refs.collectionsRef.scrollWidth;
             const clientWidth = this.$refs.collectionsRef.clientWidth;
             // there are 2 buttons at the moment and already 1st element is visible, so -3
             const childCount = this.$refs.collectionsRef.childElementCount - 2;
-
             const step = clientWidth
                 ? Math.ceil(scrollWidth / childCount)
                 : 450;
-
             // some browsers doesn't have `scrollLeftMax` element property
             // there are 2 buttons at the moment and already 1st element is visible, so -3
-            const maxOffset =
-                this.$refs.collectionsRef.scrollLeftMax ??
+            const maxOffset = this.$refs.collectionsRef.scrollLeftMax ??
                 scrollWidth - clientWidth;
-
             if (this.curOffset < maxOffset) {
                 this.curOffset += step;
                 setTimeout(
-                    // fix` chromium-based browsers flaw
-                    () => {
-                        this.$refs.collectionsRef.scrollTo({
-                            behavior: 'smooth',
-                            top: 0,
-                            left: this.curOffset,
-                        });
-                    },
-                    5
-                );
+                // fix` chromium-based browsers flaw
+                () => {
+                    this.$refs.collectionsRef.scrollTo({
+                        behavior: "smooth",
+                        top: 0,
+                        left: this.curOffset,
+                    });
+                }, 5);
             }
         },
     },
+    components: { ButtonArrow }
 }
 </script>
 
@@ -235,7 +196,7 @@ export default {
         drop-shadow(-3px -3px 6px rgba(255, 255, 255, 0.6));
 }
 
-.collections__scroller {
+.scroller {
     position: absolute;
     display: flex;
     align-items: center;
