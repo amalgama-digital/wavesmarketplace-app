@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getMetadata } from './metadata';
+import { getMetadata, url_by_issuer } from './metadata';
 
 async function getMarketInfo(key, value) {
     const nfts = [];
@@ -47,6 +47,9 @@ async function getMarketInfo(key, value) {
                     resData.find((item) => item.key === data.assetId + '_price')
                         .value / 100000000;
 
+                if (!data.metadata.url) {
+                    data.metadata.url = await url_by_issuer(data.issuer, data.assetId)
+                }
                 nfts.push(data);
             }
         }

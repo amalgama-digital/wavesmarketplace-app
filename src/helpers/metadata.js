@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { getPuzzleImage } from '../helpers/puzzle';
 
 async function getMetadata(assetId, issuer, description) {
@@ -20,4 +22,25 @@ async function getMetadata(assetId, issuer, description) {
     }
 }
 
-export { getMetadata };
+/**
+ * get asset url from issuer contract by address
+ */
+async function url_by_issuer(issuer, assetId) {
+    try {
+        const loc = `${window.nodeURL}/addresses/data/${issuer}`;
+        const reqData = {
+            "keys": [
+                `${assetId}_url`
+            ]
+        };
+        const response = await axios.post(
+            loc,
+            reqData
+        );
+        return response.data[0]?.value;
+    } catch (error) {
+        console.error("url_by_issuer", error);
+    }
+}
+
+export { getMetadata, url_by_issuer };
