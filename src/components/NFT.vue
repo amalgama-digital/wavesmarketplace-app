@@ -68,7 +68,6 @@ export default {
                     }
                 );
                 this.url = response.data[0]?.value;
-                console.debug("NFT URL:", this.url);
             } catch (error) {
                 console.error(error);
             }

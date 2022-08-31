@@ -14,6 +14,11 @@
 
         <sort @change="setNfts"></sort>
 
+        <div
+            v-if="!nftsLen"
+        >
+            <PreLoader />
+        </div>
         <div class="nfts">
             <NFT
                 :nft="nft"
@@ -34,6 +39,7 @@ import { useCollectionsStore } from '../stores/collections';
 
 import Sort from '../components/Sort.vue';
 import NFT from '../components/NFT.vue';
+import PreLoader from '../components/PreLoader.vue';
 
 export default {
     name: 'Collection',
@@ -55,6 +61,12 @@ export default {
     components: {
         Sort,
         NFT,
+        PreLoader,
+    },
+    computed: {
+        nftsLen() {
+            return this.nfts.length
+        }
     },
     async mounted() {
         this.params = this.$route.params.name;
