@@ -164,7 +164,10 @@ export default {
     max-width: 100%;
     height: auto;
     transition: transform 0.5s;
-    animation: slidetop .6s ease-in-out;
+    animation-name: fadein;
+    -webkit-animation-name: fadein;
+    animation-duration: .6s;
+    animation-timing-function: ease-in-out;
 }
 
 .visible {
@@ -269,13 +272,12 @@ export default {
     z-index: 1;
 }
 
-@keyframes slidetop {
+@keyframes fadein {
     from {
-        top: -110%;
+        opacity: 0;
     }
     to {
-        top: 0;
+        opacity: 1;
     }
 }
-
 </style>
