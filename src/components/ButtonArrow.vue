@@ -33,8 +33,8 @@ export default {
 <style scoped>
 @media only screen and (max-width: 768px) {
     .scroller {
-        height: 2.5rem !important;
-        width: 2.5rem !important;
+        height: 3rem !important;
+        width: 3rem !important;
     }
 }
 .scroller {
