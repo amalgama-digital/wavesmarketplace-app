@@ -6,7 +6,12 @@
             class="first__cover"
         >
             <ribbon-top-right class="z-1">NEW!</ribbon-top-right>
-            <img :src="`collections/${new_selected}/background.png`" alt="">
+            <img
+                v-for="coll in new_collections"
+                :src="`collections/${coll.name}/background.png`"
+                :class="coll.selected ? 'visible': 'invisible'"
+                alt=""
+            >
             <div class="first__text">
                 <a href="#">VIEW COLLECTION</a>
             </div>
@@ -99,6 +104,10 @@ export default {
 
 <style scoped>
 @media only screen and (max-width: 768px) {
+    /* .first__cover > img {
+        animation: none !important;
+    } */
+
     .first__text > h2 {
         font-size: 42px !important;
     }
@@ -136,7 +145,7 @@ export default {
     margin: auto;
     margin-top: 70px;
     border-radius: 18px;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(100, 100, 100, 0.3);
     box-shadow: 2px 2px 2px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -150,12 +159,21 @@ export default {
 }
 
 .first__cover > img {
+    position: relative;
     border-radius: inherit;
     max-width: 100%;
     height: auto;
     transition: transform 0.5s;
+    animation: slidetop .6s ease-in-out;
 }
 
+.visible {
+    display: block;
+}
+
+.invisible {
+    display: none;
+}
 
 .first__cover:hover img {
     transform: scale(110%, 110%);
@@ -249,6 +267,15 @@ export default {
 
 .z-1 {
     z-index: 1;
+}
+
+@keyframes slidetop {
+    from {
+        top: -110%;
+    }
+    to {
+        top: 0;
+    }
 }
 
 </style>
