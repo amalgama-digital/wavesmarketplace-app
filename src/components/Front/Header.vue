@@ -6,11 +6,13 @@
             </a>
         </div>
         <div v-if="authorized" class="header__links">
+            <router-link to="/swap">SWAP</router-link>
             <a href="/news">NEWS</a>
             <a :href="`/user/${wallet.address}`">MY NFT</a>
             <a href="#" @click="logout">LOG OUT</a>
         </div>
         <div v-else-if="!authorized" class="header__links">
+            <router-link to="/swap">SWAP</router-link>
             <a href="/news">NEWS</a>
             <a href="#" @click="connect = true">LOG IN</a>
         </div>

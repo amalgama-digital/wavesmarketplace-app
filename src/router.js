@@ -6,6 +6,7 @@ import User from './pages/User';
 import Collection from './pages/Collection';
 import Asset from './pages/Asset';
 import News from './pages/News';
+import SwapPage from './pages/SwapPage'
 
 const routes = [
     {
@@ -37,6 +38,11 @@ const routes = [
                 path: '/news',
                 name: 'News',
                 component: News,
+            },
+            {
+                path: '/swap',
+                name: 'Swap',
+                component: SwapPage,
             },
         ],
     },
