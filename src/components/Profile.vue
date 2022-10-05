@@ -56,6 +56,23 @@ export default {
                 console.error(err);
             });
 
+        if (!this.name) {
+            await axios
+                .get(
+                    `${window.nodeURL}/alias/by-address/${this.address}`
+                )
+                .then((res) => {
+                    const resData = res.data;
+
+                    const alias = resData.length > 0 ? resData[0].replace('alias:W:', '') : '';
+
+                    this.name = alias;
+                })
+                .catch((err) => {
+                    console.error(err);
+                });
+        }
+
         if (this.img == '') {
             this.img = create(this.address, { size: 120 });
         }
