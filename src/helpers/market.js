@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getMetadata } from './metadata';
+import { getMetadata, url_by_issuer } from './metadata';
 
 async function getMarketInfo(key, value) {
     const nfts = [];
@@ -16,7 +16,13 @@ async function getMarketInfo(key, value) {
 
                 data.assetId = resData[i].key.substring(0, l - key.length);
 
-                data.issuer = key === '_issuer' ? value: '';
+                data.issuer = key === '_issuer' ? value: undefined;
+
+                if (!data.issuer) {
+                    data.issuer = resData.find(
+                        (item) => item.key === data.assetId + '_issuer'
+                    )?.value;
+                }
 
                 data.name = resData.find(
                     (item) => item.key === data.assetId + '_name'
@@ -35,13 +41,15 @@ async function getMarketInfo(key, value) {
                                    ? data.metadata.id
                                    : Number(data.name
                                    .replace('#', '')
-                                   .split(' ')[1])
+                                   .split(' ')[1]);
 
-                console.debug("meta id:", data.metadata.id)
                 data.price =
                     resData.find((item) => item.key === data.assetId + '_price')
                         .value / 100000000;
 
+                if (!data.metadata.url) {
+                    data.metadata.url = await url_by_issuer(data.issuer, data.assetId)
+                }
                 nfts.push(data);
             }
         }

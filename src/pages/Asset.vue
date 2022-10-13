@@ -149,6 +149,8 @@ export default {
             }
         },
 
+        // TODO:
+        // Obsolete. New collections aren't working properly
         async getNFT() {
             await axios
                 .get(`${window.nodeURL}/assets/details/${this.assetId}`)
@@ -160,6 +162,8 @@ export default {
 
                         data.issuer = res.data.issuer;
                         data.assetId = this.assetId;
+
+                        console.debug(`issuer: ${data.issuer} assetID: ${data.assetId}`)
 
                         data.metadata = await getMetadata(
                             this.assetId,

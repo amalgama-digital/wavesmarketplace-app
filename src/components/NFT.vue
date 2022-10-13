@@ -58,15 +58,19 @@ export default {
             console.debug(this.nft.name + ': Not a duck!');
         }
         if (this.nft.metadata.url === undefined) {
-            const response = await axios.post(
-                `${window.nodeURL}/addresses/data/${this.nft.issuer}`,
-                {
-                    "keys": [
-                        `${this.nft.assetId}_url`
-                    ]
-                }
-            );
-            this.url = response.data[0]?.value;
+            try {
+                const response = await axios.post(
+                    `${window.nodeURL}/addresses/data/${this.nft.issuer}`,
+                    {
+                        "keys": [
+                            `${this.nft.assetId}_url`
+                        ]
+                    }
+                );
+                this.url = response.data[0]?.value;
+            } catch (error) {
+                console.error(error);
+            }
         } else {
             this.url = this.nft.metadata.url;
         }
