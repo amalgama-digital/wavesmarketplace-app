@@ -5,7 +5,6 @@
             @click="goToCollection(new_selected)"
             class="first__cover"
         >
-            <ribbon-top-right class="z-1">NEW!</ribbon-top-right>
             <img
                 v-for="coll in new_collections"
                 :src="`collections/${coll.name}/background.png`"
@@ -40,13 +39,11 @@
 </template>
 
 <script>
-import RibbonTopRight from '../RibbonTopRight.vue'
 import ButtonArrow from '../ButtonArrow.vue';
 
 export default {
     name: "FirstComponent",
     components: {
-        RibbonTopRight,
         ButtonArrow,
     },
     data() {
